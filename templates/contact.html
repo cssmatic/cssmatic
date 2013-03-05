@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block css %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href='/css/contact.css'>
+{% endblock %}
+
+{% block innerbody %}
+<div class="h1bar clearfix">
+    <h1>{% trans %}Contact Us{% endtrans %}</h1>
+    <div class="social"></div>
+</div>
+
+<div class="bcontent">
+    {% if sent_success %}
+    <div class="message success">
+        <div class="icon"></div>
+        {% trans %}Message sent!{% endtrans %}<div class="triangle"></div>
+    </div>
+    {% endif %}
+
+    {% for errormsg in errors %}
+        <div class="message error">
+            <div class="icon"></div>
+            {{ errormsg }}<div class="triangle"></div>
+        </div>
+    {% endfor %}
+
+    <h2>{% trans %}We want to hear from you{% endtrans %}</h2>
+    <p class="ptit" >{% trans %}Have any questions or suggestions?{% endtrans %}</p>
+    <p class="ptit">{% trans %}Reach out to us{% endtrans %}</p>
+
+    <form class="cfix dirtyForm" method="post" action="/contact" id="contact-us-form">
+        <div id="first_name-container" class="form-item field-required left form-item-text">
+            <label for="first_name" class="form-label">{% trans %}First Name{% endtrans %}</label>
+            <input type="text" id="first_name" class="form-text validate[required,Generic]" name="first_name">
+        </div>
+
+        <div id="last_name-container" class="form-item field-required left form-item-text">
+            <label for="last_name" class="form-label">{% trans %}Last Name{% endtrans %}</label>
+            <input type="text" id="last_name" class="form-text validate[required,Generic]" name="last_name">
+        </div>
+
+        <div id="email-container" class="form-item field-required clear form-item-text">
+            <label for="email" class="form-label">{% trans %}Email{% endtrans %}</label>
+            <input type="text" id="email" class="form-text validate[required,Email]" name="email">
+        </div>
+
+        <div id="organization-container" class="form-item left form-item-text">
+            <label for="organization" class="form-label">{% trans %}Company name{% endtrans %}</label>
+            <input type="text" id="organization" class="form-text validate[optional,Generic]" name="organization">
+        </div>
+
+        <div id="phone-container" class="form-item left form-item-text"><label for="phone" class="form-label">{% trans %}Phone{% endtrans %}</label>
+        <input type="text" id="phone" class="form-text validate[optional,Generic]" name="phone">
+        </div>
+        <div class="clear">
+            <div class="field-required">
+                <label class="form-label">{% trans %}Why are you contacting us?{% endtrans %}</label>
+            </div>
+            <ul id="route" class="form-item form-radio-group">
+                <li id="route_workus-container" class="form-item form-item-radio">
+                    <div class="custom-radio">
+                        <input type="radio" id="route_route_workus" value="workus" class="form-radio validate[required,Generic]" name="route">
+                        <label for="route_workus" class="form-label">{% trans %}Collaborate with us{% endtrans %}</label>
+                    </div>
+                </li>
+                <li id="route_Advertising-container" class="form-item form-item-radio">
+                    <div class="custom-radio">
+                        <input type="radio" id="route_Advertising" value="advertising" class="form-radio validate[required,Generic]" name="route">
+                        <label for="route_Advertising" class="form-label">{% trans %}Advertising{% endtrans %}</label>
+                    </div>
+                </li>
+                <li id="route_Partnerships-container" class="form-item form-item-radio">
+                    <div class="custom-radio">
+                        <input type="radio" id="route_Partnerships" value="partnerships" class="form-radio validate[required,Generic]" name="route">
+                        <label for="route_Partnerships" class="form-label">{% trans %}Partnerships{% endtrans %}</label>
+                    </div>
+                </li>
+                <li id="route_Network-container" class="form-item form-item-radio">
+                    <div class="custom-radio">
+                        <input type="radio" id="route_Network" value="network" class="form-radio validate[required,Generic]" name="route">
+                        <label for="route_Network" class="form-label">{% trans %}A question about CSSmatic{% endtrans %}</label>
+                    </div>
+                </li>
+                <li id="route_Other-container" class="form-item form-item-radio">
+                    <div class="custom-radio">
+                        <input type="radio" id="route_Other" value="other" class="form-radio validate[required,Generic]" name="route">
+                        <label for="route_Other" class="form-label">{% trans %}Other{% endtrans %}</label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="message-container" class="form-item field-required clear form-item-textarea">
+            <label for="message" class="form-label">{% trans %}Your Message{% endtrans %}</label>
+            <textarea id="message" cols="60" rows="10" class="form-textarea validate[required,Generic]" name="message"></textarea>
+        </div>
+
+        <div id="submit-container" class="form-item form-item-a"><input id="submit" value="{% trans %}Send{% endtrans %}" type="submit" class="form-button pink-submit form-submit form-button-default">
+        </div>
+    </form>
+</div>
+{% endblock %}

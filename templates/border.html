@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block js %}
+  {{ super() }}
+  <script src='/js/borderRadius.js'></script>
+{% endblock %}
+
+{% block innerbody %}
+<div class="h1bar clearfix">
+    <h1>{% trans %}Border Radius{% endtrans %}</h1>
+    <div class="social">
+        <div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+    </div>
+</div>
+
+<div class="twocolumns">
+    <div class="left-column">
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="all-corners">{% trans %}All Corners{% endtrans %}</label>
+                            <label class="align-right" for="all-corners">px</label>
+                            <div class="text-1">
+                                <input id="all-corners" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-all-corners" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="top-left">{% trans %}Top Left{% endtrans %}</label>
+                            <label class="align-right" for="top-left">px</label>
+                            <div class="text-1">
+                                <input id="top-left" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-top-left" class="slider-bar large"></div>
+                        <div class="row mtop15">
+                            <label for="top-right">{% trans %}Top Right{% endtrans %}</label>
+                            <label class="align-right" for="top-right">px</label>
+                            <div class="text-1">
+                                <input id="top-right" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-top-right" class="slider-bar large"></div>
+                        <div class="row mtop15">
+                            <label for="bottom-left">{% trans %}Bottom Left{% endtrans %}</label>
+                            <label class="align-right" for="bottom-left">px</label>
+                            <div class="text-1">
+                                <input id="bottom-left" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-bottom-left" class="slider-bar large"></div>
+                        <div class="row mtop15" >
+                            <label for="bottom-right">{% trans %}Bottom Right{% endtrans %}</label>
+                            <label class="align-right" for="bottom-right">px</label>
+                            <div class="text-1">
+                                <input id="bottom-right" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-bottom-right" class="slider-bar large"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="border-width">{% trans %}Border Width{% endtrans %}</label>
+                            <label class="align-right" for="border-width">px</label>
+                            <div class="text-1">
+                                <input id="border-width" type="text" value="0" />
+                            </div>
+                        </div>
+                        <div id="slider-border-width" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="vertical-length">{% trans %}Border Style{% endtrans %}</label>
+                            <div class="text-1">
+                                <select id="select-border">
+                                    <option>{% trans %}solid{% endtrans %}</option>
+                                    <option>{% trans %}dotted{% endtrans %}</option>
+                                    <option>{% trans %}dashed{% endtrans %}</option>
+                                    <option>{% trans %}double{% endtrans %}</option>
+                                    <option>{% trans %}groove{% endtrans %}</option>
+                                    <option>{% trans %}ridge{% endtrans %}</option>
+                                    <option>{% trans %}inset{% endtrans %}</option>
+                                    <option>{% trans %}outset{% endtrans %}</option>
+                                    <option>{% trans %}inherit{% endtrans %}</option>
+                                    <option>{% trans %}hidden{% endtrans %}</option>
+                                    <option>{% trans %}none{% endtrans %}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="br-color">{% trans %}Border Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="br-color" type="text" value="#000000" />
+                            </div>
+                            <a id="br-color-button" class="btn-color color-3" href="javascript:;">
+                                <span>{% trans %}color{% endtrans %}</span>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <label for="br-background-color">{% trans %}Background Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="br-background-color" type="text" value="#e7a61a" />
+                            </div>
+                            <a id="br-background-color-button" class="btn-color color-4" href="javascript:;">
+                                <span>color</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+        <div class="box-wrap">
+            <div id="border-radius-code" class="content"></div>
+
+            <div id="border-radius-panel">
+                <div id="border-radius-object"><a id="copy-text-input" class="btn-link-1" href="javascript:;">{% trans %}Copy Text{% endtrans %}</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

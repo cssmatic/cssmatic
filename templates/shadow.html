@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block js %}
+    {{ super() }}
+    <script src="/js/boxShadow.js"></script>
+{% endblock %}
+
+{% block innerbody %}
+<div class="h1bar clearfix">
+    <h1>{% trans %}Box Shadow{% endtrans %}</h1>
+    <div class="social">
+        <div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+    </div>
+</div>
+
+<div class="twocolumns">
+    <div class="left-column">
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="horizontal-length">{% trans %}Horizontal Length{% endtrans %}</label>
+                            <label class="align-right" for="horizontal-length">px</label>
+                            <div class="text-1">
+                                <input id="horizontal-length" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-horizontal-bs" class="slider-bar large"></div>
+
+                        <div class="row mtop15">
+                            <label for="vertical-length">{% trans %}Vertical Length{% endtrans %}</label>
+                            <label class="align-right" for="vertical-length">px</label>
+                            <div class="text-1">
+                                <input id="vertical-length" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-vertical-bs" class="slider-bar large"></div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="blur-radius">{% trans %}Blur Radius{% endtrans %}</label>
+                            <label class="align-right" for="blur-radius">px</label>
+                            <div class="text-1">
+                                <input id="blur-radius" type="text" value="5" />
+                            </div>
+                        </div>
+                        <div id="slider-blur-bs" class="slider-bar large"></div>
+
+                        <div class="row mtop15">
+                            <label for="spread-field">{% trans %}Shadow Color{% endtrans %}</label>
+                            <label class="align-right" for="spread-field">px</label>
+                            <div class="text-1">
+                                <input id="spread-field" type="text" value="0" />
+                            </div>
+                        </div>
+                        <div id="slider-spread-field" class="row-s slider-bar large"></div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="row color-row">
+                            <label for="shadow-color">{% trans %}Shadow Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="shadow-color" type="text" value="#000000" />
+                            </div>
+                            <a id="shadow-color-button" class="btn-color color-3" href="javascript:;">
+                                <span>{% trans %}color{% endtrans %}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="row color-row">
+                            <label for="box-color">{% trans %}Box Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="box-color" type="text" value="#e7a61a" />
+                            </div>
+                            <a id="box-color-button" class="btn-color color-4" href="javascript:;">
+                                <span>{% trans %}color{% endtrans %}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="shadow-opacity">{% trans %}Color{% endtrans %}</label>
+                            <div class="text-1">
+                                <input id="shadow-opacity" type="text" value="0.75" />
+                            </div>
+                        </div>
+                        <div id="slider-opacity-bs" class="slider-bar large"></div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="option-panel">
+                            <span>{% trans %}Outline{% endtrans %}</span>
+                            <span>{% trans %}Inset{% endtrans %}</span>
+                            <div id="inset-button" class="slider-block">
+                                <span id="inset-no" class="dot"></span>
+                                <div  class="slider-small"><a class="knob left-pos" href="javascript:;">{% trans %}knob{% endtrans %}</a></div>
+                                <span id="inset-ok" class="dot selected"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+        <div class="box-wrap">
+            <div id="box-shadow-code" class="content"></div>
+
+            <div id="box-shadow-panel">
+                <div id="box-shadow-object">
+                    <a id="copy-text-input" class="btn-link-1" href="javascript:;">{% trans %}Copy Text{% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

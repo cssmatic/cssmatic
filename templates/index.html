@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block js %}{% endblock %}
+{% block menu %}{% endblock %}
+{% block headerdetails %}{% endblock %}
+
+{% block innerbody %}
+  <a class="logo" href="/"><img src="/img/cssmatic-logo.png"></a>
+  <h1 class="h1home">The most complete <strong>CSS tools</strong> for web designers</h1>
+  <div id="header">
+    <ul id="switcher">
+      {% for plugin in page_plugins %}
+        <li>
+          <a href="{{ plugin.urlpath }}">
+            <strong>{{ plugin.humanname_html|ws2br }}</strong>
+            <img src="{{ plugin.imgpath }}" alt="" width="108" height="108" />
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div id="collaborate" class="clearfix">
+    <div class="text">
+      <p><strong>CSSmatic</strong> is a non-profit project, made by developers for developers</p>
+      <p>Are you a web developer? Would you like to collaborate on CSSMatic?</p>
+    </div>
+    <span class="cartoon"></span>
+    <a href="/contact" class="contact">Contact us</a>
+  </div>
+
+  <div id="plugins">
+    {% for plugin in page_plugins %}
+      <div class="plugin clearfix">
+        <div class="mid-container">
+          {% if loop.index is divisibleby 2 %}
+            <div class="col text">
+              <h2 class="t3"><a href="{{ plugin.urlpath }}">{{ plugin.humanname_html }}</a></h2>
+              {{ plugin.description_html }}
+            </div>
+            <div class="colr">
+              <img src="{{ plugin.bigimgpath }}">
+            </div>
+          {% else %}
+            <div class="col">
+              <img src="{{ plugin.bigimgpath }}">
+            </div>
+            <div class="colr text">
+              <h2 class="t3"><a href="{{ plugin.urlpath }}">{{ plugin.humanname_html }}</a></h2>
+              {{ plugin.description_html }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block js %}
+  {{ super() }}
+  <script src='/js/gradient.js'></script>
+  <script src='/js/gradientEvents.js'></script>
+{% endblock %}
+
+{% block innerbody %}
+ <div class="h1bar clearfix">
+    <h1>Gradient Generator</h1>
+    <div class="social"><div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    <div class="g-plusone" data-size="medium"></div>
+    </div>
+</div>
+
+ <div class="gradient-block">
+    <div class="left-column">
+        <div class="holder">
+            <strong class="caption">{% trans %}PRESETS{% endtrans %}</strong>
+            <div class="scroll-container">
+                <div class="holder">
+                    <ul class="presets-list">
+                        <li><div id="load-grad-1" class="load-gradient"></div></li>
+                        <li><div id="load-grad-2" class="load-gradient"></div></li>
+                        <li><div id="load-grad-3" class="load-gradient"></div></li>
+                        <li><div id="load-grad-4" class="load-gradient"></div></li>
+                        <li><div id="load-grad-5" class="load-gradient"></div></li>
+                        <li><div id="load-grad-6" class="load-gradient"></div></li>
+                        <li><div id="load-grad-7" class="load-gradient"></div></li>
+                        <li><div id="load-grad-8" class="load-gradient"></div></li>
+                        <li><div id="load-grad-9" class="load-gradient"></div></li>
+                        <li><div id="load-grad-10" class="load-gradient"></div></li>
+                        <li><div id="load-grad-11" class="load-gradient"></div></li>
+                        <li><div id="load-grad-12" class="load-gradient"></div></li>
+                        <li><div id="load-grad-13" class="load-gradient"></div></li>
+                        <li><div id="load-grad-14" class="load-gradient"></div></li>
+                        <li><div id="load-grad-15" class="load-gradient"></div></li>
+                        <li><div id="load-grad-16" class="load-gradient"></div></li>
+                        <li><div id="load-grad-17" class="load-gradient"></div></li>
+                        <li><div id="load-grad-18" class="load-gradient"></div></li>
+                        <li><div id="load-grad-19" class="load-gradient"></div></li>
+                        <li><div id="load-grad-20" class="load-gradient"></div></li>
+                        <li><div id="load-grad-21" class="load-gradient"></div></li>
+                        <li><div id="load-grad-22" class="load-gradient"></div></li>
+                        <li><div id="load-grad-23" class="load-gradient"></div></li>
+                        <li><div id="load-grad-24" class="load-gradient"></div></li>
+                        <li><div id="load-grad-25" class="load-gradient"></div></li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <div class="gradient-container">
+                <div class="gradient-panel gradient-background">
+                    <div class='stop-markers-opacity' title='{% trans %}Click to add an opacity stop{% endtrans %}'></div>
+                    <div id="gradient-editor"></div>
+                    <div class='stop-markers-color' title='{% trans %}Click to add a color stop{% endtrans %}'></div>
+                </div>
+                <a class="btn-reverse" title="reverse colors" href="javascript:;">{% trans %}reverse colors{% endtrans %}</a>
+            </div>
+            <form action="#">
+                <div class="two-cols">
+                    <div class="col">
+                        <div class="holder">
+                            <div class="frame">
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="opacity">{% trans %}Opacity{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="opacity" type="text" value="100" />
+                                        </div>
+                                    </div>
+                                    <div id="opacity-value-slider-bar" class="slider-bar"></div>
+                                </div>
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="opacity-location">{% trans %}Location{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="opacity-location" type="text" value="100" />
+                                        </div>
+                                        <label class="align-right" for="opacity-location">%</label>
+                                    </div>
+                                    <div id="opacity-location-slider-bar" class="slider-bar"></div>
+                                </div>
+                                <a id="opacity-delete-button" class="btn-link-1" href="javascript:;">{% trans %}Delete Selected Stop{% endtrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="holder">
+                            <div class="frame">
+                                <div class="setting-block">
+                                    <div class="row color-row">
+                                        <label for="color">{% trans %}Color{% endtrans %}</label>
+                                        <div class="text-2">
+                                            <input pattern="#[a-zA-Z0-9]{6}" id="color-value-hex" type="text" value="#2e4a75" />
+                                        </div>
+                                        <a id="color-value-button" class="btn-color" href="javascript:;"><span>{% trans %}Color{% endtrans %}</span></a>
+                                    </div>
+                                </div>
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="color-location">{% trans %}Location{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="color-location" type="text" value="100" />
+                                        </div>
+                                        <label class="align-right" for="color-location">%</label>
+                                    </div>
+                                    <div id="color-location-slider-bar" class="slider-bar"></div>
+                                </div>
+                                <a id="color-delete-button" class="btn-link-1" href="javascript:;">{% trans %}Delete Selected Stop{% endtrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="holder">
+                        <div class="frame">
+                            <div class="col">
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="hue">{% trans %}Hue{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="hue" type="text" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="slider-bar hue-bar"></div>
+                                </div>
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="saturation">{% trans %}Saturation{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="saturation" type="text" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="slider-bar saturation-bar"></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="setting-block">
+                                    <div class="row">
+                                        <label for="lightness">{% trans %}Lightness{% endtrans %}</label>
+                                        <div class="text-1">
+                                            <input id="lightness" type="text" value="0" />
+                                        </div>
+                                    </div>
+                                    <div class="slider-bar lightness-bar"></div>
+                                </div>
+                                <a id="reset-button" class="btn-link-1" href="javascript:;">{% trans %}Reset{% endtrans %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="save-block">
+
+
+
+                    <input id="save-cookie-input" type="text" onclick="this.value='';" value="{% trans %}Save your preset{% endtrans %}" onfocus="this.select()" onblur="this.value=!this.value?'{% trans %}Save your preset{% endtrans %}':this.value;" />
+                    <a id="save-cookie-btn" href="javascript:;" class="btn-save">{% trans %}Save{% endtrans %}</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="right-column">
+        <div class="preview-block">
+            <div id="gradient-preview" class="preview-box gradient-background"></div>
+            <a class="btn-horizontal" href="javascript:;">{% trans %}horizontal orientation{% endtrans %}</a>
+            <a class="btn-vertical" href="javascript:;">{% trans %}vertical orientation{% endtrans %}</a>
+            <a class="btn-diagonal-1" href="javascript:;">{% trans %}diagonal orientation{% endtrans %}</a>
+            <a class="btn-diagonal-2" href="javascript:;">{% trans %}diagonal orientation{% endtrans %}</a>
+            <a class="btn-radial" href="javascript:;">{% trans %}radial orientation{% endtrans %}</a>
+        </div>
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <form action="#">
+                        <div class="option-panel">
+                            <span>CSS</span>
+                            <span>SASS</span>
+                            <div id="css-sass-button" class="slider-block">
+                                <span class="dot selected"></span>
+                                <div class="slider-small">
+                                    <a class="knob left-pos" href="javascript:;">{% trans %}knob{% endtrans %}</a>
+                                </div>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <div class="scroll-container">
+                                <div id="css-code-content" class="holder">
+                                </div>
+                            </div>
+
+                            <a href="javascript:;" id="copy-text-input" class="btn-link-1">Copiar texto</a>
+
+                        </div>
+                        <div class="bottom-panel">
+                            <div class="col">
+                                <label for="color-format">{% trans %}Color format{% endtrans %}</label>
+                                <select id="color-format">
+                                    <option value="hex">hex</option>
+                                    <option value="hsl">hsl</option>
+                                    <option value="hsla">hsla</option>
+                                    <option value="rgb">rgb</option>
+                                    <option value="rgba">rgba</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <span>{% trans %}Comments{% endtrans %}</span>
+                                <div id="comments-button" class="slider-block marked">
+                                    <div class="slider-small"><a class="knob left-pos" href="javascript:;">knob</a></div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <span>{% trans %}IE9 support{% endtrans %}</span>
+                                <div id="ie9-button" class="slider-block marked">
+                                    <div class="slider-small"><a class="knob left-pos" href="javascript:;">knob</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ie-support-info" class="bottom-panel" style="display: none;">
+                            <p>{% trans %}Support for full multi-stop gradients with IE9 (using SVG).{% endtrans %}</p>
+                            <p>
+                               {% trans %}Add a "gradient" class to all your elements that have a gradient, <br>and add the following override to your HTML to complete the IE9 support:{% endtrans %}
+                            </p>
+                            <code>
+                                &lt;!--[if gte IE 9]<br/>
+                                &lt;style type="text/css"<br/>
+                                  .gradient {<br/>
+                                     filter: none;<br/>
+                                  }<br/>
+                                &lt;/style&gt;<br/>
+                                &lt;![endif]--&gt;<br/>
+                            </code>
+                        </div>
+                        <div class="buttons-block">
+                            <a href="javascript:;" id="import-css-button" class="btn-link-2">{% trans %}IMPORT FROM CSS{% endtrans %}</a>
+                        </div>
+                        <div id="import-css-panel" class="bottom-panel" style="display: none;">
+                            <p>{% trans %}Enter existing gradient CSS to import.{% endtrans %}</p>
+                            <p>{% trans %}Use Mozilla, Webkit, Opera, W3C or IE format.{% endtrans %}</p>
+                            <textarea id="import-css-area"></textarea>
+                            <div class="dialog-button-panel">
+                                <a href="javascript:;" id="import-css-button-ok" class="btn-link-2">{% trans %}ACCEPT{% endtrans %}</a>
+                                <a href="javascript:;" id="import-css-button-cancel" class="btn-link-2">{% trans %}CANCEL{% endtrans %}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="clear:both"></div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}About CSSmatic{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link rel='stylesheet' type='text/css' href='/css/about.css'>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block innerbody %}
+<div class="h1bar clearfix">
+  <span class="h1">{% trans %}About CSSmatic{% endtrans %}</span>
+  <div class="social"></div>
+</div>
+
+
+<div class="bcontent">
+  <h1>{% trans %}Welcome to the brand new CSSmatic website. This new tool owned by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> to help you save time and money.{% endtrans %}</h1>
+
+  <p>{% trans %}In Alejandro Sánchez Blanes own words "CSSmatic is a new, simple and intuitive way of editing and tunning CSS properties. We are designers and we wanted a new tool to save ourselves some tedious and repetitive work. This project builds on the shoulders of giants, and we decided to make it free as a gift to our designers community, from which we learn so much."{% endtrans %}</p>
+
+  <h2 class="section">{% trans %}Team <span class="meta">CSSmatic</span>{% endtrans %}</h2>
+
+  <ul class="slats">
+    <li class="group">
+      <div class="meta">
+        <img src="/img/ale.png" class="avatar" alt="avatar">
+        <a href="http://www.linkedin.com/pub/alejandro-s%C3%A1nchez-blanes/9/165/b3a" class="alinkedin"><img src="/img/linkedin.png" /></a>
+      </div>
+
+      <h3><a href="#">Alejandro Sánchez Blanes</a></h3>
+
+      <h4>{% trans %}Co-Founder{% endtrans %}</h4>
+
+      <p>{% trans %}Alejandro is an entrepreneur and a User Interface Designer that's also able to code. He loves to design and to get dirty with HTML/CSS.{% endtrans %}</p>
+
+      <p>{% trans %}He's the founder of <a href="http://www.freepik.com">freepik.com</a> (the leading website on free resources for designers), <a href="http://www.photaki.com">Photaki.com</a> and co-founder of <a href="http://www.resultados-futbol.com">resultados-futbol.com</a>{% endtrans %}</p>
+
+      <p>{% trans %}He currently lives in Málaga, (Spain) and keeps improving his projects and creating new ones.{% endtrans %}</p>
+    </li>
+    <li class="group">
+        <div class="meta">
+            <img src="/img/joaquin.png" class="avatar" alt="avatar">
+            <a href="http://www.linkedin.com/profile/view?id=31635797&amp;trk=tyah" class="alinkedin"><img src="/img/linkedin.png" /></a>
+        </div>
+
+        <h3><a href="#">Joaquín Cuenca Abela</a></h3>
+
+        <h4>{% trans %}Co-Founder{% endtrans %}</h4>
+
+        <p>{% trans %}Joaquín is a Spanish serial entrepreneur. He started working in LoQUo when it was a small startup before it got acquired by eBay. He created a new startup soon afterwards, Panoramio, that got acquired two years later by Google, where he worked for 3 years. He's back in Spain now and has created two new projects, <a href="http://www.presspeople.com/">PressPeople</a> (a Press Releases aggregator) and <a href="http://thumbr.it/">Thumbr.it</a> (a thumbnail and general image manipulation service in the cloud).{% endtrans %}</p>
+    </li>
+    <li class="group">
+        <div class="meta">
+            <img src="/img/marcos.png" class="avatar" alt="avatar">
+            <a href="http://www.linkedin.com/profile/view?id=117410596&amp;trk=tab_pro" class="alinkedin"><img src="/img/linkedin.png" /></a>
+        </div>
+
+        <h3><a href="#">Marcos Antonio Barreche</a></h3>
+
+        <h4>{% trans %}Developer{% endtrans %}</h4>
+
+        <p>{% trans %}Marcos is an student of the last course of Computer Studies in the University of Málaga (Spain) and also works in Thumbr.it as a programmer. His favourite languages are python and javascript.{% endtrans %}</p>
+    </li>
+  </ul>
+</div>
+{% endblock %}

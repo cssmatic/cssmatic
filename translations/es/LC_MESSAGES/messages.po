@@ -1,0 +1,521 @@
+# Spanish translations for CSSmatic.
+# Copyright (C) 2013
+# This file is distributed under the same license as the CSSmatic project.
+# Joaquín Cuenca Abela <joaquin@example.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-03-05 14:36+0100\n"
+"PO-Revision-Date: 2013-03-03 17:27+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: main.py:127
+msgid "The name is empty"
+msgstr "El nombre está vacío"
+
+#: main.py:129
+msgid "The family name is empty"
+msgstr "El apellido está vacío"
+
+#: main.py:131
+msgid "The email is empty"
+msgstr "El email está vacío"
+
+#: main.py:133
+msgid "The reason to contact is empty"
+msgstr "El mótivo para contactarnos está vacío"
+
+#: main.py:135
+msgid "The message is empty"
+msgstr "El mensaje está vacío"
+
+#: templates/about.html:14
+msgid "About CSSmatic"
+msgstr "Sobre CSSmatic"
+
+#: templates/about.html:20
+msgid ""
+"Welcome to the brand new CSSmatic website. This new tool owned by <a "
+"href=\"http://www.freepik.com/\" title=\"Freepik\">Freepik</a> to help "
+"you save time and money."
+msgstr ""
+"Bienvenido a CSSmatic. Una nueva herramienta de <a "
+"href=\"http://www.freepik.com/\" title=\"Freepik\">Freepik</a> para "
+"ayudarle a ganar tiempo y dinero."
+
+#: templates/about.html:22
+msgid ""
+"In Alejandro Sánchez Blanes own words \"CSSmatic is a new, simple and "
+"intuitive way of editing and tunning CSS properties. We are designers and"
+" we wanted a new tool to save ourselves some tedious and repetitive work."
+" This project builds on the shoulders of giants, and we decided to make "
+"it free as a gift to our designers community, from which we learn so "
+"much.\""
+msgstr ""
+"En palabras de Alejandro Sánchez Blanes, \"CSSmatic es una forma nueva, "
+"sencilla e intuitiva de editar varias propiedades CSS. Somos diseñadores "
+"y queríamos una nueva herramienta que nos ahorrase el trabajo aburrido y "
+"repetitivo. Este proyecto se basa en el de otros muchos, y hemos decidido"
+" ofrecerlo gratuítamente como regalo para la comunidad de diseñadores, de"
+" la formamos parte y de la que tanto hemos aprendido\"."
+
+#: templates/about.html:24
+msgid "Team <span class=\"meta\">CSSmatic</span>"
+msgstr "Equipo <span class=\"meta\">CSSmatic</span>"
+
+#: templates/about.html:35 templates/about.html:51
+msgid "Co-Founder"
+msgstr "Cofundador"
+
+#: templates/about.html:37
+msgid ""
+"Alejandro is an entrepreneur and a User Interface Designer that's also "
+"able to code. He loves to design and to get dirty with HTML/CSS."
+msgstr ""
+"Alejandro es un emprendedor y un diseñador de interfaces de usuario que "
+"también sabe programar. Le encanta diseñar y ensuciarse las manos con "
+"HTML/CSS."
+
+#: templates/about.html:39
+msgid ""
+"He's the founder of <a href=\"http://www.freepik.com\">freepik.com</a> "
+"(the leading website on free resources for designers), <a "
+"href=\"http://www.photaki.com\">Photaki.com</a> and co-founder of <a "
+"href=\"http://www.resultados-futbol.com\">resultados-futbol.com</a>"
+msgstr ""
+"Es el fundador de <a href=\"http://www.freepik.com\">freepik.com</a> (la "
+"web lider de recursos gratuitos para diseñadores), <a "
+"href=\"http://www.photaki.com\">Photaki.com</a> y cofundador de <a "
+"href=\"http://www.resultados-futbol.com\">resultados-futbol.com</a>"
+
+#: templates/about.html:41
+msgid ""
+"He currently lives in Málaga, (Spain) and keeps improving his projects "
+"and creating new ones."
+msgstr ""
+"Vive en Málaga (España) y sigue mejorando sus proyectos y creando "
+"proyectos nuevos."
+
+#: templates/about.html:53
+msgid ""
+"Joaquín is a Spanish serial entrepreneur. He started working in LoQUo "
+"when it was a small startup before it got acquired by eBay. He created a "
+"new startup soon afterwards, Panoramio, that got acquired two years later"
+" by Google, where he worked for 3 years. He's back in Spain now and has "
+"created two new projects, <a "
+"href=\"http://www.presspeople.com/\">PressPeople</a> (a Press Releases "
+"aggregator) and <a href=\"http://thumbr.it/\">Thumbr.it</a> (a thumbnail "
+"and general image manipulation service in the cloud)."
+msgstr ""
+"Joaquín es un emprendedor Español. Empezó trabajando en LoQUo cuando aún "
+"era una pequeña startup antes de que fuese adquirida por eBay. Creó una "
+"nueva startup poco después, Panoramio, que fué adquirida poco después por"
+" Google, donde trabajó durante 3 años. Ahora está de vuelta en España y "
+"ha creado dos proyectos nuevos, <a "
+"href=\"http://www.presspeople.com/\">PressPeople</a> (un agregador de "
+"notas de prensa) y <a href=\"http://thumbr.it/\">Thumbr.it</a> (un "
+"servicio de generación de thumbnails y manipulación de imágenes al "
+"vuelo)."
+
+#: templates/about.html:63
+msgid "Developer"
+msgstr "Desarrollador"
+
+#: templates/about.html:65
+msgid ""
+"Marcos is an student of the last course of Computer Studies in the "
+"University of Málaga (Spain) and also works in Thumbr.it as a programmer."
+" His favourite languages are python and javascript."
+msgstr ""
+"Marcos es un estudiante en su último año de informática de la Universidad"
+" de Málaga (España) y también trabaja en Thumbr.it como programador. Sus "
+"lenguajes favoritos son python y javascript."
+
+#: templates/base.html:5
+msgid "The most complete CSS tools for web designers | CSSmatic"
+msgstr ""
+"La más completa colección de herramientas CSS para diseñadores web | "
+"CSSmatic"
+
+#: templates/base.html:69
+msgid "The most complete <strong>CSS tools</strong> for web designers"
+msgstr ""
+"La más completa colección de <strong>herramientas CSS</strong> para "
+"diseñadores web | CSSmatic"
+
+#: templates/base.html:97
+msgid "Designed and developed by"
+msgstr "Diseñado y desarrollado por"
+
+#: templates/base.html:106
+msgid "About"
+msgstr "Acerca"
+
+#: templates/base.html:107
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/border.html:10
+msgid "Border Radius"
+msgstr "Radio del borde"
+
+#: templates/border.html:25
+msgid "All Corners"
+msgstr "Todas las esquinas"
+
+#: templates/border.html:35
+msgid "Top Left"
+msgstr "Superior izquierda"
+
+#: templates/border.html:43
+msgid "Top Right"
+msgstr "Superior derecha"
+
+#: templates/border.html:51
+msgid "Bottom Left"
+msgstr "Inferior izquierda"
+
+#: templates/border.html:59
+msgid "Bottom Right"
+msgstr "Inferior derecha"
+
+#: templates/border.html:76
+msgid "Border Width"
+msgstr "Ancho del borde"
+
+#: templates/border.html:86
+msgid "Border Style"
+msgstr "Estilo del borde"
+
+#: templates/border.html:89
+msgid "solid"
+msgstr "sólido (solid)"
+
+#: templates/border.html:90
+msgid "dotted"
+msgstr "punteado (dotted)"
+
+#: templates/border.html:91
+msgid "dashed"
+msgstr "guiones (dashed)"
+
+#: templates/border.html:92
+msgid "double"
+msgstr "doble (double)"
+
+#: templates/border.html:93
+msgid "groove"
+msgstr "ranurado (groove)"
+
+#: templates/border.html:94
+msgid "ridge"
+msgstr "cresta (ridge)"
+
+#: templates/border.html:95
+msgid "inset"
+msgstr "por dentro (inset)"
+
+#: templates/border.html:96
+msgid "outset"
+msgstr "por fuera (outset)"
+
+#: templates/border.html:97
+msgid "inherit"
+msgstr "heredado (inherit)"
+
+#: templates/border.html:98
+msgid "hidden"
+msgstr "oculto (hidden)"
+
+#: templates/border.html:99
+msgid "none"
+msgstr "ninguno"
+
+#: templates/border.html:104
+msgid "Border Color"
+msgstr "Color del borde"
+
+#: templates/border.html:109 templates/noise.html:49 templates/noise.html:58
+#: templates/shadow.html:70 templates/shadow.html:82
+msgid "color"
+msgstr "color"
+
+#: templates/border.html:113 templates/noise.html:45
+msgid "Background Color"
+msgstr "Color de fondo"
+
+#: templates/border.html:132 templates/noise.html:98 templates/shadow.html:119
+msgid "Copy Text"
+msgstr "Copiar texto"
+
+#: templates/contact.html:10
+msgid "Contact Us"
+msgstr "Contacta con nosotros"
+
+#: templates/contact.html:18
+msgid "Message sent!"
+msgstr "¡Mensaje enviado!"
+
+#: templates/contact.html:29
+msgid "We want to hear from you"
+msgstr "Queremos saber qué piensas"
+
+#: templates/contact.html:30
+msgid "Have any questions or suggestions?"
+msgstr "¿Tienes alguna pregunta o sugerencias?"
+
+#: templates/contact.html:31
+msgid "Reach out to us"
+msgstr "Contáctanos"
+
+#: templates/contact.html:35
+msgid "First Name"
+msgstr "Nombre"
+
+#: templates/contact.html:40
+msgid "Last Name"
+msgstr "Apellidos"
+
+#: templates/contact.html:45
+msgid "Email"
+msgstr "Email"
+
+#: templates/contact.html:50
+msgid "Company name"
+msgstr "Nombre de tu compañía"
+
+#: templates/contact.html:54
+msgid "Phone"
+msgstr "Teléfono"
+
+#: templates/contact.html:59
+msgid "Why are you contacting us?"
+msgstr "¿Por qué quieres contactar con nosotros?"
+
+#: templates/contact.html:65
+msgid "Collaborate with us"
+msgstr "Colabora con nosotros"
+
+#: templates/contact.html:71
+msgid "Advertising"
+msgstr "Publicidad"
+
+#: templates/contact.html:77
+msgid "Partnerships"
+msgstr "Colaboraciones"
+
+#: templates/contact.html:83
+msgid "A question about CSSmatic"
+msgstr "Una pregunta sobre CSSmatic"
+
+#: templates/contact.html:89
+msgid "Other"
+msgstr "Otro"
+
+#: templates/contact.html:96
+msgid "Your Message"
+msgstr "Tu mensaje"
+
+#: templates/contact.html:100
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/gradient.html:21
+msgid "PRESETS"
+msgstr "CONFIGURACIÓN"
+
+#: templates/gradient.html:57
+msgid "Click to add an opacity stop"
+msgstr "Pincha para añadir un nuevo punto"
+
+#: templates/gradient.html:59
+msgid "Click to add a color stop"
+msgstr "Pincha para añadir un punto"
+
+#: templates/gradient.html:61
+msgid "reverse colors"
+msgstr "cambiar colores"
+
+#: templates/gradient.html:70
+msgid "Opacity"
+msgstr "Opacidad"
+
+#: templates/gradient.html:79 templates/gradient.html:105
+msgid "Location"
+msgstr "Posición"
+
+#: templates/gradient.html:87 templates/gradient.html:113
+msgid "Delete Selected Stop"
+msgstr "Borrar punto seleccionado"
+
+#: templates/gradient.html:96 templates/gradient.html:100
+#: templates/shadow.html:89
+msgid "Color"
+msgstr "Color"
+
+#: templates/gradient.html:124
+msgid "Hue"
+msgstr "Matiz (hue)"
+
+#: templates/gradient.html:133
+msgid "Saturation"
+msgstr "Saturación"
+
+#: templates/gradient.html:144
+msgid "Lightness"
+msgstr "Luminosidad (Lightness)"
+
+#: templates/gradient.html:151
+msgid "Reset"
+msgstr "Reiniciar"
+
+#: templates/gradient.html:160
+msgid "Save your preset"
+msgstr "Guardar tu configuración"
+
+#: templates/gradient.html:161
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/gradient.html:169
+msgid "horizontal orientation"
+msgstr "orientación horizontal"
+
+#: templates/gradient.html:170
+msgid "vertical orientation"
+msgstr "orientación vertical"
+
+#: templates/gradient.html:171 templates/gradient.html:172
+msgid "diagonal orientation"
+msgstr "orientación diagonal"
+
+#: templates/gradient.html:173
+msgid "radial orientation"
+msgstr "orientación radial"
+
+#: templates/gradient.html:185 templates/noise.html:70
+#: templates/shadow.html:103
+msgid "knob"
+msgstr "punto"
+
+#: templates/gradient.html:201
+msgid "Color format"
+msgstr "Formato del color"
+
+#: templates/gradient.html:211
+msgid "Comments"
+msgstr "Comentarios"
+
+#: templates/gradient.html:217
+msgid "IE9 support"
+msgstr "Soportar IE9"
+
+#: templates/gradient.html:224
+msgid "Support for full multi-stop gradients with IE9 (using SVG)."
+msgstr "Soportar gradientes con múltiples cambios en IE9 (usando SVG)."
+
+#: templates/gradient.html:226
+msgid ""
+"Add a \"gradient\" class to all your elements that have a gradient, "
+"<br>and add the following override to your HTML to complete the IE9 "
+"support:"
+msgstr ""
+"Añade una clase \"gradient\" a todos tus elementos a los que les quieras "
+"aplicar un gradiente<br> y añade estas líneas a tu HTML completar el soporte "
+"IE9:"
+
+#: templates/gradient.html:239
+msgid "IMPORT FROM CSS"
+msgstr "IMPORTAR DE CSS"
+
+#: templates/gradient.html:242
+msgid "Enter existing gradient CSS to import."
+msgstr "Introduzca un gradiente CSS a importar."
+
+#: templates/gradient.html:243
+msgid "Use Mozilla, Webkit, Opera, W3C or IE format."
+msgstr "Use la sintaxis de Mozilla, Webkit, Opera, W3C o IE."
+
+#: templates/gradient.html:246
+msgid "ACCEPT"
+msgstr "ACEPTAR"
+
+#: templates/gradient.html:247
+msgid "CANCEL"
+msgstr "CANCELAR"
+
+#: templates/noise.html:10
+msgid "Noise Texture"
+msgstr "Textura del ruido"
+
+#: templates/noise.html:25
+msgid "Noise Opacity"
+msgstr "Opacidad del ruido"
+
+#: templates/noise.html:35
+msgid "Noise Density"
+msgstr "Densidad del ruido"
+
+#: templates/noise.html:54
+msgid "Noise Color"
+msgstr "Color del ruido"
+
+#: templates/noise.html:68
+msgid "Export noise transparent"
+msgstr "Exportar transparencia en el ruido"
+
+#: templates/noise.html:74
+msgid "Dimensions"
+msgstr "Dimensiones"
+
+#: templates/noise.html:76
+msgid "Width"
+msgstr "Ancho"
+
+#: templates/noise.html:83
+msgid "Height"
+msgstr "Alto"
+
+#: templates/noise.html:93
+msgid "Download Noise Texture"
+msgstr "Descargar textura con ruido"
+
+#: templates/shadow.html:10
+msgid "Box Shadow"
+msgstr "Sombra de la caja"
+
+#: templates/shadow.html:25
+msgid "Horizontal Length"
+msgstr "Anchura"
+
+#: templates/shadow.html:34
+msgid "Vertical Length"
+msgstr "Altura"
+
+#: templates/shadow.html:45
+msgid "Blur Radius"
+msgstr "Radio de la sombra"
+
+#: templates/shadow.html:54 templates/shadow.html:65
+msgid "Shadow Color"
+msgstr "Color de la sombra"
+
+#: templates/shadow.html:77
+msgid "Box Color"
+msgstr "Color de la caja"
+
+#: templates/shadow.html:99
+msgid "Outline"
+msgstr "Por fuera"
+
+#: templates/shadow.html:100
+msgid "Inset"
+msgstr "Por dentro"

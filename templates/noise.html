@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block js %}
+    {{ super() }}
+    <script src="/js/noisyTexture.js"></script>
+{% endblock %}
+
+{% block innerbody %}
+<div class="h1bar clearfix">
+	<h1>{% trans %}Noise Texture{% endtrans %}</h1>
+	<div class="social">
+        <div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <div class="g-plusone" data-size="medium"></div>
+    </div>
+</div>
+
+<div class="twocolumns">
+    <div class="left-column">
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="noise-opacity">{% trans %}Noise Opacity{% endtrans %}</label>
+                            <label class="align-right" for="noise-opacity">%</label>
+                            <div class="text-1">
+                                <input id="noise-opacity" type="text" value="15" />
+                            </div>
+                        </div>
+                        <div id="noise-opacity-sb" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="noise-density">{% trans %}Noise Density{% endtrans %}</label>
+                            <label class="align-right" for="noise-density">%</label>
+                            <div class="text-1">
+                                <input id="noise-density" type="text" value="15" />
+                            </div>
+                        </div>
+                        <div id="noise-density-sb" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row color-row">
+                            <label for="bg-color">{% trans %}Background Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="bg-color" type="text" value="#4ea6ca" />
+                            </div>
+                            <a id="background-color-btn" class="btn-color color-1" href="javascript:;"><span>{% trans %}color{% endtrans %}</span></a>
+                        </div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row color-row">
+                            <label for="noise-color">{% trans %}Noise Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="noise-color" type="text" value="#626262" />
+                            </div>
+                            <a id="noise-color-btn" class="btn-color color-2" href="javascript:;"><span>{% trans %}color{% endtrans %}</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <span class="label">{% trans %}Export noise transparent{% endtrans %}</span>
+                        <div id="export-noise-transparent-btn" class="slider-block marked">
+                            <div id="export-noise" class="slider-small"><a class="knob left-pos" href="javascript:;">{% trans %}knob{% endtrans %}</a></div>
+                        </div>
+                    </div>
+                    <div class="setting-block wrap">
+                        <span class="label">{% trans %}Dimensions{% endtrans %}</span>
+                        <div class="row">
+                            <label for="width">{% trans %}Width{% endtrans %}:</label>
+                            <div class="text-1">
+                                <input id="width" type="text" value="361" />
+                            </div>
+                            <label for="width">px</label>
+                        </div>
+                        <div class="row">
+                            <label for="height">{% trans %}Height{% endtrans %}:</label>
+                            <div class="text-1">
+                                <input id="height" type="text" value="370" />
+                            </div>
+                            <label for="height">px</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a id="download-noise" href="javascript:;" class="btn-link-3">{% trans %}Download Noise Texture{% endtrans %}</a>
+    </div>
+
+    <div class="right-column">
+        <div id="css-code-noise"></div>
+        <a href="javascript:;" class="btn-link-1" id="copy-text-input">{% trans %}Copy Text{% endtrans %}</a>
+        <canvas id="noise-canvas" width="360" height="370" />
+    </div>
+
+    <div style="clear:both"></div>
+
+    <div class="divcsscode clearfix">
+    </div>
+</div>
+{% endblock %}

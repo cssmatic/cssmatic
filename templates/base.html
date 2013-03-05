@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{% trans %}The most complete CSS tools for web designers | CSSmatic{% endtrans %}{% endblock %}</title>
+    {% block css %}
+      <link rel='stylesheet' type='text/css' href='/css/jquery.ui.css'>
+      <link rel='stylesheet' type='text/css' href='/css/colorpicker/colorpicker.css'>
+      <link rel='stylesheet' type='text/css' href='/css/colorpicker/layout.css'>
+      <link rel='stylesheet' type='text/css' href='/css/all.css'>
+      <link rel='stylesheet' type='text/css' href='/css/gradients.css'>
+    {% endblock %}
+    {% block js %}
+      <script src='/js/jquery-1.8.3.min.js'></script>
+      <script src='/js/jquery-ui-1.9.1.min.js'></script>
+      <script src="/js/colorpicker/js/colorpicker.js"></script>
+      <script src="/js/colorpicker/js/eye.js"></script>
+      <script src="/js/colorpicker/js/layout.js"></script>
+      <script src="/js/colorpicker/js/utils.js"></script>
+      <script src='/js/jquery.cookie.js'></script>
+      <script src='/js/copyText.js'></script>
+      <script src='/js/jquery.main.js'></script>
+      <script src='/js/colorFunctions.js'></script>
+      <script src='/js/jquery.zclip.min.js'></script>
+    {% endblock %}
+</head>
+<body>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-38602970-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+{% block facebook_button %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=252806038080997";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block twitter_button %}
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript">
+  window.___gcfg = {lang: 'en-US'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+{% endblock %}
+
+  <div id="wrapper" class="{{ page_id }}">
+    {% block headerdetails %}
+      <div class="clearfix" id="headerdetail">
+        <a class="logo" href="http://www.cssmatic.com/"><img src="/img/cssmatic-logo-detail.png"></a>
+        <span class="textop">{% trans %}The most complete <strong>CSS tools</strong> for web designers{% endtrans %}</span>
+      </div>
+    {% endblock %}
+
+    {% block menu %}
+      <div id="menu">
+        <ul class="clearfix">
+          {% for p in page_plugins %}
+            <li{% if page_id == p.cssname %} class="act"{% endif %}><a href="{{ p.urlpath }}"><b class="ic {{ p.cssname }}"></b><span>{{ p.humanname_html|ws2br }}</span></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endblock %}
+
+    {% block innerbody %}
+    {% endblock %}
+
+    {% block collaborate %}
+      <div id="collaborate" class="clearfix">
+        <div class="text">
+          <p><strong>Cssmatic</strong> is a non-profit project, made by developers for developers</p>
+          <p>Are you a web developer?  Would you like to collaborate on CSSMatic?</p>
+        </div>
+        <span class="cartoon"></span>
+        <a href="/contact" class="contact">Contact us</a>
+      </div>
+    {% endblock %}
+
+    <span class="bylogos">{% trans %}Designed and developed by{% endtrans %}<br /><br />
+      <a class="logofreepik bl" href="http://www.freepik.com">Freepik.com</a>
+      <a class="logothumbr bl" href="http://www.thumbr.it">Thumbr.it</a>
+    </span>
+  </div>
+  <div id="opacity-gradient" class="slider-bar large" style="display: none;"></div>
+
+  <div id="footer">
+    <span class="copyright">&copy; 2013 CSSmatic</span> |
+    <a href="/about">{% trans %}About{% endtrans %}</a> |
+    <a href="/contact">{% trans %}Contact{% endtrans %}</a>
+  </div>
+</body>
+</html>

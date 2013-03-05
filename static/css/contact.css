@@ -1,0 +1,156 @@
+.form-text{
+	 background:#f6f6f6;
+	 border:1px solid #aaa;
+	 -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #dddddd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #dddddd 0%, #f6f6f6 32%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(32%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* IE10+ */
+	background: linear-gradient(to bottom,  #dddddd 0%,#f6f6f6 32%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+	height: 20px;
+	margin: 0;
+	padding: 4px 9px 4px;
+	text-align: left;
+	width: 200px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1) inset
+}
+
+textarea{
+	 background:#f6f6f6;
+	 border:1px solid #aaa;
+	 -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #dddddd; /* Old browsers */
+	background: -moz-linear-gradient(top,  #dddddd 0%, #f6f6f6 32%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dddddd), color-stop(32%,#f6f6f6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #dddddd 0%,#f6f6f6 32%); /* IE10+ */
+	background: linear-gradient(to bottom,  #dddddd 0%,#f6f6f6 32%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#f6f6f6',GradientType=0 ); /* IE6-9 */
+	height: 20px;
+	margin: 0;
+	padding: 4px 9px 4px;
+	text-align: left;
+	width: 450px;
+	height:100px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1) inset
+}
+
+
+
+.form-item{
+	padding:5px 0;
+}
+
+.left, .float-left {
+    float: left;
+}
+.left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+.bcontent{
+	padding:20px;
+	background: rgba(255,255,255,1);
+margin-bottom:12px;
+padding:5px 15px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+box-shadow:0 2px 0px rgba(0,0,0,0.1);
+}
+
+.form-label {
+    display: block;
+    line-height: 29px;
+}
+
+.field-required .form-label:after {
+    color: #FF2D73;
+    content: "*";
+    margin-left: 5px;
+}
+
+#first_name, #organization {
+    margin-right: 25px;
+}
+
+
+
+.custom-radio input, .custom-checkbox input {
+ float:left;
+ position:relative;
+ top:7px;
+ margin-right:7px;
+}
+
+h2{
+margin:25px 0 20px;
+font-size:26px;
+font-weight:bold;
+color:#222;
+}
+
+.ptit{
+font-size:18px;
+margin:5px 0px
+}
+
+#submit-container{
+background:rgba(0,0,0,0.1);
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+width:470px;
+box-shadow: 0 0 2px rgba(0,0,0,0.3) inset
+}
+
+
+
+#submit-container input{
+color:#fff !important;
+font-weight:bold;
+border:1px solid #3c70a0;
+display:block;
+width:200px;
+padding:4px 5px;
+text-align:center;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #79a9d7; /* Old browsers */
+background: -moz-linear-gradient(top,  #79a9d7 0%, #3c70a0 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#79a9d7), color-stop(100%,#3c70a0)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #79a9d7 0%,#3c70a0 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #79a9d7 0%,#3c70a0 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #79a9d7 0%,#3c70a0 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #79a9d7 0%,#3c70a0 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#79a9d7', endColorstr='#3c70a0',GradientType=0 ); /* IE6-9 */
+box-shadow: 0 1px 0 #8DC2F0 inset;
+text-shadow: 0 -1px 0 #336895;
+text-decoration:none;
+cursor: pointer;
+margin:0 auto;
+}
+
+
+#contact-us-form{
+	color:#444;
+	/*background: rgba(255,255,255,0.9);
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.08);*/
+    list-style: none outside none;
+    margin: 20px 0 20px;
+
+}
