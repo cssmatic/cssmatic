@@ -74,10 +74,23 @@
       <div id="menu">
         <ul class="clearfix">
           {% for p in page_plugins %}
-            <li{% if page_id == p.cssname %} class="act"{% endif %}><a href="{{ p.urlpath }}"><b class="ic {{ p.cssname }}"></b><span>{{ p.humanname_html|ws2br }}</span></a></li>
+            <li{% if page_id == p.cssname %} class="act"{% endif %}><a href="{{ p.url }}"><b class="ic {{ p.cssname }}"></b><span>{{ p.humanname|ws2br }}</span></a></li>
           {% endfor %}
         </ul>
       </div>
+    {% endblock %}
+
+    {% block pluginheader %}
+      {% if plugin %}
+        <div class="h1bar clearfix">
+          <h1>{{ plugin.humanname }}</h1>
+          <div class="social">
+            <div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+            <div class="g-plusone" data-size="medium"></div>
+          </div>
+        </div>
+      {% endif %}
     {% endblock %}
 
     {% block innerbody %}
@@ -86,11 +99,11 @@
     {% block collaborate %}
       <div id="collaborate" class="clearfix">
         <div class="text">
-          <p><strong>Cssmatic</strong> is a non-profit project, made by developers for developers</p>
-          <p>Are you a web developer?  Would you like to collaborate on CSSMatic?</p>
+          <p>{% trans %}<strong>CSSmatic</strong> is a non-profit project, made by developers for developers{% endtrans %}</p>
+          <p>{% trans %}Are you a web developer?  Would you like to collaborate on CSSMatic?{% endtrans %}</p>
         </div>
         <span class="cartoon"></span>
-        <a href="/contact" class="contact">Contact us</a>
+        <a href="/contact" class="contact">{% trans %}Contact us{% endtrans %}</a>
       </div>
     {% endblock %}
 

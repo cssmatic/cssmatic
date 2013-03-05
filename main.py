@@ -8,12 +8,14 @@ from flask import request
 from flask import render_template
 from flaskext.babel import Babel
 from flaskext.babel import gettext
+from flaskext.babel import lazy_gettext
 from flask_mail import Mail
 from flask_mail import Message
 from functools import wraps
 from jinja2 import evalcontextfilter, Markup, escape
 from werkzeug import SharedDataMiddleware
 import os
+import textwrap
 
 
 app = Flask(__name__)
@@ -31,50 +33,67 @@ mail = Mail(app)
 if not app.config['DEBUG']:
     assert app.config['SECRET_KEY'] != 'kjvM3jgC4zI$j3$zBc@2eXpVY*!oG5Y*'
 
+SUPPORTED_LANGUAGES = ['es', 'en']
 CSSMATIC_SENDER_EMAIL = 'info@thumbr.it'
 CSSMATIC_ADMIN_EMAILS = ['alechobi@gmail.com', 'joaquin@cuencaabela.com']
 LONG_MAX_AGE_CACHE_S = 300  # 5 minutes
 
-PagePlugin = namedtuple(
-    'PagePlugin', 'cssname urlpath humanname_html imgpath bigimgpath description_html')
+
+class PagePlugin(object):
+    def __init__(self, cssname, urlpath, humanname, imgpath, description_html):
+        self.cssname = cssname
+        self.urlpath = urlpath
+        self.humanname = humanname
+        self.imgpath = imgpath
+        self.bigimgpath = '/img/%s-sketch.png' % cssname
+        self.description_html = description_html
+
+    @property
+    def url(self):
+        locale = get_locale()
+        if locale and locale != 'en':
+            return '/' + locale + self.urlpath
+        else:
+            return self.urlpath
+
+
 page_plugins = [
     PagePlugin(
         'gradient',
-        '/gradient',
-        Markup(u'Gradient Generator'),
+        '/gradient-generator',
+        lazy_gettext(u'Gradient Generator'),
         '/img/img-01.png',
-        '/img/gradient-sketch.png',
-        Markup(u"""<p>Use multiple colors and opacity stops to get amazing and quality results.
-            By using the gradient tool you can create super color fill with smooth color changing
-            effects.</p>
+        lazy_gettext(
+            u"""<p>Use multiple colors and opacity stops to get amazing gradients.
+            By using the gradient tool you can create gradients with smooth color changing
+            effects and subtle transparencies.</p>
 
-            <p>Such images can be used as background image of banners, wallpapers, buttons or
+            <p>Such images can be used as background images of banners, wallpapers, buttons or
             tables and in many other applications.</p>""")),
     PagePlugin(
         'border',
-        '/border',
-        Markup(u'Border Radius'),
+        '/border-radius',
+        lazy_gettext(u'Border Radius'),
         '/img/img-02.png',
-        '/img/border-sketch.png',
-        Markup(u"""<p>Super easy to use and super time saver. Change all the borders selected at
-            the same time. That's it.</p>""")),
+        lazy_gettext(
+            u"""<p>Super easy to use and a super time saver. Change all the borders selected at
+            the same time.</p>""")),
     PagePlugin(
         'noise',
-        '/noise',
-        Markup(u'Noise Texture'),
+        '/noise-texture',
+        lazy_gettext(u'Noise Texture'),
         '/img/img-03.png',
-        '/img/noise-sketch.png',
-        Markup(u"""<p>The coolest design feature in these days…  By changing the color and values
-            using the intuitive slider, the generator makes it so simple to create background
-            textures for websites. Done!""")),
+        lazy_gettext(
+            u"""<p>Create subtle background patterns with dirty pixels and noise, changing
+            the color and values and previewing the results in real time.""")),
     PagePlugin(
         'shadow',
-        '/shadow',
-        Markup(u'Box Shadow'),
+        '/box-shadow',
+        lazy_gettext(u'Box Shadow'),
         '/img/img-04.png',
-        '/img/shadow-sketch.png',
-        Markup(u"""<p>Blur radius changes, color changes then all you need is to start the
-            countdown: three, two, one… Get it.</p>"""))
+        lazy_gettext(
+            u"""<p>Blur radius changes, color changes, shadow size…  Everything that you need
+            to create great drop shadows in a single place.</p>"""))
 ]
 
 
@@ -97,14 +116,32 @@ def ws2br(eval_ctx, value):
     return Markup('<br>'.join(escape(value).split()))
 
 
+@babel.localeselector
+def get_locale():
+    # if a user is logged in, use the locale from the user settings
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.locale
+    if request.view_args.get('lang') in SUPPORTED_LANGUAGES:
+        return request.view_args.get('lang')
+    return request.accept_languages.best_match(SUPPORTED_LANGUAGES)
+
+
+@babel.timezoneselector
+def get_timezone():
+    user = getattr(g, 'user', None)
+    if user is not None:
+        return user.timezone
+
+
+# we can only httpcache URLs that have a lang argument. The result of
+# the page that don't have a lang argument depends on Accept-Language.
 @app.route('/')
-@httpcache()
 def home_page():
     return render_template('index.html', page_id='home', page_plugins=page_plugins)
 
 
 @app.route('/about')
-@httpcache()
 def about_page():
     return render_template('about.html', page_id='about', page_plugins=page_plugins)
 
@@ -151,18 +188,23 @@ def contact_page():
         sent_success=sent_success)
 
 
-@app.route('/<plugin_name>')
+@app.route('/<plugin_name>', defaults={'lang': 'en'})
+@app.route('/<lang>/<plugin_name>')
 @httpcache()
-def plugins_page(plugin_name):
+def plugins_page(plugin_name, lang='en'):
     plugin = [p for p in page_plugins if p.urlpath[1:] == plugin_name]
     if plugin:
         plugin = plugin[0]
     else:
         abort(404)
 
+    if lang not in SUPPORTED_LANGUAGES:
+        abort(404)
+
     return render_template(
         plugin_name + '.html',
         page_id=plugin.cssname,
+        plugin=plugin,
         page_plugins=page_plugins)
 
 

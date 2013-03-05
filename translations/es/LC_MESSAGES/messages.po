@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-03-05 14:36+0100\n"
+"POT-Creation-Date: 2013-03-05 18:55+0100\n"
 "PO-Revision-Date: 2013-03-03 17:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -17,23 +17,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: main.py:127
+#: main.py:46
+msgid "Gradient Generator"
+msgstr "Editor Gradientes"
+
+#: main.py:49
+msgid ""
+"<p>Use multiple colors and opacity stops to get amazing gradients.\n"
+"            By using the gradient tool you can create gradients with "
+"smooth color changing\n"
+"            effects and subtle transparencies.</p>\n"
+"\n"
+"            <p>Such images can be used as background images of banners, "
+"wallpapers, buttons or\n"
+"            tables and in many other applications.</p>"
+msgstr ""
+"<p>Usa varios colores y opacidades para"
+" obtener magníficos gradientes.\n"
+"Al usar el editor de gradientes puedes crear gradientes con\n"
+"sutiles cambios de colores y transparencias.</p>\n"
+"\n"
+"<p>Las imágenes generadas pueden usarse "
+"como imágenes de fondo en carteles, "
+"fondos de pantalla, botones o\n"
+"incluso en tablas y en muchos otros elementos.</p>"
+
+#: main.py:59
+msgid "Border Radius"
+msgstr "Radio Bordes"
+
+#: main.py:62
+msgid ""
+"<p>Super easy to use and a super time saver. Change all the borders "
+"selected at\n"
+"            the same time.</p>"
+msgstr ""
+"<p>Super sencillo de usar y ahorra mucho tiempo. Cambia todos los bordes"
+" seleccionados al mismo tiempo.</p>"
+
+#: main.py:68
+msgid "Noise Texture"
+msgstr "Textura Suciedad"
+
+#: main.py:71
+msgid ""
+"<p>Create subtle background patterns with dirty pixels and noise, "
+"changing\n"
+"            the color and values and previewing the results in real time."
+msgstr ""
+"<p>Crea sutiles fondos con algo de suciedad y de ruido, cambiando "
+"el color del fondo y de la suciedad, y viendo el resultado en tiempo real."
+
+#: main.py:77
+msgid "Box Shadow"
+msgstr "Editor Sombras"
+
+#: main.py:80
+msgid ""
+"<p>Blur radius changes, color changes, shadow size…  Everything that you "
+"need\n"
+"            to create great drop shadows in a single place.</p>"
+msgstr ""
+"<p>Cambia el radio de la sombra, el color, tamaño… Todo lo que necesitas "
+"para crear sombras en un solo lugar.</p>"
+
+#: main.py:151
 msgid "The name is empty"
 msgstr "El nombre está vacío"
 
-#: main.py:129
+#: main.py:153
 msgid "The family name is empty"
 msgstr "El apellido está vacío"
 
-#: main.py:131
+#: main.py:155
 msgid "The email is empty"
 msgstr "El email está vacío"
 
-#: main.py:133
+#: main.py:157
 msgid "The reason to contact is empty"
 msgstr "El mótivo para contactarnos está vacío"
 
-#: main.py:135
+#: main.py:159
 msgid "The message is empty"
 msgstr "El mensaje está vacío"
 
@@ -117,7 +181,7 @@ msgid ""
 msgstr ""
 "Joaquín es un emprendedor Español. Empezó trabajando en LoQUo cuando aún "
 "era una pequeña startup antes de que fuese adquirida por eBay. Creó una "
-"nueva startup poco después, Panoramio, que fué adquirida poco después por"
+"nueva startup poco después, Panoramio, que fue adquirida poco después por"
 " Google, donde trabajó durante 3 años. Ahora está de vuelta en España y "
 "ha creado dos proyectos nuevos, <a "
 "href=\"http://www.presspeople.com/\">PressPeople</a> (un agregador de "
@@ -141,118 +205,128 @@ msgstr ""
 
 #: templates/base.html:5
 msgid "The most complete CSS tools for web designers | CSSmatic"
-msgstr ""
-"La más completa colección de herramientas CSS para diseñadores web | "
-"CSSmatic"
+msgstr "Completa colección de herramientas CSS para diseñadores web | CSSmatic"
 
-#: templates/base.html:69
+#: templates/base.html:69 templates/index.html:9
 msgid "The most complete <strong>CSS tools</strong> for web designers"
 msgstr ""
-"La más completa colección de <strong>herramientas CSS</strong> para "
-"diseñadores web | CSSmatic"
+"Completa colección de <strong>herramientas CSS</strong> para diseñadores "
+"web"
 
-#: templates/base.html:97
+#: templates/base.html:102 templates/index.html:25
+msgid ""
+"<strong>CSSmatic</strong> is a non-profit project, made by developers for"
+" developers"
+msgstr ""
+"<strong>CSSmatic</strong> es un proyecto libre, hecho por y para "
+"desarrolladores"
+
+#: templates/base.html:103
+msgid "Are you a web developer?  Would you like to collaborate on CSSMatic?"
+msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
+
+#: templates/base.html:106 templates/index.html:29
+msgid "Contact us"
+msgstr "Contáctanos"
+
+#: templates/base.html:110
 msgid "Designed and developed by"
 msgstr "Diseñado y desarrollado por"
 
-#: templates/base.html:106
+#: templates/base.html:119
 msgid "About"
 msgstr "Acerca"
 
-#: templates/base.html:107
+#: templates/base.html:120
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/border.html:10
-msgid "Border Radius"
-msgstr "Radio del borde"
-
-#: templates/border.html:25
+#: templates/border.html:16
 msgid "All Corners"
 msgstr "Todas las esquinas"
 
-#: templates/border.html:35
+#: templates/border.html:26
 msgid "Top Left"
 msgstr "Superior izquierda"
 
-#: templates/border.html:43
+#: templates/border.html:34
 msgid "Top Right"
 msgstr "Superior derecha"
 
-#: templates/border.html:51
+#: templates/border.html:42
 msgid "Bottom Left"
 msgstr "Inferior izquierda"
 
-#: templates/border.html:59
+#: templates/border.html:50
 msgid "Bottom Right"
 msgstr "Inferior derecha"
 
-#: templates/border.html:76
+#: templates/border.html:67
 msgid "Border Width"
 msgstr "Ancho del borde"
 
-#: templates/border.html:86
+#: templates/border.html:77
 msgid "Border Style"
 msgstr "Estilo del borde"
 
-#: templates/border.html:89
+#: templates/border.html:80
 msgid "solid"
 msgstr "sólido (solid)"
 
-#: templates/border.html:90
+#: templates/border.html:81
 msgid "dotted"
 msgstr "punteado (dotted)"
 
-#: templates/border.html:91
+#: templates/border.html:82
 msgid "dashed"
 msgstr "guiones (dashed)"
 
-#: templates/border.html:92
+#: templates/border.html:83
 msgid "double"
 msgstr "doble (double)"
 
-#: templates/border.html:93
+#: templates/border.html:84
 msgid "groove"
 msgstr "ranurado (groove)"
 
-#: templates/border.html:94
+#: templates/border.html:85
 msgid "ridge"
 msgstr "cresta (ridge)"
 
-#: templates/border.html:95
+#: templates/border.html:86
 msgid "inset"
 msgstr "por dentro (inset)"
 
-#: templates/border.html:96
+#: templates/border.html:87
 msgid "outset"
 msgstr "por fuera (outset)"
 
-#: templates/border.html:97
+#: templates/border.html:88
 msgid "inherit"
 msgstr "heredado (inherit)"
 
-#: templates/border.html:98
+#: templates/border.html:89
 msgid "hidden"
 msgstr "oculto (hidden)"
 
-#: templates/border.html:99
+#: templates/border.html:90
 msgid "none"
 msgstr "ninguno"
 
-#: templates/border.html:104
+#: templates/border.html:95
 msgid "Border Color"
 msgstr "Color del borde"
 
-#: templates/border.html:109 templates/noise.html:49 templates/noise.html:58
-#: templates/shadow.html:70 templates/shadow.html:82
+#: templates/border.html:100 templates/noise.html:40 templates/noise.html:49
+#: templates/shadow.html:61 templates/shadow.html:73
 msgid "color"
 msgstr "color"
 
-#: templates/border.html:113 templates/noise.html:45
+#: templates/border.html:104 templates/noise.html:36
 msgid "Background Color"
 msgstr "Color de fondo"
 
-#: templates/border.html:132 templates/noise.html:98 templates/shadow.html:119
+#: templates/border.html:123 templates/noise.html:89 templates/shadow.html:110
 msgid "Copy Text"
 msgstr "Copiar texto"
 
@@ -328,194 +402,190 @@ msgstr "Tu mensaje"
 msgid "Send"
 msgstr "Enviar"
 
-#: templates/gradient.html:21
+#: templates/gradient.html:13
 msgid "PRESETS"
 msgstr "CONFIGURACIÓN"
 
-#: templates/gradient.html:57
+#: templates/gradient.html:47
 msgid "Click to add an opacity stop"
 msgstr "Pincha para añadir un nuevo punto"
 
-#: templates/gradient.html:59
+#: templates/gradient.html:49
 msgid "Click to add a color stop"
 msgstr "Pincha para añadir un punto"
 
-#: templates/gradient.html:61
+#: templates/gradient.html:51
 msgid "reverse colors"
 msgstr "cambiar colores"
 
-#: templates/gradient.html:70
+#: templates/gradient.html:60
 msgid "Opacity"
 msgstr "Opacidad"
 
-#: templates/gradient.html:79 templates/gradient.html:105
+#: templates/gradient.html:69 templates/gradient.html:95
 msgid "Location"
 msgstr "Posición"
 
-#: templates/gradient.html:87 templates/gradient.html:113
+#: templates/gradient.html:77 templates/gradient.html:103
 msgid "Delete Selected Stop"
 msgstr "Borrar punto seleccionado"
 
-#: templates/gradient.html:96 templates/gradient.html:100
-#: templates/shadow.html:89
+#: templates/gradient.html:86 templates/gradient.html:90
+#: templates/shadow.html:80
 msgid "Color"
 msgstr "Color"
 
-#: templates/gradient.html:124
+#: templates/gradient.html:114
 msgid "Hue"
 msgstr "Matiz (hue)"
 
-#: templates/gradient.html:133
+#: templates/gradient.html:123
 msgid "Saturation"
 msgstr "Saturación"
 
-#: templates/gradient.html:144
+#: templates/gradient.html:134
 msgid "Lightness"
 msgstr "Luminosidad (Lightness)"
 
-#: templates/gradient.html:151
+#: templates/gradient.html:141
 msgid "Reset"
 msgstr "Reiniciar"
 
-#: templates/gradient.html:160
+#: templates/gradient.html:150
 msgid "Save your preset"
 msgstr "Guardar tu configuración"
 
-#: templates/gradient.html:161
+#: templates/gradient.html:151
 msgid "Save"
 msgstr "Guardar"
 
-#: templates/gradient.html:169
+#: templates/gradient.html:159
 msgid "horizontal orientation"
 msgstr "orientación horizontal"
 
-#: templates/gradient.html:170
+#: templates/gradient.html:160
 msgid "vertical orientation"
 msgstr "orientación vertical"
 
-#: templates/gradient.html:171 templates/gradient.html:172
+#: templates/gradient.html:161 templates/gradient.html:162
 msgid "diagonal orientation"
 msgstr "orientación diagonal"
 
-#: templates/gradient.html:173
+#: templates/gradient.html:163
 msgid "radial orientation"
 msgstr "orientación radial"
 
-#: templates/gradient.html:185 templates/noise.html:70
-#: templates/shadow.html:103
+#: templates/gradient.html:175 templates/noise.html:61 templates/shadow.html:94
 msgid "knob"
 msgstr "punto"
 
-#: templates/gradient.html:201
+#: templates/gradient.html:191
 msgid "Color format"
 msgstr "Formato del color"
 
-#: templates/gradient.html:211
+#: templates/gradient.html:201
 msgid "Comments"
 msgstr "Comentarios"
 
-#: templates/gradient.html:217
+#: templates/gradient.html:207
 msgid "IE9 support"
 msgstr "Soportar IE9"
 
-#: templates/gradient.html:224
+#: templates/gradient.html:214
 msgid "Support for full multi-stop gradients with IE9 (using SVG)."
 msgstr "Soportar gradientes con múltiples cambios en IE9 (usando SVG)."
 
-#: templates/gradient.html:226
+#: templates/gradient.html:216
 msgid ""
 "Add a \"gradient\" class to all your elements that have a gradient, "
 "<br>and add the following override to your HTML to complete the IE9 "
 "support:"
 msgstr ""
 "Añade una clase \"gradient\" a todos tus elementos a los que les quieras "
-"aplicar un gradiente<br> y añade estas líneas a tu HTML completar el soporte "
-"IE9:"
+"aplicar un gradiente<br> y añade estas líneas a tu HTML completar el "
+"soporte IE9:"
 
-#: templates/gradient.html:239
+#: templates/gradient.html:229
 msgid "IMPORT FROM CSS"
 msgstr "IMPORTAR DE CSS"
 
-#: templates/gradient.html:242
+#: templates/gradient.html:232
 msgid "Enter existing gradient CSS to import."
 msgstr "Introduzca un gradiente CSS a importar."
 
-#: templates/gradient.html:243
+#: templates/gradient.html:233
 msgid "Use Mozilla, Webkit, Opera, W3C or IE format."
 msgstr "Use la sintaxis de Mozilla, Webkit, Opera, W3C o IE."
 
-#: templates/gradient.html:246
+#: templates/gradient.html:236
 msgid "ACCEPT"
 msgstr "ACEPTAR"
 
-#: templates/gradient.html:247
+#: templates/gradient.html:237
 msgid "CANCEL"
 msgstr "CANCELAR"
 
-#: templates/noise.html:10
-msgid "Noise Texture"
-msgstr "Textura del ruido"
+#: templates/index.html:26
+msgid "Are you a web developer? Would you like to collaborate on CSSMatic?"
+msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
 
-#: templates/noise.html:25
+#: templates/noise.html:16
 msgid "Noise Opacity"
 msgstr "Opacidad del ruido"
 
-#: templates/noise.html:35
+#: templates/noise.html:26
 msgid "Noise Density"
 msgstr "Densidad del ruido"
 
-#: templates/noise.html:54
+#: templates/noise.html:45
 msgid "Noise Color"
 msgstr "Color del ruido"
 
-#: templates/noise.html:68
+#: templates/noise.html:59
 msgid "Export noise transparent"
 msgstr "Exportar transparencia en el ruido"
 
-#: templates/noise.html:74
+#: templates/noise.html:65
 msgid "Dimensions"
 msgstr "Dimensiones"
 
-#: templates/noise.html:76
+#: templates/noise.html:67
 msgid "Width"
 msgstr "Ancho"
 
-#: templates/noise.html:83
+#: templates/noise.html:74
 msgid "Height"
 msgstr "Alto"
 
-#: templates/noise.html:93
+#: templates/noise.html:84
 msgid "Download Noise Texture"
 msgstr "Descargar textura con ruido"
 
-#: templates/shadow.html:10
-msgid "Box Shadow"
-msgstr "Sombra de la caja"
-
-#: templates/shadow.html:25
+#: templates/shadow.html:16
 msgid "Horizontal Length"
 msgstr "Anchura"
 
-#: templates/shadow.html:34
+#: templates/shadow.html:25
 msgid "Vertical Length"
 msgstr "Altura"
 
-#: templates/shadow.html:45
+#: templates/shadow.html:36
 msgid "Blur Radius"
 msgstr "Radio de la sombra"
 
-#: templates/shadow.html:54 templates/shadow.html:65
+#: templates/shadow.html:45 templates/shadow.html:56
 msgid "Shadow Color"
 msgstr "Color de la sombra"
 
-#: templates/shadow.html:77
+#: templates/shadow.html:68
 msgid "Box Color"
 msgstr "Color de la caja"
 
-#: templates/shadow.html:99
+#: templates/shadow.html:90
 msgid "Outline"
 msgstr "Por fuera"
 
-#: templates/shadow.html:100
+#: templates/shadow.html:91
 msgid "Inset"
 msgstr "Por dentro"
+
