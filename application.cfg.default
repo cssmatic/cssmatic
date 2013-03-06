@@ -18,3 +18,44 @@ MAIL_PASSWORD = None
 DEFAULT_MAIL_SENDER = None
 DEFAULT_MAX_EMAILS = 2
 MAIL_FAIL_SILENTLY = False
+
+# Logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'sentry': {
+            'level': 'WARNING',
+            'class': 'raven.handlers.logging.SentryHandler',
+            'formatter': 'verbose',
+            'client': SENTRY_CLIENT,
+        },
+    }
+    'loggers': {
+        '': {
+            'handlers': ['sentry', 'console'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+        'raven': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    }
+}

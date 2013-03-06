@@ -16,6 +16,8 @@ import hashlib
 from jinja2 import evalcontextfilter, Markup, escape
 from werkzeug import SharedDataMiddleware
 import os
+import raven  # pylint: disable=W0611
+from raven import Client
 import textwrap
 import threading
 import uuid
@@ -35,6 +37,17 @@ mail = Mail(app)
 # check we are not using the default SECRET_KEY in production
 if not app.config['DEBUG']:
     assert app.config['SECRET_KEY'] != 'kjvM3jgC4zI$j3$zBc@2eXpVY*!oG5Y*'
+# setup sentry client where we have to send errors
+if app.config.get('SENTRY_DSN'):
+    sentry_client = Client(app.config['SENTRY_DSN'], auto_log_stacks=True)
+# configure logs
+if app.config.get('LOGGING'):
+    try:
+        logging_config.dictConfig(app.config.get('LOGGING'))  # pylint: disable=E1101
+    except AttributeError:
+        logging.basicConfig(level=logging.DEBUG)
+        print 'The logging will not be correctly configured because you are running with Python 2.6'
+
 
 SUPPORTED_LANGUAGES = ['es', 'en']
 CSSMATIC_SENDER_EMAIL = 'info@thumbr.it'

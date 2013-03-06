@@ -22,6 +22,10 @@
       <script src='{{ "/js/jquery.main.js"|static_v }}'></script>
       <script src='{{ "/js/colorFunctions.js"|static_v }}'></script>
       <script src='{{ "/js/jquery.zclip.min.js"|static_v }}'></script>
+      <script src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js'></script>
+      <script type="text/javascript">
+        Raven.config({{ config.SENTRY_DNS }});
+      </script>
     {% endblock %}
 </head>
 <body>
