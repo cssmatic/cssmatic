@@ -13,7 +13,7 @@ PUBLIC_SENTRY_DSN = 'http://6a842381589b48b8a09d41cc29854fce:USE_YOUR_OWN_SENTRY
 SENTRY_CLIENT = Client(SENTRY_DSN, auto_log_stacks=True)
 
 # Email settings
-MAIL_SERVER = 'localhost’
+MAIL_SERVER = 'localhost'
 MAIL_PORT = 25
 MAIL_USE_TLS = False
 MAIL_USE_SSL = False
