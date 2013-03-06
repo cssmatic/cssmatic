@@ -2,7 +2,7 @@
 
 {% block js %}
     {{ super() }}
-    <script src="/js/boxShadow.js"></script>
+    <script src='{{ "/js/boxShadow.js"|static_v }}'></script>
 {% endblock %}
 
 {% block innerbody %}

@@ -4,24 +4,24 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block title %}{% trans %}The most complete CSS tools for web designers | CSSmatic{% endtrans %}{% endblock %}</title>
     {% block css %}
-      <link rel='stylesheet' type='text/css' href='/css/jquery.ui.css'>
-      <link rel='stylesheet' type='text/css' href='/css/colorpicker/colorpicker.css'>
-      <link rel='stylesheet' type='text/css' href='/css/colorpicker/layout.css'>
-      <link rel='stylesheet' type='text/css' href='/css/all.css'>
-      <link rel='stylesheet' type='text/css' href='/css/gradients.css'>
+      <link rel='stylesheet' type='text/css' href='{{ "/css/jquery.ui.css"|static_v }}'>
+      <link rel='stylesheet' type='text/css' href='{{ "/css/colorpicker/colorpicker.css"|static_v }}'>
+      <link rel='stylesheet' type='text/css' href='{{ "/css/colorpicker/layout.css"|static_v }}'>
+      <link rel='stylesheet' type='text/css' href='{{ "/css/all.css"|static_v }}'>
+      <link rel='stylesheet' type='text/css' href='{{ "/css/gradients.css"|static_v }}'>
     {% endblock %}
     {% block js %}
-      <script src='/js/jquery-1.8.3.min.js'></script>
-      <script src='/js/jquery-ui-1.9.1.min.js'></script>
-      <script src="/js/colorpicker/js/colorpicker.js"></script>
-      <script src="/js/colorpicker/js/eye.js"></script>
-      <script src="/js/colorpicker/js/layout.js"></script>
-      <script src="/js/colorpicker/js/utils.js"></script>
-      <script src='/js/jquery.cookie.js'></script>
-      <script src='/js/copyText.js'></script>
-      <script src='/js/jquery.main.js'></script>
-      <script src='/js/colorFunctions.js'></script>
-      <script src='/js/jquery.zclip.min.js'></script>
+      <script src='{{ "/js/jquery-1.8.3.min.js"|static_v }}'></script>
+      <script src='{{ "/js/jquery-ui-1.9.1.min.js"|static_v }}'></script>
+      <script src='{{ "/js/colorpicker/js/colorpicker.js"|static_v }}'></script>
+      <script src='{{ "/js/colorpicker/js/eye.js"|static_v }}'></script>
+      <script src='{{ "/js/colorpicker/js/layout.js"|static_v }}'></script>
+      <script src='{{ "/js/colorpicker/js/utils.js"|static_v }}'></script>
+      <script src='{{ "/js/jquery.cookie.js"|static_v }}'></script>
+      <script src='{{ "/js/copyText.js"|static_v }}'></script>
+      <script src='{{ "/js/jquery.main.js"|static_v }}'></script>
+      <script src='{{ "/js/colorFunctions.js"|static_v }}'></script>
+      <script src='{{ "/js/jquery.zclip.min.js"|static_v }}'></script>
     {% endblock %}
 </head>
 <body>

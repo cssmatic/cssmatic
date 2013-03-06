@@ -2,8 +2,8 @@
 
 {% block js %}
   {{ super() }}
-  <script src='/js/gradient.js'></script>
-  <script src='/js/gradientEvents.js'></script>
+  <script src='{{ "/js/gradient.js"|static_v }}'></script>
+  <script src='{{ "/js/gradientEvents.js"|static_v }}'></script>
 {% endblock %}
 
 {% block innerbody %}

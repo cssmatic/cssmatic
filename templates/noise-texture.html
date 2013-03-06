@@ -2,7 +2,7 @@
 
 {% block js %}
     {{ super() }}
-    <script src="/js/noisyTexture.js"></script>
+    <script src='{{ "/js/noisyTexture.js"|static_v }}'></script>
 {% endblock %}
 
 {% block innerbody %}

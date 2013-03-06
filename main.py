@@ -12,15 +12,18 @@ from flaskext.babel import lazy_gettext
 from flask_mail import Mail
 from flask_mail import Message
 from functools import wraps
+import hashlib
 from jinja2 import evalcontextfilter, Markup, escape
 from werkzeug import SharedDataMiddleware
 import os
 import textwrap
+import threading
+import uuid
 
 
 app = Flask(__name__)
 app.config.update(
-    DEBUG=True,
+    DEBUG=False,
     SECRET_KEY='gQkxXzQM3gSsy76hm3pIa0s1iUQX5wRY',
     DEFAULT_MAX_EMAILS=2,
     MAIL_FAIL_SILENTLY=False
@@ -36,8 +39,14 @@ if not app.config['DEBUG']:
 SUPPORTED_LANGUAGES = ['es', 'en']
 CSSMATIC_SENDER_EMAIL = 'info@thumbr.it'
 CSSMATIC_ADMIN_EMAILS = ['alechobi@gmail.com', 'joaquin@cuencaabela.com']
-LONG_MAX_AGE_CACHE_S = 300  # 5 minutes
+STATIC_MAX_AGE_CACHE_S = 24 * 60 * 60  # 1 day
+MAX_AGE_CACHE_S = 300  # 5 minutes
+STATIC_DIR = os.path.join(os.path.dirname(__file__), 'static')
 
+
+#####################################
+# Plugin definitions
+#####################################
 
 class PagePlugin(object):
     def __init__(self, cssname, urlpath, humanname, imgpath, description_html):
@@ -97,7 +106,12 @@ page_plugins = [
 ]
 
 
-def httpcache(public=True, max_age=LONG_MAX_AGE_CACHE_S):
+def sha1(st):
+    """Generate sha1 token from string."""
+    return hashlib.sha1(st).hexdigest()  # pylint: disable=E1101
+
+
+def httpcache(public=True, max_age=MAX_AGE_CACHE_S):
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
@@ -110,11 +124,44 @@ def httpcache(public=True, max_age=LONG_MAX_AGE_CACHE_S):
     return decorator
 
 
+#####################################
+# Template filters
+#####################################
+
+_static_hashes = {}
+_static_hashes_lock = threading.Lock()
+
+
 @app.template_filter()
 @evalcontextfilter
 def ws2br(eval_ctx, value):
     return Markup('<br>'.join(escape(value).split()))
 
+
+@app.template_filter()
+@evalcontextfilter
+def static_v(eval_ctx, url):
+    filename = url.lstrip('/')
+    abs_path = os.path.join(STATIC_DIR, filename)
+    with _static_hashes_lock:
+        v = _static_hashes.get(abs_path)
+        if not v:
+            if app.config.get('DEBUG'):
+                print app.config
+                v = 'DEBUG-' + str(uuid.uuid4())
+            elif app.config.get('TEST'):
+                v = 'TEST-' + str(uuid.uuid4())
+            else:
+                contents = open(abs_path, 'rb').read()
+                h = sha1(contents)
+                v = h[:8]
+            _static_hashes[abs_path] = v
+    return url + '?v=' + v
+
+
+#####################################
+# I18N helper functions
+#####################################
 
 @babel.localeselector
 def get_locale():
@@ -133,6 +180,10 @@ def get_timezone():
     if user is not None:
         return user.timezone
 
+
+#####################################
+# URL handlers
+#####################################
 
 # we can only httpcache URLs that have a lang argument. The result of
 # the page that don't have a lang argument depends on Accept-Language.
@@ -209,9 +260,9 @@ def plugins_page(plugin_name, lang='en'):
 
 
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
-  '/': os.path.join(os.path.dirname(__file__), 'static')
-})
+  '/': STATIC_DIR
+}, cache=True, cache_timeout=STATIC_MAX_AGE_CACHE_S)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
