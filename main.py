@@ -16,8 +16,7 @@ import hashlib
 from jinja2 import evalcontextfilter, Markup, escape
 from werkzeug import SharedDataMiddleware
 import os
-import raven  # pylint: disable=W0611
-from raven import Client
+from raven.contrib.flask import Sentry
 import textwrap
 import threading
 import uuid
@@ -33,13 +32,12 @@ app.config.update(
 app.config.from_pyfile('application.cfg', silent=True)
 babel = Babel(app)
 mail = Mail(app)
+if app.config.get('SENTRY_DSN'):
+    sentry = Sentry(app)
 
 # check we are not using the default SECRET_KEY in production
 if not app.config['DEBUG']:
     assert app.config['SECRET_KEY'] != 'kjvM3jgC4zI$j3$zBc@2eXpVY*!oG5Y*'
-# setup sentry client where we have to send errors
-if app.config.get('SENTRY_DSN'):
-    sentry_client = Client(app.config['SENTRY_DSN'], auto_log_stacks=True)
 # configure logs
 if app.config.get('LOGGING'):
     try:
