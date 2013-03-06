@@ -4,9 +4,11 @@ set -e
 if [ $(whoami) != "cssmatic" ]; then
     echo "Run this script under the user cssmatic:"
     echo "$ useradd -d /home/cssmatic -m cssmatic"
+    echo "$ usermod -s /bin/bash cssmatic"
     echo "$ adduser cssmatic sudo"
-    echo "$ sudo -i -u cssmatic bash"
+    echo "$ su - cssmatic"
     echo "$ mkdir /home/cssmatic/www && cd /home/cssmatic/www && git clone https://github.com/cssmatic/cssmatic.git"
+    echo "$ cd cssmatic && ./install.sh"
     exit 1
 fi
 
