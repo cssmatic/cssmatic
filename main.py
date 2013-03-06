@@ -14,6 +14,7 @@ from flask_mail import Message
 from functools import wraps
 import hashlib
 from jinja2 import evalcontextfilter, Markup, escape
+from logging import config as logging_config  # pylint: disable=W0404
 from werkzeug import SharedDataMiddleware
 import os
 from raven.contrib.flask import Sentry

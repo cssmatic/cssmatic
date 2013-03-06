@@ -8,8 +8,8 @@ DEBUG = False
 # IMPORTANT: YOU HAVE TO CHANGE THIS SECRET_KEY TO ANOTHER RANDOM VALUE
 # IMPORTANT: YOU HAVE TO CHANGE THIS SECRET_KEY TO ANOTHER RANDOM VALUE
 SECRET_KEY = 'kjvM3jgC4zI$j3$zBc@2eXpVY*!oG5Y*'
-SENTRY_DSN = 'http://6a842381589b48b8a09d41cc29854fce@sentry.empirical-evidence.com/8'
-PUBLIC_SENTRY_DSN = 'http://6a842381589b48b8a09d41cc29854fce:USE_YOUR_OWN_SENTRY@sentry.empirical-evidence.com/8'
+SENTRY_DSN = 'http://6a842381589b48b8a09d41cc29854fce:USE_YOUR_OWN_SENTRY@sentry.empirical-evidence.com/8'
+PUBLIC_SENTRY_DSN = 'http://6a842381589b48b8a09d41cc29854fce@sentry.empirical-evidence.com/8'
 SENTRY_CLIENT = Client(SENTRY_DSN, auto_log_stacks=True)
 
 # Email settings
@@ -45,7 +45,7 @@ LOGGING = {
             'formatter': 'verbose',
             'client': SENTRY_CLIENT,
         },
-    }
+    },
     'loggers': {
         '': {
             'handlers': ['sentry', 'console'],
