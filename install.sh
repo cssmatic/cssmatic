@@ -22,7 +22,8 @@ pybabel compile -d translations
 # Install gunicorn configuration
 sudo cp etc/init/cssmatic-gunicorn.conf /etc/init/
 sudo initctl reload-configuration
-if ! curl --silent --head http://localhost:5000/ | egrep "^HTTP/1.0 200 OK"; then
+service cssmatic-gunicorn start
+if ! curl --silent --head http://localhost:8008/ | egrep "^HTTP/1.[01] 200 OK"; then
     echo "Error installing cssmatic flask process"
     exit 1
 fi
@@ -35,7 +36,7 @@ if ! nginx -t; then
     exit 1
 fi
 sudo nginx -s reload
-if ! curl --silent --head -H "Host: www.cssmatic.com" http://localhost/ | egrep "^HTTP/1.0 200 OK"; then
+if ! curl --silent --head -H "Host: www.cssmatic.com" http://localhost/ | egrep "^HTTP/1.1 200 OK"; then
     echo "Error installing cssmatic nginx"
     exit 1
 fi
