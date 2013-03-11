@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from collections import namedtuple
 from flask import abort
 from flask import Flask
 from flask import g
@@ -14,11 +13,11 @@ from flask_mail import Message
 from functools import wraps
 import hashlib
 from jinja2 import evalcontextfilter, Markup, escape
+import logging
 from logging import config as logging_config  # pylint: disable=W0404
 from werkzeug import SharedDataMiddleware
 import os
 from raven.contrib.flask import Sentry
-import textwrap
 import threading
 import uuid
 
@@ -164,7 +163,8 @@ def static_v(eval_ctx, url):
             elif app.config.get('TEST'):
                 v = 'TEST-' + str(uuid.uuid4())
             else:
-                contents = open(abs_path, 'rb').read()
+                with open(abs_path, 'rb') as f:
+                    contents = f.read()
                 h = sha1(contents)
                 v = h[:8]
             _static_hashes[abs_path] = v
@@ -237,8 +237,8 @@ def contact_page():
         if not errors:
             msg = Message(sender=CSSMATIC_SENDER_EMAIL,
                           recipients=CSSMATIC_ADMIN_EMAILS,
-                          body=u'The user %s %s (%s) said:\n\n%s' % (
-                            first_name, last_name, email, message),
+                          body=u'The user %s %s (%s) from %s with phone number %s said:\n\n%s' % (
+                              first_name, last_name, email, organization, phone, message),
                           subject='Message from a CSSmatic user')
             mail.send(msg)
             sent_success = True
@@ -271,8 +271,17 @@ def plugins_page(plugin_name, lang='en'):
         page_plugins=page_plugins)
 
 
+@app.route('/favicon.ico')
+@httpcache()
+def favicon_handler():
+    with open(os.path.join(STATIC_DIR, 'img', 'favicon.ico')) as f:
+        response = make_response(f.read())
+        response.headers['Content-Type'] = 'image/x-icon'
+        return response
+
+
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
-  '/': STATIC_DIR
+    '/': STATIC_DIR
 }, cache=True, cache_timeout=STATIC_MAX_AGE_CACHE_S)
 
 
