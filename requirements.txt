@@ -10,4 +10,3 @@ pytz==2012j
 raven==3.1.17
 speaklater==1.3
 wsgiref==0.1.2
-wxPython==2.9.4.0
