@@ -159,11 +159,11 @@ msgid ""
 msgstr ""
 
 #: templates/base.html:5
-msgid "The most complete CSS tools for web designers | CSSmatic"
+msgid "The ultimate CSS tools for web designers | CSSmatic"
 msgstr ""
 
 #: templates/base.html:73 templates/index.html:9
-msgid "The most complete <strong>CSS tools</strong> for web designers"
+msgid "The ultimate <strong>CSS tools</strong> for web designers"
 msgstr ""
 
 #: templates/base.html:106 templates/index.html:25
