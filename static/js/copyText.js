@@ -3,8 +3,7 @@ function copy_text_button(copyElement, cssElement) {
         path: '/js/ZeroClipboard.swf',
         copy: function() {
             var text = cssElement.text();
-            text = text.replace(/;/g, ';\n');
-			copyElement.css('color','black');
+            text = text.replace(/;/g, ';\n').replace(/\n$/, '');
             return text;
         },
         afterCopy: function() {

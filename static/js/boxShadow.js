@@ -66,6 +66,10 @@ function _getAllValuesFromPanelBoxShadow() {
     options['opacity'] = parseFloat($('#shadow-opacity').val());
     options['inset'] = $($('#inset-button').find('.right-pos')).length == 1;
     options['spread'] = parseFloat($('#spread-field'));
+
+    var alpha = parseFloat($('#shadow-opacity').val());
+    options['shadowColor'].changeFormatColor('rgba');
+    options['shadowColor'].color.a = alpha;
     return options;
 }
 
@@ -113,11 +117,11 @@ $('body').ready(function() {
 
     $('#slider-spread-field').slider({
         value: 0,
-        min: 0,
+        min: -200,
         max: 200,
         step: 1,
         slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 200, $('#spread-field'));
+            var val = _getFromField(ui.value, -200, 200, $('#spread-field'));
             boxShadow.spread = val;
             boxShadow.refresh();
         }
@@ -226,7 +230,7 @@ $('#blur-radius').live('keyup', function() {
 });
 
 $('#spread-field').live('keyup', function() {
-    var val = _getFromField($(this).val(), 0, 200, $('#spread-field'));
+    var val = _getFromField($(this).val(), -200, 200, $('#spread-field'));
     if (val !== false) {
         boxShadow.spread = val;
         boxShadow.refresh();

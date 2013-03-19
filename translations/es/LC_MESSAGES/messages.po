@@ -342,7 +342,11 @@ msgstr "Altura"
 msgid "Blur Radius"
 msgstr "Radio de la sombra"
 
-#: templates/box-shadow.html:45 templates/box-shadow.html:56
+#: templates/box-shadow.html:45
+msgid "Spread Radius"
+msgstr "Radio de propagación"
+
+#: templates/box-shadow.html:56
 msgid "Shadow Color"
 msgstr "Color de la sombra"
 
