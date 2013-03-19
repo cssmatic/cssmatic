@@ -295,7 +295,11 @@ msgstr ""
 msgid "Blur Radius"
 msgstr ""
 
-#: templates/box-shadow.html:45 templates/box-shadow.html:56
+#: templates/box-shadow.html:45
+msgid "Spread Radius"
+msgstr ""
+
+#:templates/box-shadow.html:56
 msgid "Shadow Color"
 msgstr ""
 

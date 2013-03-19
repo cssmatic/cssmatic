@@ -17,7 +17,7 @@ sudo apt-get install nginx
 virtualenv --distribute $HOME/.virtualenvs/cssmatic
 source $HOME/.virtualenvs/cssmatic/bin/activate
 pip install -r requirements.txt
-pybabel compile -d translations
+sudo pybabel compile -d translations
 
 # Install gunicorn configuration
 sudo cp etc/init/cssmatic-gunicorn.conf /etc/init/
