@@ -34,7 +34,7 @@ FAQ
 
 1. How do I install pybabel?
 
-Run `pip install -r requirements`.
+Run `pip install -r requirements.txt`.
 
 2. How do I install pip?
 
