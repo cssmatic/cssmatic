@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{% trans %}Gradient CSS Generator | CSSmatic{% endtrans %}{% endblock %}
+
 {% block js %}
   {{ super() }}
   <script src='{{ "/js/gradient.js"|static_v }}'></script>

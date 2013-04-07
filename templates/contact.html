@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{% trans %}Contact Us | CSSmatic{% endtrans %}{% endblock %}
+
 {% block css %}
     {{ super() }}
     <link rel='stylesheet' type='text/css' href='{{ "/css/contact.css"|static_v }}'>
