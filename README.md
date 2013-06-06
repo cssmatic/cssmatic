@@ -1,27 +1,27 @@
-HOW TO INSTALL CSSMATIC
+How to install CSSMatic
 =======================
 
 Run install.sh
 
 
-HOW TO TRANSLATE CSSMATIC TO A NEW LANGUAGE
+How to translate CSSMatic to a new language
 ===========================================
 
-<LANG> is a two letter language code, like `es` for spanish.
+<code>&lt;LANG&gt;</code> is a two letter language code, like `es` for spanish.
 
     $ pybabel init -i messages.pot -d translations -l <LANG>
     [... put your translations in translations/<LANG>/LC_MESSAGES/messages.po ...]
     $ pybabel compile -d translations
 
 
-HOW TO UPDATE AN EXISTENT TRANSLATION
+How to update an existing translation
 =====================================
 
     [... update translations/<LANG>/LC_MESSAGES/messages.po ...]
     $ pybabel compile -d translations
 
 
-HOW TO EXTRACT NEW MESSAGES IN HTML / PYTHON CODE AND TRANSLATE THEM
+How to extract new messages in HTML / Python code and translate them
 ====================================================================
 
     $ make messages.pot
@@ -34,8 +34,8 @@ FAQ
 
 1. How do I install pybabel?
 
-Run `pip install -r requirements.txt`.
+  Run `pip install -r requirements.txt`.
 
 2. How do I install pip?
 
-Run `easy_install pip` or `apt-get install python-pip`.
+  Run `easy_install pip` or `apt-get install python-pip`.
