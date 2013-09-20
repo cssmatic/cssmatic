@@ -12,17 +12,23 @@ if [ $(whoami) != "cssmatic" ]; then
     exit 1
 fi
 
-sudo apt-get install nginx
+if [[ ! -x /usr/sbin/nginx ]]; then
+    sudo apt-get install nginx
+fi
 
-virtualenv --distribute $HOME/.virtualenvs/cssmatic
+if [[ ! -d "$HOME/.virtualenvs/cssmatic" ]]; then
+    virtualenv --distribute $HOME/.virtualenvs/cssmatic
+fi
+
 source $HOME/.virtualenvs/cssmatic/bin/activate
 pip install -r requirements.txt
-sudo pybabel compile -d translations
+sudo $HOME/.virtualenvs/cssmatic/bin/pybabel compile -d translations
 
 # Install gunicorn configuration
 sudo cp etc/init/cssmatic-gunicorn.conf /etc/init/
 sudo initctl reload-configuration
-service cssmatic-gunicorn start
+sudo service cssmatic-gunicorn restart
+sleep 1
 if ! curl --silent --head http://localhost:8008/ | egrep "^HTTP/1.[01] 200 OK"; then
     echo "Error installing cssmatic flask process"
     exit 1
@@ -31,11 +37,12 @@ fi
 # Install nginx configuration
 sudo mkdir -p /opt/cache/cssmatic/proxy
 sudo cp etc/nginx/sites-enabled/cssmatic-nginx.conf /etc/nginx/sites-enabled/
-if ! nginx -t; then
+if ! sudo /usr/sbin/nginx -t; then
     echo "Error in nginx configuration"
     exit 1
 fi
 sudo nginx -s reload
+sleep 1
 if ! curl --silent --head -H "Host: www.cssmatic.com" http://localhost/ | egrep "^HTTP/1.1 200 OK"; then
     echo "Error installing cssmatic nginx"
     exit 1
