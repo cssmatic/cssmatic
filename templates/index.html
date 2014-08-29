@@ -7,51 +7,15 @@
 {% block innerbody %}
   <a class="logo" href="/"><img src="/img/cssmatic-logo.png"></a>
   <h1 class="h1home">{% trans %}The ultimate <strong>CSS tools</strong> for web designers{% endtrans %}</h1>
-  <div id="header">
-    <ul id="switcher">
-      {% for plugin in page_plugins %}
-        <li>
-          <a href="{{ plugin.url }}">
-            <strong>{{ plugin.humanname|ws2br }}</strong>
-            <img src="{{ plugin.imgpath }}" alt="" width="108" height="108" />
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
 
-  <div id="collaborate" class="clearfix">
-    <div class="text">
-      <p>{% trans %}<strong>CSSmatic</strong> is a non-profit project, made by developers for developers{% endtrans %}</p>
-      <p>{% trans %}Are you a web developer? Would you like to collaborate on CSSMatic?{% endtrans %}</p>
-    </div>
-    <span class="cartoon"></span>
-    <a href="/contact" class="contact">{% trans %}Contact us{% endtrans %}</a>
-  </div>
-
-  <div id="plugins">
+  <ul class="switcher clearfix">
     {% for plugin in page_plugins %}
-      <div class="plugin clearfix">
-        <div class="mid-container">
-          {% if loop.index is divisibleby 2 %}
-            <div class="col text">
-              <h2 class="t3"><a href="{{ plugin.url }}">{{ plugin.humanname }}</a></h2>
-              {{ plugin.description_html|safe }}
-            </div>
-            <div class="colr">
-              <img src="{{ plugin.bigimgpath }}">
-            </div>
-          {% else %}
-            <div class="col">
-              <img src="{{ plugin.bigimgpath }}">
-            </div>
-            <div class="colr text">
-              <h2 class="t3"><a href="{{ plugin.url }}">{{ plugin.humanname }}</a></h2>
-              {{ plugin.description_html|safe }}
-            </div>
-          {% endif %}
-        </div>
-      </div>
+      <li>
+        <a href="{{ plugin.url }}">
+          <h3>{{ plugin.humanname }}</h3>
+          {{ plugin.description_html|safe }}
+        </a>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 {% endblock %}

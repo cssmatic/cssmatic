@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-04-07 10:16+0200\n"
+"POT-Creation-Date: 2014-08-29 15:52+0200\n"
 "PO-Revision-Date: 2013-03-03 17:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 0.9.6\n"
+"Generated-By: Babel 1.3\n"
 
 #: main.py:84
 msgid "Gradient Generator"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: main.py:96
 msgid "Border Radius"
-msgstr "Radio Bordes"
+msgstr "Bordes Redondeados"
 
 #: main.py:98
 msgid ""
@@ -79,23 +79,33 @@ msgstr ""
 "<p>Cambia el radio de la sombra, el color, tamaño… Todo lo que necesitas "
 "para crear sombras en un solo lugar.</p>"
 
-#: main.py:227
+#: main.py:120
+msgid "Button"
+msgstr ""
+
+#: main.py:122
+msgid ""
+"<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button "
+"you may need on your projects.</p>"
+msgstr ""
+
+#: main.py:238
 msgid "The name is empty"
 msgstr "El nombre está vacío"
 
-#: main.py:229
+#: main.py:240
 msgid "The family name is empty"
 msgstr "El apellido está vacío"
 
-#: main.py:231
+#: main.py:242
 msgid "The email is empty"
 msgstr "El email está vacío"
 
-#: main.py:233
+#: main.py:244
 msgid "The reason to contact is empty"
 msgstr "El mótivo para contactarnos está vacío"
 
-#: main.py:235
+#: main.py:246
 msgid "The message is empty"
 msgstr "El mensaje está vacío"
 
@@ -205,13 +215,13 @@ msgstr ""
 msgid "The ultimate CSS tools for web designers | CSSmatic"
 msgstr "Completa colección de herramientas CSS para diseñadores web | CSSmatic"
 
-#: templates/base.html:74 templates/index.html:9
+#: templates/base.html:75 templates/index.html:9
 msgid "The ultimate <strong>CSS tools</strong> for web designers"
 msgstr ""
 "Completa colección de <strong>herramientas CSS</strong> para diseñadores "
 "web"
 
-#: templates/base.html:107 templates/index.html:25
+#: templates/base.html:111
 msgid ""
 "<strong>CSSmatic</strong> is a non-profit project, made by developers for"
 " developers"
@@ -219,23 +229,23 @@ msgstr ""
 "<strong>CSSmatic</strong> es un proyecto libre, hecho por y para "
 "desarrolladores"
 
-#: templates/base.html:108
+#: templates/base.html:112
 msgid "Are you a web developer?  Would you like to collaborate on CSSMatic?"
 msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
 
-#: templates/base.html:111 templates/index.html:29
+#: templates/base.html:115
 msgid "Contact us"
 msgstr "Contáctanos"
 
-#: templates/base.html:115
+#: templates/base.html:119
 msgid "Designed and developed by"
 msgstr "Diseñado y desarrollado por"
 
-#: templates/base.html:124
+#: templates/base.html:128
 msgid "About"
 msgstr "Acerca"
 
-#: templates/base.html:125
+#: templates/base.html:129
 msgid "Contact"
 msgstr "Contacto"
 
@@ -243,27 +253,27 @@ msgstr "Contacto"
 msgid "Border Radius CSS Generator | CSSmatic"
 msgstr "Generator de bordes redondeados en CSS | CSSmatic"
 
-#: templates/border-radius.html:18
+#: templates/border-radius.html:18 templates/button.html:250
 msgid "All Corners"
 msgstr "Todas las esquinas"
 
-#: templates/border-radius.html:28
+#: templates/border-radius.html:28 templates/button.html:260
 msgid "Top Left"
 msgstr "Superior izquierda"
 
-#: templates/border-radius.html:36
+#: templates/border-radius.html:36 templates/button.html:268
 msgid "Top Right"
 msgstr "Superior derecha"
 
-#: templates/border-radius.html:44
+#: templates/border-radius.html:44 templates/button.html:276
 msgid "Bottom Left"
 msgstr "Inferior izquierda"
 
-#: templates/border-radius.html:52
+#: templates/border-radius.html:52 templates/button.html:284
 msgid "Bottom Right"
 msgstr "Inferior derecha"
 
-#: templates/border-radius.html:69
+#: templates/border-radius.html:69 templates/button.html:301
 msgid "Border Width"
 msgstr "Ancho del borde"
 
@@ -315,22 +325,23 @@ msgstr "oculto (hidden)"
 msgid "none"
 msgstr "ninguno"
 
-#: templates/border-radius.html:97
+#: templates/border-radius.html:97 templates/button.html:311
 msgid "Border Color"
 msgstr "Color del borde"
 
 #: templates/border-radius.html:102 templates/box-shadow.html:63
-#: templates/box-shadow.html:75 templates/noise-texture.html:42
-#: templates/noise-texture.html:51
+#: templates/box-shadow.html:75 templates/button.html:316
+#: templates/noise-texture.html:42 templates/noise-texture.html:51
 msgid "color"
 msgstr "color"
 
-#: templates/border-radius.html:106 templates/noise-texture.html:38
+#: templates/border-radius.html:106 templates/button.html:320
+#: templates/noise-texture.html:38
 msgid "Background Color"
 msgstr "Color de fondo"
 
 #: templates/border-radius.html:125 templates/box-shadow.html:112
-#: templates/noise-texture.html:91
+#: templates/button.html:353 templates/noise-texture.html:91
 msgid "Copy Text"
 msgstr "Copiar texto"
 
@@ -379,6 +390,14 @@ msgstr "Por dentro"
 #: templates/noise-texture.html:63
 msgid "knob"
 msgstr "punto"
+
+#: templates/button.html:3
+msgid "Button CSS Generator | CSSmatic"
+msgstr ""
+
+#: templates/button.html:329
+msgid "Relief"
+msgstr ""
 
 #: templates/contact.html:3
 msgid "Contact Us | CSSmatic"
@@ -462,7 +481,7 @@ msgstr "Generador de gradientes CSS | CSSmatic"
 
 #: templates/gradient-generator.html:15
 msgid "PRESETS"
-msgstr "CONFIGURACIÓN"
+msgstr "GALERÍA"
 
 #: templates/gradient-generator.html:49
 msgid "Click to add an opacity stop"
@@ -574,10 +593,6 @@ msgstr "ACEPTAR"
 msgid "CANCEL"
 msgstr "CANCELAR"
 
-#: templates/index.html:26
-msgid "Are you a web developer? Would you like to collaborate on CSSMatic?"
-msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
-
 #: templates/noise-texture.html:3
 msgid "Noise Texture CSS Generator | CSSmatic"
 msgstr "Generador de texturas con ruido en CSS | CSSmatic"
@@ -613,4 +628,7 @@ msgstr "Alto"
 #: templates/noise-texture.html:86
 msgid "Download Noise Texture"
 msgstr "Descargar textura con ruido"
+
+#~ msgid "Are you a web developer? Would you like to collaborate on CSSMatic?"
+#~ msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
 
