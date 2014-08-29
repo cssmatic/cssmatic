@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}{% trans %}Button CSS Generator | CSSmatic{% endtrans %}{% endblock %}
+
+{% block css %}
+  {{ super() }}
+  <style>
+#button-panel {
+    font-size: 18px;
+}
+
+.cm-row, .cm-col-1-2, .cm-col-1-3, .cm-col-1-4, .cm-offset-1-2, .cm-offset-1-3, .cm-offset-1-4 {
+    box-sizing: border-box;
+}
+
+.cm-offset-1-2 {
+    margin-left: 50%;
+}
+
+.cm-offset-1-3 {
+    margin-left: 33.333%;
+}
+
+.cm-offset-1-4 {
+    margin-left: 25%;
+}
+
+.cm-row::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.cm-col-1-2 {
+    float: left;
+    width: 50%;
+}
+
+.cm-col-1-3 {
+    float: left;
+    width: 33.333%;
+}
+
+.cm-col-1-4 {
+    float: left;
+    width: 25%;
+}
+
+input[type=number] {
+    width: 36px;
+}
+
+.img-label {
+    vertical-align: middle;
+}
+
+legend {
+    font-weight: bold;
+    padding: 32px 0 8px;
+    text-align: left;
+}
+
+.button-editor fieldset::before {
+    margin: 0px 160px 0 40px;
+    border-top: 1px dotted;
+    display: block;
+    content: "";
+    position: relative;
+    top: -46px;
+}
+
+fieldset > div {
+    margin: 18px 0 12px;
+}
+
+.simple-form-row label {
+    width: 50%;
+    display: inline-block;
+}
+
+.simple-form-row input {
+    margin-left: 32px;
+}
+
+a {
+    color: #4288CC;
+}
+
+.btn-base {
+    margin: 18px auto;
+}
+
+.models {
+    text-align: center;
+}
+  </style>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  <script src='{{ "/js/button.js"|static_v }}'></script>
+{% endblock %}
+
+{% block innerbody %}
+<div class="cm-row">
+    <div class="cm-col-1-4">
+        <form class="models">
+            <legend>Button styles</legend>
+
+            <button class="btn-base bt-sample-metro">METRO</button>
+            <button class="btn-base bt-sample-ios">iOS</button>
+            <button class="btn-base bt-sample-medium">MEDIUM</button>
+            <button class="btn-base bt-sample-flat">Flat</button>
+        </form>
+    </div>
+
+    <div class="button-editor cm-col-1-2">
+        <label>Button State</label>
+        <select>
+            <option>Normal</option>
+            <option>Hover</option>
+            <option>Active</option>
+        </select>
+
+        <form class="bt-state-normal">
+            <fieldset>
+                <legend>Corners</legend>
+
+                <div class="simple-form-row"><label for="border-radius">Radius</label> <input type="number" name="border-radius">px</div>
+                <div>
+                    <a href="javascript:void($('#border-radius-extra').slow())">Extra</a>
+
+                    <div id="border-radius-extra"><!-- style="display: none" -->
+                        <div class="cm-row">
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/corner-tl.png" alt="Top left corner"> <input type="number" name="border-radius-tl">px
+                            </div>
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/corner-tr.png" alt="Top right corner"> <input type="number" name="border-radius-tr">px
+                            </div>
+                        </div>
+                        <div class="cm-row">
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/corner-bl.png" alt="Bottom left corner"> <input type="number" name="border-radius-bl">px
+                            </div>
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/corner-br.png" alt="Bottom right corner"> <input type="number" name="border-radius-br">px
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Borders</legend>
+
+                <div class="simple-form-row"><label for="border-width">Width</label> <input type="number" name="border-width">px</div>
+                <div class="simple-form-row"><label for="border-color">Color</label> <input type="color" name="border-color"></div>
+
+                <div>
+                    <a href="javascript:void($('#border-extra-normal').slow())">Extra</a>
+
+                    <div id="border-extra-normal"><!-- style="display: none" -->
+                        <div class="cm-row">
+                            <div class="cm-col-1-2 cm-offset-1-4">
+                                <img class="img-label" src="/static/img/border-top.png" alt="Top border"> <input type="color" name="border-color-top"> <input type="number" name="border-width-top">px
+                            </div>
+                        </div>
+                        <div class="cm-row">
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/border-left.png" alt="Left border"> <input type="color" name="border-color-left"> <input type="number" name="border-width-left">px
+                            </div>
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/border-right.png" alt="Right border"> <input type="color" name="border-color-right"> <input type="number" name="border-width-right">px
+                            </div>
+                        </div>
+                        <div class="cm-row">
+                            <div class="cm-col-1-2 cm-offset-1-4">
+                                <img class="img-label" src="/static/img/border-bottom.png" alt="Bottom border"> <input type="color" name="border-color-bottom"> <input type="number" name="border-width-bottom">px
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Bevel</legend>
+
+                <div class="simple-form-row"><label for="bevel-width">Width</label> <input type="number" name="bevel-width">px</div>
+                <div class="simple-form-row"><label for="bevel-color-tl">Top left color</label> <input type="color" name="bevel-color-tl"></div>
+                <div class="simple-form-row"><label for="bevel-color-br">Bottom right color</label> <input type="color" name="bevel-color-br"></div>
+
+                <div>
+                    <a href="javascript:void($('#bevel-extra-normal').slow())">Extra</a>
+
+                    <div id="bevel-extra-normal"><!-- style="display: none" -->
+                        <div class="cm-row">
+                            <div class="cm-col-1-2 cm-offset-1-4">
+                                <img class="img-label" src="/static/img/border-top.png" alt="Top border"> <input type="color" name="bevel-color-top"> <input type="number" name="bevel-width-top">px
+                            </div>
+                        </div>
+                        <div class="cm-row">
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/border-left.png" alt="Left border"> <input type="color" name="bevel-color-left"> <input type="number" name="bevel-width-left">px
+                            </div>
+                            <div class="cm-col-1-2">
+                                <img class="img-label" src="/static/img/border-right.png" alt="Right border"> <input type="color" name="bevel-color-right"> <input type="number" name="bevel-width-right">px
+                            </div>
+                        </div>
+                        <div class="cm-row">
+                            <div class="cm-col-1-2 cm-offset-1-4">
+                                <img class="img-label" src="/static/img/border-bottom.png" alt="Bottom border"> <input type="color" name="bevel-color-bottom"> <input type="number" name="bevel-width-bottom">px
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="cm-col-1-4">
+        <form class="models">
+            <fieldset>
+                <legend>Normal</legend>
+
+                <button type="button" class="btn-base btn">Example</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Hover</legend>
+
+                <button type="button" class="btn-base btn btn-hover">Example</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Active (clicked)</legend>
+
+                <button type="button" class="btn-base btn btn-active">Example</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<!--
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="all-corners">{% trans %}All Corners{% endtrans %}</label>
+                            <label class="align-right" for="all-corners">px</label>
+                            <div class="text-1">
+                                <input id="all-corners" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-all-corners" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="top-left">{% trans %}Top Left{% endtrans %}</label>
+                            <label class="align-right" for="top-left">px</label>
+                            <div class="text-1">
+                                <input id="top-left" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-top-left" class="slider-bar large"></div>
+                        <div class="row mtop15">
+                            <label for="top-right">{% trans %}Top Right{% endtrans %}</label>
+                            <label class="align-right" for="top-right">px</label>
+                            <div class="text-1">
+                                <input id="top-right" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-top-right" class="slider-bar large"></div>
+                        <div class="row mtop15">
+                            <label for="bottom-left">{% trans %}Bottom Left{% endtrans %}</label>
+                            <label class="align-right" for="bottom-left">px</label>
+                            <div class="text-1">
+                                <input id="bottom-left" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-bottom-left" class="slider-bar large"></div>
+                        <div class="row mtop15" >
+                            <label for="bottom-right">{% trans %}Bottom Right{% endtrans %}</label>
+                            <label class="align-right" for="bottom-right">px</label>
+                            <div class="text-1">
+                                <input id="bottom-right" type="text" value="10" />
+                            </div>
+                        </div>
+                        <div id="slider-bottom-right" class="slider-bar large"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="holder">
+                <div class="frame">
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="border-width">{% trans %}Border Width{% endtrans %}</label>
+                            <label class="align-right" for="border-width">px</label>
+                            <div class="text-1">
+                                <input id="border-width" type="text" value="0" />
+                            </div>
+                        </div>
+                        <div id="slider-border-width" class="slider-bar large"></div>
+                    </div>
+                    <div class="setting-block">
+                        <div class="row">
+                            <label for="br-color">{% trans %}Border Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="br-color" type="text" value="#000000" />
+                            </div>
+                            <a id="br-color-button" class="btn-color color-3" href="javascript:;">
+                                <span>{% trans %}color{% endtrans %}</span>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <label for="br-background-color">{% trans %}Background Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="br-background-color" type="text" value="#e7a61a" />
+                            </div>
+                            <a id="br-background-color-button" class="btn-color color-4" href="javascript:;">
+                                <span>color</span>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <label for="br-relief-width">{% trans %}Relief{% endtrans %}</label>
+                            <span class="align-right">px</span>
+                            <div class="text-1">
+                                <input id="br-relief-width" type="text" value="0" />
+                            </div>
+
+                            <div>
+                                <button>&#8593;</button> <button>&#8594;</button> <button>&#8595;</button> <button>&#8592;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+        <div class="box-wrap">
+            <div id="button-code" class="content"></div>
+
+            <div style="text-align: center">
+                <a href="javascript:void()" id="button-panel">Example</a>
+            </div>
+
+            <div id="button-object"><a id="copy-text-input" class="btn-link-1" href="javascript:;">{% trans %}Copy Text{% endtrans %}</a></div>
+        </div>
+    </div>
+</div>
+-->
+{% endblock %}

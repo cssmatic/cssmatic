@@ -113,7 +113,14 @@ page_plugins = [
         '/img/img-04.png',
         lazy_gettext(
             u"""<p>Blur radius changes, color changes, shadow size…  Everything that you need
-            to create great drop shadows in a single place.</p>"""))
+            to create great drop shadows in a single place.</p>""")),
+    # PagePlugin(
+    #     'button',
+    #     '/button',
+    #     lazy_gettext(u'Button'),
+    #     '/img/img-04.png',
+    #     lazy_gettext(
+    #         u"""<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button you may need on your projects.</p>"""))
 ]
 
 
@@ -179,10 +186,14 @@ def static_v(eval_ctx, url):
 def get_locale():
     # if a user is logged in, use the locale from the user settings
     user = getattr(g, 'user', None)
+    print 'User', user
     if user is not None:
+        print 'user.locale', user.locale
         return user.locale
     if request.view_args.get('lang') in SUPPORTED_LANGUAGES:
+        print 'view args', request.view_args.get('lang')
         return request.view_args.get('lang')
+    print 'accept language best match', request.accept_languages.best_match(SUPPORTED_LANGUAGES)
     return request.accept_languages.best_match(SUPPORTED_LANGUAGES)
 
 
