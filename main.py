@@ -19,6 +19,7 @@ from werkzeug import SharedDataMiddleware
 import os
 from raven.contrib.flask import Sentry
 import threading
+import urllib
 import uuid
 
 
@@ -84,11 +85,9 @@ page_plugins = [
         lazy_gettext(u'Gradient Generator'),
         '/img/img-01.png',
         lazy_gettext(
-            u"""<p>Use multiple colors and opacity stops to get amazing gradients.
-            By using the gradient tool you can create gradients with smooth color changing
-            effects and subtle transparencies.</p>
+            u"""<p>Use multiple colors and opacity stops to get amazing gradients.</p>
 
-            <p>Such images can be used as background images of banners, wallpapers, buttons or
+            <p>These gradients can be used as background images of banners, wallpapers, buttons or
             tables and in many other applications.</p>""")),
     PagePlugin(
         'border',
@@ -178,6 +177,15 @@ def static_v(eval_ctx, url):
     return url + '?v=' + v
 
 
+@app.template_filter('urlencode')
+def urlencode_filter(s):
+    if type(s) == 'Markup':
+        s = s.unescape()
+    s = s.encode('utf8')
+    s = urllib.quote_plus(s)
+    return Markup(s)
+
+
 #####################################
 # I18N helper functions
 #####################################
@@ -186,14 +194,10 @@ def static_v(eval_ctx, url):
 def get_locale():
     # if a user is logged in, use the locale from the user settings
     user = getattr(g, 'user', None)
-    print 'User', user
     if user is not None:
-        print 'user.locale', user.locale
         return user.locale
     if request.view_args.get('lang') in SUPPORTED_LANGUAGES:
-        print 'view args', request.view_args.get('lang')
         return request.view_args.get('lang')
-    print 'accept language best match', request.accept_languages.best_match(SUPPORTED_LANGUAGES)
     return request.accept_languages.best_match(SUPPORTED_LANGUAGES)
 
 

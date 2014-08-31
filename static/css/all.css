@@ -73,8 +73,9 @@ fieldset {
 .switcher {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 28px auto 0;
     color: #fff;
+    width: 640px;
 }
 
 .switcher a {
@@ -1003,8 +1004,8 @@ fieldset {
 }
 
 .h1home {
-    margin: 48px -10%;
-    box-sizing: border-model;
+    margin: 48px -10% 24px;
+    box-sizing: border-box;
     width: 120%;
     font-family: Courgette, serif;
     font-size: 32px;
@@ -1396,4 +1397,50 @@ div.message.success div.triangle {
 
 .nav li:hover {
     border-top: 1px solid #000;
+}
+
+.social-links {
+    text-align: center;
+    margin: 0 0 12px;
+}
+
+.social-links a {
+    color: #aaa;
+}
+
+.social-links a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+/* flaticon */
+@font-face {
+    font-family: "Flaticon";
+    src: url("/fonts/flaticon.eot");
+    src: url("/fonts/flaticon.eot#iefix") format("embedded-opentype"),
+    url("/fonts/flaticon.woff") format("woff"),
+    url("/fonts/flaticon.ttf") format("truetype"),
+    url("/fonts/flaticon.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.flaticon::before,
+.flaticon::after {
+    font-family: "Flaticon";
+    font-size: 20px;
+    font-style: normal;
+    margin-left: 8px;
+}
+
+.fi-facebook42::before {
+    content: "\e000";
+}
+
+.fi-google105::before {
+    content: "\e001";
+}
+
+.fi-twitter35::before {
+    content: "\e002";
 }

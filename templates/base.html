@@ -32,47 +32,30 @@
 </head>
 <body>
 
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-38602970-1']);
-  _gaq.push(['_trackPageview']);
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-38602970-1']);
+    _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-{% block facebook_button %}
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=252806038080997";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-{% endblock %}
-
-{% block twitter_button %}
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<script type="text/javascript">
-  window.___gcfg = {lang: 'en-US'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-{% endblock %}
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
   <div id="wrapper" class="{{ page_id }}">
     {% block headerdetails %}
       <div class="clearfix headerdetail">
-        <a class="logo" href="http://www.cssmatic.com/"><img src="/img/cssmatic-logo-detail.png"></a>
+        <a class="logo" href="/"><img src="/img/cssmatic-logo-detail.png"></a>
         <p class="textop">{% trans %}The ultimate <strong>CSS tools</strong> for web designers{% endtrans %}</p>
+        <p class="social-links">
+          <a href="https://www.facebook.com/share.php?u={{ request.url|urlencode }}" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Share with Facebook{% endtrans %}"><i class="flaticon fi-facebook42"></i></a>
+
+          <a href="https://www.twitter.com/share?url={{ request.url|urlencode }}&amp;related=cssmatic" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Tweet this page{% endtrans %}"><i class="flaticon fi-twitter35"></i></a>
+
+          <a href="https://plus.google.com/share?url={{ request.url|urlencode }}" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Google+ this page{% endtrans %}"><i class="flaticon fi-google105"></i></a>
+        </p>
       </div>
     {% endblock %}
 
@@ -88,18 +71,6 @@
           {% endif %}
         {% endfor %}
       </ul>
-    {% endblock %}
-
-    {% block pluginheader %}
-      {% if plugin %}
-        <div class="h1bar clearfix">
-          <div class="social">
-            <div class="fb-like" data-href="http://www.cssmatic.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-            <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-            <div class="g-plusone" data-size="medium"></div>
-          </div>
-        </div>
-      {% endif %}
     {% endblock %}
 
     {% block innerbody %}

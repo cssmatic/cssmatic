@@ -7,6 +7,13 @@
 {% block innerbody %}
   <a class="logo" href="/"><img src="/img/cssmatic-logo.png"></a>
   <h1 class="h1home">{% trans %}The ultimate <strong>CSS tools</strong> for web designers{% endtrans %}</h1>
+  <p class="social-links">
+    <a href="https://www.twitter.com/share?url={{ request.url|urlencode }}&amp;related=cssmatic" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Tweet this page{% endtrans %}"><i class="flaticon fi-twitter35"></i></a>
+
+    <a href="https://www.facebook.com/share.php?u={{ request.url|urlencode }}" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Share with Facebook{% endtrans %}"><i class="flaticon fi-facebook42"></i></a>
+
+    <a href="https://plus.google.com/share?url={{ request.url|urlencode }}" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Google+ this page{% endtrans %}"><i class="flaticon fi-google105"></i></a>
+  </p>
 
   <ul class="switcher clearfix">
     {% for plugin in page_plugins %}
