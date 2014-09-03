@@ -222,8 +222,8 @@ GradientCSS.prototype.showSassCode = function(format) {
     if (this.displayComments)
         res += '<div>// needs latest Compass, add \'@import "compass"\' to your scss</div>';
 
-    res += '<div><b>background-color</b>' + this.getCSSCodeOldBrowsers(this.displayComments, format) + '</div>';
-    res += '<div><b>background</b>' + this.getSassCodeIE(this.displayComments, this.orientation) + '</div>';
+    res += '<div><b>background-color</b>: ' + this.getCSSCodeOldBrowsers(this.displayComments, format) + '</div>';
+    res += '<div><b>background</b>: ' + this.getSassCodeIE(this.displayComments, this.orientation) + '</div>';
 
     if (this.ieSupport) {
         res += '<div>// IE9 SVG, needs conditional override of \'filter\' to \'none\'</div>';
@@ -268,7 +268,7 @@ GradientCSS.prototype.getSassCodeIE = function (displayComments, orientation) {
 };
 
 GradientCSS.prototype.getSassCodeAll = function (format, orientation) {
-    var startMessage = ['linear-gradient( ', 'radial-gradient( '];
+    var startMessage = ['linear-gradient(', 'radial-gradient('];
     var i = 0;
     var text = '';
 
