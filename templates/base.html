@@ -47,7 +47,7 @@
   <div id="wrapper" class="{{ page_id }}">
     {% block headerdetails %}
       <div class="clearfix headerdetail">
-        <a class="logo" href="/"><img src="/img/cssmatic-logo-detail.png"></a>
+        <a class="logo" href="/"><img src="/img/cssmatic-logo.svg" height="65" onerror="this.onerror=null; this.src='/img/cssmatic-logo-detail.png'"></a>
         <p class="textop">{% trans %}The ultimate <strong>CSS tools</strong> for web designers{% endtrans %}</p>
         <p class="social-links">
           <a href="https://www.facebook.com/share.php?u={{ request.url|urlencode }}" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Share with Facebook{% endtrans %}"><i class="flaticon fi-facebook42"></i></a>

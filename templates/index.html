@@ -5,7 +5,7 @@
 {% block headerdetails %}{% endblock %}
 
 {% block innerbody %}
-  <a class="logo" href="/"><img src="/img/cssmatic-logo.png"></a>
+  <a class="logo" href="/"><img src="/img/cssmatic-logo.svg" height="116" onerror="this.onerror=null; this.src='/img/cssmatic-logo.png'"></a>
   <h1 class="h1home">{% trans %}The ultimate <strong>CSS tools</strong> for web designers{% endtrans %}</h1>
   <p class="social-links">
     <a href="https://www.twitter.com/share?url={{ request.url|urlencode }}&amp;related=cssmatic" onclick="window.open(this.href, '_blank', 'height=430,width=640'); return false;" title="{% trans %}Tweet this page{% endtrans %}"><i class="flaticon fi-twitter35"></i></a>
