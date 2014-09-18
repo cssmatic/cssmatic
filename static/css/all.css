@@ -1413,6 +1413,11 @@ div.message.success div.triangle {
     text-decoration: none;
 }
 
+.adblock {
+    margin: 0 auto 18px;
+    text-align: center;
+}
+
 /* flaticon */
 @font-face {
     font-family: "Flaticon";
