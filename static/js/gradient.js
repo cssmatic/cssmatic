@@ -328,7 +328,7 @@ GradientCSS.prototype.getCSSCodeChromeSafari4 = function(displayComments, format
     } else if (orientation == 'diagonal-bottom') {
         text += 'left bottom, right top';
     } else if (orientation == 'radial') {
-        text += 'radial, center center, 0px, center center, 100%, ';
+        text += 'radial, center center, 0px, center center, 100%';
     }
 
     text += ', color-stop(' + this.listMarks[0].location + '%, ';
@@ -339,7 +339,7 @@ GradientCSS.prototype.getCSSCodeChromeSafari4 = function(displayComments, format
     }
     text += ');';
     if (displayComments) {
-        text += '/* Chrome,Safari4+  */';
+        text += '/* Chrome, Safari4+ */';
     }
     return text;
 };
