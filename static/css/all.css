@@ -80,6 +80,11 @@ fieldset {
 
 .switcher a {
     color: #fff;
+    display: block;
+    padding: 24px;
+    border: 1px solid #F00;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .switcher a:hover {
