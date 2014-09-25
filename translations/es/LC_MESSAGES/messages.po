@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-31 17:40+0200\n"
+"POT-Creation-Date: 2014-09-25 14:32+0200\n"
 "PO-Revision-Date: 2013-03-03 17:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -29,11 +29,11 @@ msgid ""
 "banners, wallpapers, buttons or\n"
 "            tables and in many other applications.</p>"
 msgstr ""
-"<p>Usa varios colores y opacidades para obtener magníficos gradientes.</p>\n"
+"<p>Usa varios colores y opacidades para obtener magníficos "
+"gradientes.</p>\n"
 "\n"
-"<p>Las imágenes generadas pueden usarse como imágenes de fondo en "
-"carteles, fondos de pantalla, botones o\n"
-"incluso en tablas y en muchos otros elementos.</p>"
+"<p>Las imágenes generadas pueden usarse como imágenes de fondo en fondos "
+"de pantalla, botones y en muchos otros elementos.</p>"
 
 #: main.py:95
 msgid "Border Radius"
@@ -56,10 +56,12 @@ msgstr "Textura Suciedad"
 msgid ""
 "<p>Create subtle background patterns with dirty pixels and noise, "
 "changing\n"
-"            the color and values and previewing the results in real time."
+"            the color and values and previewing the results in real "
+"time.</p>"
 msgstr ""
 "<p>Crea sutiles fondos con algo de suciedad y de ruido, cambiando el "
-"color del fondo y de la suciedad, y viendo el resultado en tiempo real."
+"color del fondo y de la suciedad, y viendo el resultado en tiempo "
+"real.</p>"
 
 #: main.py:111
 msgid "Box Shadow"
@@ -218,7 +220,7 @@ msgstr ""
 msgid "Google+ this page"
 msgstr ""
 
-#: templates/base.html:82
+#: templates/base.html:95
 msgid ""
 "<strong>CSSmatic</strong> is a non-profit project, made by developers for"
 " developers"
@@ -226,23 +228,23 @@ msgstr ""
 "<strong>CSSmatic</strong> es un proyecto libre, hecho por y para "
 "desarrolladores"
 
-#: templates/base.html:83
+#: templates/base.html:96
 msgid "Are you a web developer?  Would you like to collaborate on CSSMatic?"
 msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
 
-#: templates/base.html:86
+#: templates/base.html:99
 msgid "Contact us"
 msgstr "Contáctanos"
 
-#: templates/base.html:90
+#: templates/base.html:103
 msgid "Designed and developed by"
 msgstr "Diseñado y desarrollado por"
 
-#: templates/base.html:99
+#: templates/base.html:112
 msgid "About"
 msgstr "Acerca"
 
-#: templates/base.html:100
+#: templates/base.html:113
 msgid "Contact"
 msgstr "Contacto"
 
@@ -621,16 +623,4 @@ msgstr "Alto"
 #: templates/noise-texture.html:86
 msgid "Download Noise Texture"
 msgstr "Descargar textura con ruido"
-
-#~ msgid "Button"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "<p>Flat buttons, rounded buttons, shaded "
-#~ "buttons…  Every kind of button you "
-#~ "may need on your projects.</p>"
-#~ msgstr ""
-
-#~ msgid "PRESETS"
-#~ msgstr "GALERÍA"
 

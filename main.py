@@ -104,7 +104,7 @@ page_plugins = [
         '/img/img-03.png',
         lazy_gettext(
             u"""<p>Create subtle background patterns with dirty pixels and noise, changing
-            the color and values and previewing the results in real time.""")),
+            the color and values and previewing the results in real time.</p>""")),
     PagePlugin(
         'shadow',
         '/box-shadow',
