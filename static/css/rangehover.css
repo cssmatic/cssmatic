@@ -1,0 +1,14 @@
+.rangebubble {
+  position: absolute;
+  width: 30px; 
+  height: 28px; 
+  text-align: center; 
+  color: white;
+  background: #666;
+  border-radius: 2px; 
+  display: inline-block; 
+  bottom: 175%;
+  left: 0;
+  margin-left: -1%;
+  font-size: 70%;
+}

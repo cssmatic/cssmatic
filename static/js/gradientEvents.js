@@ -467,7 +467,7 @@ function sliderBarsColorAndOpacity() {
                              _getActiveElement('opacity'),
                              ui.value,
                              gradient);
-            var left = parseInt(_getActiveElement('opacity').css('left')) + 239 + 'px';
+            var left = parseInt(_getActiveElement('opacity').css('left')) + 'px';
             $('#opacity-gradient').css('left', left);
         }
     });

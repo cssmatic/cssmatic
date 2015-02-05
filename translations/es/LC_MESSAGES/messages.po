@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-25 14:32+0200\n"
+"POT-Creation-Date: 2014-10-08 16:26+0200\n"
 "PO-Revision-Date: 2013-03-03 17:27+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -75,6 +75,16 @@ msgid ""
 msgstr ""
 "<p>Cambia el radio de la sombra, el color, tamaño… Todo lo que necesitas "
 "para crear sombras en un solo lugar.</p>"
+
+#: main.py:119
+msgid "Button"
+msgstr ""
+
+#: main.py:121
+msgid ""
+"<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button "
+"you may need on your projects.</p>"
+msgstr ""
 
 #: main.py:242
 msgid "The name is empty"
@@ -202,25 +212,25 @@ msgstr ""
 msgid "The ultimate CSS tools for web designers | CSSmatic"
 msgstr "Completa colección de herramientas CSS para diseñadores web | CSSmatic"
 
-#: templates/base.html:51 templates/index.html:9
+#: templates/base.html:67 templates/index.html:9
 msgid "The ultimate <strong>CSS tools</strong> for web designers"
 msgstr ""
 "Completa colección de <strong>herramientas CSS</strong> para diseñadores "
 "web"
 
-#: templates/base.html:53 templates/index.html:13
+#: templates/base.html:69 templates/index.html:13
 msgid "Share with Facebook"
 msgstr ""
 
-#: templates/base.html:55 templates/index.html:11
+#: templates/base.html:71 templates/index.html:11
 msgid "Tweet this page"
 msgstr ""
 
-#: templates/base.html:57 templates/index.html:15
+#: templates/base.html:73 templates/index.html:15
 msgid "Google+ this page"
 msgstr ""
 
-#: templates/base.html:95
+#: templates/base.html:126
 msgid ""
 "<strong>CSSmatic</strong> is a non-profit project, made by developers for"
 " developers"
@@ -228,23 +238,23 @@ msgstr ""
 "<strong>CSSmatic</strong> es un proyecto libre, hecho por y para "
 "desarrolladores"
 
-#: templates/base.html:96
+#: templates/base.html:127
 msgid "Are you a web developer?  Would you like to collaborate on CSSMatic?"
 msgstr "¿Eres un desarrollador web? ¿Te gustaría colaborar con CSSMatic?"
 
-#: templates/base.html:99
+#: templates/base.html:130
 msgid "Contact us"
 msgstr "Contáctanos"
 
-#: templates/base.html:103
+#: templates/base.html:134
 msgid "Designed and developed by"
 msgstr "Diseñado y desarrollado por"
 
-#: templates/base.html:112
+#: templates/base.html:143
 msgid "About"
 msgstr "Acerca"
 
-#: templates/base.html:113
+#: templates/base.html:144
 msgid "Contact"
 msgstr "Contacto"
 
@@ -252,27 +262,27 @@ msgstr "Contacto"
 msgid "Border Radius CSS Generator | CSSmatic"
 msgstr "Generator de bordes redondeados en CSS | CSSmatic"
 
-#: templates/border-radius.html:18 templates/button.html:250
+#: templates/border-radius.html:18 templates/button.html:254
 msgid "All Corners"
 msgstr "Todas las esquinas"
 
-#: templates/border-radius.html:28 templates/button.html:260
+#: templates/border-radius.html:28 templates/button.html:264
 msgid "Top Left"
 msgstr "Superior izquierda"
 
-#: templates/border-radius.html:36 templates/button.html:268
+#: templates/border-radius.html:36 templates/button.html:272
 msgid "Top Right"
 msgstr "Superior derecha"
 
-#: templates/border-radius.html:44 templates/button.html:276
+#: templates/border-radius.html:44 templates/button.html:280
 msgid "Bottom Left"
 msgstr "Inferior izquierda"
 
-#: templates/border-radius.html:52 templates/button.html:284
+#: templates/border-radius.html:52 templates/button.html:288
 msgid "Bottom Right"
 msgstr "Inferior derecha"
 
-#: templates/border-radius.html:69 templates/button.html:301
+#: templates/border-radius.html:69 templates/button.html:305
 msgid "Border Width"
 msgstr "Ancho del borde"
 
@@ -324,23 +334,23 @@ msgstr "oculto (hidden)"
 msgid "none"
 msgstr "ninguno"
 
-#: templates/border-radius.html:97 templates/button.html:311
+#: templates/border-radius.html:97 templates/button.html:315
 msgid "Border Color"
 msgstr "Color del borde"
 
 #: templates/border-radius.html:102 templates/box-shadow.html:63
-#: templates/box-shadow.html:75 templates/button.html:316
+#: templates/box-shadow.html:75 templates/button.html:320
 #: templates/noise-texture.html:42 templates/noise-texture.html:51
 msgid "color"
 msgstr "color"
 
-#: templates/border-radius.html:106 templates/button.html:320
+#: templates/border-radius.html:106 templates/button.html:324
 #: templates/noise-texture.html:38
 msgid "Background Color"
 msgstr "Color de fondo"
 
 #: templates/border-radius.html:125 templates/box-shadow.html:112
-#: templates/button.html:353 templates/noise-texture.html:91
+#: templates/button.html:357 templates/noise-texture.html:91
 msgid "Copy Text"
 msgstr "Copiar texto"
 
@@ -349,20 +359,20 @@ msgid "Box Shadow CSS Generator | CSSmatic"
 msgstr "Generator de sombras CSS | CSSmatic"
 
 #: templates/box-shadow.html:18
-msgid "Horizontal Length"
-msgstr "Anchura"
+msgid "Horizontal Offset"
+msgstr "Desplazamiento horizontal"
 
 #: templates/box-shadow.html:27
-msgid "Vertical Length"
-msgstr "Altura"
+msgid "Vertical Offset"
+msgstr "Desplazamiento vertical"
 
 #: templates/box-shadow.html:38
 msgid "Blur Radius"
-msgstr "Radio de la sombra"
+msgstr "Radio de la sombra (blur)"
 
 #: templates/box-shadow.html:47
 msgid "Spread Radius"
-msgstr "Radio de propagación"
+msgstr "Tamaño de la sombra (spread)"
 
 #: templates/box-shadow.html:58
 msgid "Shadow Color"
@@ -394,7 +404,7 @@ msgstr "punto"
 msgid "Button CSS Generator | CSSmatic"
 msgstr ""
 
-#: templates/button.html:329
+#: templates/button.html:333
 msgid "Relief"
 msgstr ""
 
@@ -623,4 +633,10 @@ msgstr "Alto"
 #: templates/noise-texture.html:86
 msgid "Download Noise Texture"
 msgstr "Descargar textura con ruido"
+
+#~ msgid "Horizontal Length"
+#~ msgstr "Anchura"
+
+#~ msgid "Vertical Length"
+#~ msgstr "Altura"
 

@@ -680,13 +680,13 @@ function _createStopMarker(typeOfMarker, i, marker, width) {
         stopMarker = $('<div class="' + STOP_MARKER_COLOR_CLASS + '"><div></div></div>');
         stopMarker.attr('title', 'Color stop');
         stopMarker.attr('color', colorAux.displayColor('hex'));
-        stopMarker.css('background-color', colorAux.displayColor('rgb'));
+        stopMarker.find('div').css('background-color', colorAux.displayColor('rgb'));
     } else {
         var color = parseInt(Math.round((1 - marker.opacity) * 255));
         stopMarker = $('<div class="' + STOP_MARKER_OPACITY_CLASS + '"><div></div></div>');
         stopMarker.attr('title', 'Opacity stop');
         stopMarker.attr('opacity', marker.opacity);
-        stopMarker.css('background-color', 'rgb(' + color + ', ' + color + ', ' + color + ')');
+        stopMarker.find('div').css('background-color', 'rgb(' + color + ', ' + color + ', ' + color + ')');
     }
     stopMarker.addClass(STOP_MARKER_CLASS);
     stopMarker.attr('position', marker.location);

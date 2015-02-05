@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import abort
 from flask import Flask
@@ -113,13 +114,13 @@ page_plugins = [
         lazy_gettext(
             u"""<p>Blur radius changes, color changes, shadow size…  Everything that you need
             to create great drop shadows in a single place.</p>""")),
-    # PagePlugin(
-    #     'button',
-    #     '/button',
-    #     lazy_gettext(u'Button'),
-    #     '/img/img-04.png',
-    #     lazy_gettext(
-    #         u"""<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button you may need on your projects.</p>"""))
+    PagePlugin(
+        'button',
+        '/button',
+        lazy_gettext(u'Button'),
+        '/img/img-04.png',
+        lazy_gettext(
+            u"""<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button you may need on your projects.</p>"""))
 ]
 
 
@@ -301,4 +302,4 @@ app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

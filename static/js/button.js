@@ -1,306 +1,327 @@
-if (typeof(String.prototype.trim) === "undefined") {
-    String.prototype.trim = function() {
-        return String(this).replace(/^\s+|\s+$/g, '');
-    };
-}
+/* depends on css.js */
 
-/** CSS helpers **/
+function getMostRepeated(args) {
+    var count = {}, max = 0;
 
-/* color is the base color in #rrggbb and percent is -1 .. 1 (- for darker, + for lighter) */
-function shadeColor(color, percent) {
-    var f = parseInt(color.slice(1), 16), t = percent < 0 ? 0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-}
-
-function blendColors(c0, c1, p) {
-    var f=parseInt(c0.slice(1),16),t=parseInt(c1.slice(1),16),R1=f>>16,G1=f>>8&0x00FF,B1=f&0x0000FF,R2=t>>16,G2=t>>8&0x00FF,B2=t&0x0000FF;
-    return "#"+(0x1000000+(Math.round((R2-R1)*p)+R1)*0x10000+(Math.round((G2-G1)*p)+G1)*0x100+(Math.round((B2-B1)*p)+B1)).toString(16).slice(1);
-}
-
-var CSS_ALTERNATIVES = {
-    'border-radius': ['-webkit-border-radius', '-moz-border-radius', '-ms-border-radius', '-o-border-radius'],
-    'box-shadow': ['-webkit-box-shadow', '-moz-box-shadow'],
-};
-
-function expandCss(css) {
-    var expandedCss = [];
-
-    for (var i = 0; i < css.length; i++) {
-        var cssName = css[i][0];
-        var cssValue = css[i][1];
-
-        if (cssName in CSS_ALTERNATIVES) {
-            var altNames = CSS_ALTERNATIVES[cssName];
-            for (var k = 0; k < altNames.length; k++) {
-                expandedCss.push([altNames[k], cssValue]);
-            }
-        }
-
-        var cssStrValues = serializeCssValue(cssValue);
-        for (var j = 0; j < cssStrValues.length; j++) {
-            expandedCss.push([cssName, cssStrValues[j]]);
+    for (var i = 0; i < args.length; i++) {
+        count[args[i]]++;
+        if (count[args[i]] > max) {
+            argmax = args[i];
+            max = count[args[i]];
         }
     }
 
-    return expandedCss;
+    return argmax;
 }
 
-/* returns a list with all the serializations that we may need to use for a value.
- * The result has to be a list. For example, a gradient may serialize to
- * ['-webkit-linear-gradient(top, hsl(0, 80%, 70%), #bada55)',
- *  '-moz-linear-gradient(top, hsl(0, 80%, 70%), #bada55)',
- *  '-o-linear-gradient(top, hsl(0, 80%, 70%), #bada55)',
- *  'linear-gradient(to bottom, hsl(0, 80%, 70%), #bada55)']
- */
-function serializeCssValue(cssValue) {
-    if (cssValue.serializeCss) {
-        return cssValue.serializeCss();
-    }
-    else {
-        return [cssValue];
-    }
+function nearestNeighborScaling(ctx) {
+    ctx.imageSmoothingEnabled = false;
+    ctx.mozImageSmoothingEnabled = false;
+    ctx.oImageSmoothingEnabled = false;
+    ctx.webkitImageSmoothingEnabled = false;
 }
-
-function applyCss(element, css) {
-    for (var i = 0; i < css.length; i++) {
-        element.css(css[i][0], css[i][1]);
-    }
-}
-
-function serializeCss(css) {
-    var a = [];
-    for (var i = 0; i < css.length; i++) {
-        a.push(css[i][0] + ': ' + css[i][1] + ';');
-    }
-    return '<div>' + a.join('</div>\n<div>') + '</div>';
-}
-
-function serializeCorners(t, r, b, l) {
-    if (typeof l == 'undefined') {
-        l = r;
-    }
-    if (typeof b == 'undefined') {
-        b = t;
-    }
-
-    if (r == l) {
-        if (t == b) {
-            if (t == r) {
-                return px(t);
-            }
-            else {
-                return px(t) + ' ' + px(r);
-            }
-        }
-        else {
-            return px(t) + ' ' + px(r) + ' ' + px(b);
-        }
-    }
-    else {
-        return px(t) + ' ' + px(r) + ' ' + px(b) + ' ' + px(l);
-    }
-}
-
-/** random utils **/
-
-function px(i) {
-    return parseInt(i, 10) + 'px';
-}
-
-function CssColorStop(color, percentage) {
-    this.color = color;
-    this.percentage = percentage;
-}
-
-var DIRECTION_TOP = 1,
-    DIRECTION_BOTTOM = 2,
-    DIRECTION_LEFT = 4,
-    DIRECTION_RIGHT = 8;
-
-function serializeDirection(direction) {
-    var fromDir = (d & DIRECTION_TOP ? 'top ' : '') +
-                  (d & DIRECTION_BOTTOM ? 'bottom ' : '') +
-                  (d & DIRECTION_LEFT ? 'left ' : '') +
-                  (d & DIRECTION_RIGHT ? 'right ' : ''),
-        toDir = (d & DIRECTION_TOP ? 'bottom ' : '') +
-                (d & DIRECTION_BOTTOM ? 'top ' : '') +
-                (d & DIRECTION_LEFT ? 'right ' : '') +
-                (d & DIRECTION_RIGHT ? 'left ' : '');
-    return [fromDir.trim(), toDir.trim()];
-}
-
-/** some special CSS clases **/
-function CssLinearGradient(direction, color_stop_list) {
-    if (direction <= 0 ||
-        direction > (DIRECTION_RIGHT | DIRECTION_BOTTOM) ||
-        (direction & (DIRECTION_TOP | DIRECTION_BOTTOM)) ||
-        (direction & (DIRECTION_LEFT | DIRECTION_RIGHT))) {
-        alert("Invalid direction " + direction);
-    }
-    this.direction = direction;
-    this.color_stop_list = color_stop_list;
-}
-
-CssLinearGradient.prototype.serializeCss = function() {
-    var css, colorCss;
-    var colors = [];
-    var cs, i;
-    var webkitColorCss, webkitColors = [];
-
-    var last_i = this.color_stop_list.length - 1;
-    for (i = 0; i <= last_i; i++) {
-        cs = this.color_stop_list[i];
-
-        webkitColors.push('color_stop(' + (cs.percentage / 100) + '% ' + cs.color + ')');
-        if ((i === 0 && cs.percentage === 0) || (i === last_i && cs.percentage === 100)) {
-            colors.push(cs.color);
-        }
-        else {
-            colors.push(cs.color + ' ' + cs.percentage);
-        }
-    }
-
-    var d = serializeDirection(this.direction);
-    var fromDir = d[0], toDir = d[1];
-
-    colorCss = colors.join(', ');
-    webkitColorCss = webkitColors.join(', ');
-
-    return ['-webkit-gradient(linear, ' + fromDir + ', ' + toDir + ', ' + webkitColorCss + ')',
-            '-webkit-linear-gradient(' + fromDir + ', ' + colorCss + ')',
-            '-moz-linear-gradient(' + fromDir + ', ' + colorCss + ')',
-            '-ms-linear-gradient(' + fromDir + ', ' + colorCss + ')',
-            '-o-linear-gradient(' + fromDir + ', ' + colorCss + ')',
-            'linear-gradient(to ' + toDir + ', ' + colorCss + ')'];
-};
-
-function CssCorners(t, r, b, l) {
-    this.t = t;
-    this.r = r;
-    this.b = b;
-    this.l = l;
-}
-
-CssCorners.prototype.serializeCss = function() {
-    if (typeof this.l == 'undefined') {
-        this.l = r;
-    }
-    if (typeof this.b == 'undefined') {
-        this.b = this.t;
-    }
-
-    if (this.r == this.l) {
-        if (this.t == this.b) {
-            if (this.t == this.r) {
-                return [px(this.t)];
-            }
-            else {
-                return [px(this.t) + ' ' + px(this.r)];
-            }
-        }
-        else {
-            return [px(this.t) + ' ' + px(this.r) + ' ' + px(this.b)];
-        }
-    }
-    else {
-        return [px(this.t) + ' ' + px(this.r) + ' ' + px(this.b) + ' ' + px(this.l)];
-    }
-};
 
 /** button js **/
+var BUTTON_EDITOR_DEFAULTS = {
+    'borderRadiusTL': 10,
+    'borderRadiusTR': 10,
+    'borderRadiusBL': 10,
+    'borderRadiusBR': 10,
+    'borderWidthTop': 0,
+    'borderWidthLeft': 0,
+    'borderWidthRight': 0,
+    'borderWidthBottom': 0,
+    'borderColorTop': '#000000',
+    'borderColorLeft': '#000000',
+    'borderColorRight': '#000000',
+    'borderColorBottom': '#000000',
+    'backgroundColor': '#e7a61a',
+    'paddingHorizontal': 18,
+    'paddingVertical': 12,
+    'textFontFamily': 'sans-serif',
+    'textFontSize': 10,
+    'textFontWeight': false,
+    'textColor': '#000000',
+    'textInset': false,
+    'shadowColor': '#000000',
+    'shadowOffsetX': 0,
+    'shadowOffsetY': 0,
+    'shadowBlur': 0,
+    'shadowSpread': 0,
+    'bevelWidthTop': 0,
+    'bevelWidthBottom': 0,
+    'bevelWidthLeft': 0,
+    'bevelWidthRight': 0,
+    'bevelColorTop': 'rgba(255,255,255,0.3)',
+    'bevelColorBottom': 'rgba(0,0,0,0.3)',
+    'bevelColorLeft': 'rgba(255,255,255,0.3)',
+    'bevelColorRight': 'rgba(0,0,0,0.3)'
+};
 
-function Button(options) {
-    this.htmlElement = options['htmlElement'] || $('#button-panel');
-    this.htmlCode = options['htmlCode'] || $('#button-code');
-    this.borderRadiusTL = options['borderRadiusTL'] || 10;
-    this.borderRadiusTR = options['borderRadiusTR'] || 10;
-    this.borderRadiusBL = options['borderRadiusBL'] || 10;
-    this.borderRadiusBR = options['borderRadiusBR'] || 10;
-    this.borderWidth = options['borderWidth'] || 0;
-    this.borderColor = options['borderColor'] ||'#000000';
-    this.borderBackground = options['borderBackground'] || '#e7a61a';
-    this.paddingHorizontal = options['paddingHorizontal'] || 18;
-    this.paddingVertical = options['paddingVertical'] || 12;
-    this.textColor = options['textColor'] || '#000000';
-    this.textShadowColor = options['textShadow'] ? 'rgba(255,255,255,0.5)' : '';
-    this.reliefWidth = options['reliefWidth'] || 1;
-    this.reliefTopColor = options['reliefTopColor'] || 'rgba(255,255,255,0.3)';
-    this.reliefBottomColor = options['reliefBottomColor'] || 'rgba(0,0,0,0.3)';
-    this.shadowSize = options['shadowSize'] || 0;
-    this.shadowDirection = options['shadowDirection'] || (DIRECTION_BOTTOM | DIRECTION_RIGHT);
-    this.shadowColor = options['shadowColor'] || 'rgba(0,0,0,0.5)';
+function ButtonEditor(options) {
+    Reactor.call(this);
+
+    for (var key in options) {
+        this[key] = options[key] || BUTTON_EDITOR_DEFAULTS[key];
+    }
+
+    this.registerEvent('refresh');
 }
 
-Button.prototype.getCss = function() {
+ButtonEditor.prototype = new ReactorCtor();
+
+ButtonEditor.prototype.getCssNormalState = function() {
     var bs = this.borderStyle ? this.borderStyle + ' ' : '';
     var css = [
-        ['border-radius', serializeCorners(this.borderRadiusTL, this.borderRadiusTR, this.borderRadiusBR, this.borderRadiusBL)],
-        ['padding', serializeCorners(this.paddingVertical, this.paddingHorizontal)],
-        ['border', this.borderWidth === 0 ? '0' : (px(this.borderWidth) + ' solid ' + this.borderColor)],
-        ['background-color', this.borderBackground],
+        ['border-radius', serializeCornersPx(this.borderRadiusTL, this.borderRadiusTR, this.borderRadiusBR, this.borderRadiusBL)],
+        ['padding', serializeCornersPx(this.paddingVertical, this.paddingHorizontal)],
+        ['background-color', this.backgroundColor],
         ['color', this.textColor],
         ['text-decoration', 'none'],
+        ['display', 'inline-block'],
+        ['font-size', px(this.textFontSize)],
+        ['font-family', this.textFontFamily],
+        ['font-weight', this.textFontWeight ? 'bold' : 'normal'],
     ];
 
+    var borderWidths = serializeCornersPx(this.borderWidthTop, this.borderWidthLeft, this.borderWidthRight, this.borderWidthBottom);
+    var borderColors = serializeCorners(this.borderColorTop, this.borderColorLeft, this.borderColorRight, this.borderColorBottom);
+
+    if (borderWidths.indexOf(' ') === -1 && borderColors.indexOf(' ') === -1) {
+        css.push(['border', borderWidths + ' solid ' + borderColors]);
+    }
+    else {
+        css.push(['border-width', borderWidths]);
+        css.push(['border-color', borderColors]);
+        css.push(['border-style', 'solid']);
+    }
+
     var boxShadowValue = [];
-    if (this.reliefTopColor) {
-        boxShadowValue.push('inset ' + px(this.reliefWidth) + ' ' + px(this.reliefWidth) + ' 0 0 ' + this.reliefTopColor);
+
+    var ct = this.bevelColorTop,
+        cl = this.bevelColorLeft,
+        cr = this.bevelColorRight,
+        cb = this.bevelColorBottom,
+        wt = this.bevelWidthTop,
+        wl = this.bevelWidthLeft,
+        wr = this.bevelWidthRight,
+        wb = this.bevelWidthBottom;
+
+    if (ct == cl && ct == cr && ct == cb && wt == wl && wt == wr && wt == wb) {
+        boxShadowValue.push('inset 0 0 0 ' + px(wt) + ' ' + this.bevelColorTop);
+        wt = wl = wr = wb = 0;
     }
-    if (this.reliefBottomColor) {
-        boxShadowValue.push('inset ' + px(-this.reliefWidth) + ' ' + px(-this.reliefWidth) + ' 0 0 ' + this.reliefBottomColor);
+    if (ct == cl && wt > 0 && wl > 0) {
+        boxShadowValue.push('inset ' + px(wl) + ' ' + px(wt) + ' 0 0 ' + ct);
+        wt = wl = 0;
     }
+    if (ct == cr && wt > 0 && wr > 0) {
+        boxShadowValue.push('inset ' + px(-wr) + ' ' + px(wt) + ' 0 0 ' + ct);
+        wt = wr = 0;
+    }
+    if (cb == cl && wb > 0 && wl > 0) {
+        boxShadowValue.push('inset ' + px(wl) + ' ' + px(-wb) + ' 0 0 ' + cb);
+        wb = wl = 0;
+    }
+    if (cb == cr && wb > 0 && wr > 0) {
+        boxShadowValue.push('inset ' + px(-wr) + ' ' + px(-wb) + ' 0 0 ' + cb);
+        wb = wr = 0;
+    }
+    if (wt > 0) {
+        boxShadowValue.push('inset 0 ' + px(wt) + ' 0 0 ' + ct);
+        wt = 0;
+    }
+    if (wb > 0) {
+        boxShadowValue.push('inset 0 ' + px(-wb) + ' 0 0 ' + cb);
+        wb = 0;
+    }
+    if (wl > 0) {
+        boxShadowValue.push('inset ' + px(wl) + ' 0 0 0 ' + cl);
+        wl = 0;
+    }
+    if (wr > 0) {
+        boxShadowValue.push('inset ' + px(-wr) + ' 0 0 0 ' + cr);
+        wr = 0;
+    }
+
     var ix = '0';
-    if (this.shadowSize) {
-        if (this.shadowDirection & DIRECTION_LEFT) {
-            ix = px(-this.shadowSize);
-        }
-        else if (this.shadowDirection & DIRECTION_RIGHT) {
-            ix = px(this.shadowSize);
-        }
-        boxShadowValue.push(ix + ' ' + px(this.shadowSize) + ' ' + px(this.shadowSize / 2) + ' ' + px(this.shadowSize / 2) + ' ' + this.shadowColor);
+    if (this.shadowColor) {
+        boxShadowValue.push(px(this.shadowOffsetX) + ' ' + px(this.shadowOffsetY) + ' ' + px(this.shadowBlur) + ' ' + px(this.shadowSpread) + ' ' + this.shadowColor);
     }
+
     if (boxShadowValue) {
         css.push(['box-shadow', boxShadowValue.join(', ')]);
     }
 
-    if (this.textShadowColor) {
-        css.push(['text-shadow', '1px 1px 0 ' + this.textShadowColor]);
+    if (this.textInset) {
+        css.push(['text-shadow', '1px 1px 0 rgba(255,255,255,0.5)']);
     }
 
     return css;
 };
 
-Button.prototype.refresh = function () {
-    var css = this.getCss();
-    css = expandCss(css);
-    applyCss(this.htmlElement, css);
-    var strCss = serializeCss(css);
-    this.htmlCode.html(strCss);
+ButtonEditor.prototype.defaultHoverProperties = function() {
+    return {
+        'backgroundColor': shadeColor(this.backgroundColor, -0.05),
+        'textColor': shadeColor(this.textColor, 0.2),
+    };
 };
 
-Button.prototype.setAllCorners = function (radius) {
+ButtonEditor.prototype.defaultActiveProperties = function() {
+    return {
+        'backgroundColor': shadeColor(this.backgroundColor, -0.05),
+        'textColor': shadeColor(this.textColor, 0.2),
+    };
+};
+
+ButtonEditor.prototype.getCssHoverState = function() {
+    var css = [];
+    var defaultProperties = this.defaultHoverProperties();
+    var bc = this.hoverBackgroundColor || defaultProperties.backgroundColor;
+    var tc = this.hoverTextColor || defaultProperties.textColor;
+
+    if (bc !== this.backgroundColor) {
+        css.push(['background-color', bc]);
+    }
+
+    if (tc !== this.textColor) {
+        css.push(['color', tc]);
+    }
+
+    return css;
+};
+
+ButtonEditor.prototype.getCssActiveState = function() {
+    var css = [];
+    var defaultProperties = this.defaultActiveProperties();
+    var bc = this.hoverBackgroundColor || defaultProperties.backgroundColor;
+    var tc = this.hoverTextColor || defaultProperties.textColor;
+
+    if (bc !== this.backgroundColor) {
+        css.push(['background-color', bc]);
+    }
+
+    if (tc !== this.textColor) {
+        css.push(['color', tc]);
+    }
+
+    return css;
+};
+
+ButtonEditor.prototype.getCss = function() {
+    var normalCss = this.getCssNormalState();
+    var hoverCss = this.getCssHoverState();
+    var activeCss = this.getCssActiveState();
+    return {'normal': normalCss, 'hover': hoverCss, 'active': activeCss};
+};
+
+ButtonEditor.prototype.refresh = function() {
+    var css = this.getCss();
+    css['normal'] = expandCss(css['normal']);
+    css['hover'] = expandCss(css['hover']);
+    css['active'] = expandCss(css['active']);
+    this.buttonNormal.removeAttr('style');
+    applyCss(this.buttonNormal, css['normal']);
+    this.buttonHover.removeAttr('style');
+    applyCss(this.buttonHover, css['normal']);
+    applyCss(this.buttonHover, css['hover']);
+    this.buttonActive.removeAttr('style');
+    applyCss(this.buttonActive, css['normal']);
+    applyCss(this.buttonActive, css['active']);
+    var strCss = cssToHtml(css, 'button');
+    this.htmlCode.html(strCss);
+    this.dispatchEvent('refresh', this);
+};
+
+ButtonEditor.prototype.setAllCorners = function(radius) {
     this.borderRadiusTL = radius;
     this.borderRadiusTR = radius;
     this.borderRadiusBL = radius;
     this.borderRadiusBR = radius;
 };
 
-function _getAllValuesFromPanelButton(state) {
+ButtonEditor.prototype.setBorderColor = function(color) {
+    this.borderColorTop = color;
+    this.borderColorLeft = color;
+    this.borderColorRight = color;
+    this.borderColorBottom = color;
+};
+
+ButtonEditor.prototype.setBorderWidth = function(width) {
+    this.borderWidthTop = width;
+    this.borderWidthLeft = width;
+    this.borderWidthRight = width;
+    this.borderWidthBottom = width;
+};
+
+ButtonEditor.prototype.setBevelWidth = function(size) {
+    this.bevelWidthTop = size;
+    this.bevelWidthBottom = size;
+    this.bevelWidthLeft = size;
+    this.bevelWidthRight = size;
+};
+
+ButtonEditor.prototype.setBevelColor = function(color) {
+    this.bevelColorTop = color;
+    this.bevelColorBottom = color;
+    this.bevelColorLeft = color;
+    this.bevelColorRight = color;
+};
+
+function readButtonEditorValues(buttonEditorControlsContainer, buttonNormal, buttonHover, buttonActive) {
     var options = {};
-    var base = $('.bt-state-' + state);
+    var base = buttonEditorControlsContainer;
+
+    options['htmlCode'] = $('#button-code');
+    options['buttonNormal'] = buttonNormal;
+    options['buttonHover'] = buttonHover;
+    options['buttonActive'] = buttonActive;
     options['borderRadiusTL'] = parseFloat(base.find('[name=border-radius-tl]').val());
     options['borderRadiusTR'] = parseFloat(base.find('[name=border-radius-tr]').val());
     options['borderRadiusBL'] = parseFloat(base.find('[name=border-radius-bl]').val());
     options['borderRadiusBR'] = parseFloat(base.find('[name=border-radius-br]').val());
     options['borderWidth'] = parseFloat(base.find('[name=border-width]').val());
-    options['borderColor'] = base.find('[name=border-color]').val();
-    options['reliefWidth'] = parseFloat(base.find('[name=bevel-width]').val());
-    options['reliefBottomColor'] = parseFloat(base.find('[name=bevel-color-br]').val());
-    options['reliefTopColor'] = parseFloat(base.find('[name=bevel-color-tl]').val());
-    options['textShadow'] = true;
+    options['borderWidthTop'] = base.find('[name=border-width-top]').val();
+    options['borderWidthLeft'] = base.find('[name=border-width-left]').val();
+    options['borderWidthRight'] = base.find('[name=border-width-right]').val();
+    options['borderWidthBottom'] = base.find('[name=border-width-bottom]').val();
+    options['borderColorTop'] = base.find('[name=border-color-top]').val();
+    options['borderColorLeft'] = base.find('[name=border-color-left]').val();
+    options['borderColorRight'] = base.find('[name=border-color-right]').val();
+    options['borderColorBottom'] = base.find('[name=border-color-bottom]').val();
+    options['bevelWidthTop'] = parseFloat(base.find('[name=bevel-width-top]').val());
+    options['bevelWidthLeft'] = parseFloat(base.find('[name=bevel-width-left]').val());
+    options['bevelWidthRight'] = parseFloat(base.find('[name=bevel-width-right]').val());
+    options['bevelWidthBottom'] = parseFloat(base.find('[name=bevel-width-bottom]').val());
+    options['bevelColorTop'] = parseFloat(base.find('[name=bevel-color-top]').val());
+    options['bevelColorLeft'] = parseFloat(base.find('[name=bevel-color-left]').val());
+    options['bevelColorRight'] = parseFloat(base.find('[name=bevel-color-right]').val());
+    options['bevelColorBottom'] = parseFloat(base.find('[name=bevel-color-bottom]').val());
+    options['textColor'] = base.find('[name=text-color]').val();
+    options['textFontFamily'] = base.find('[name=text-font-family]').val();
+    options['textFontSize'] = parseFloat(base.find('[name=text-font-size]').val());
+    options['textFontWeight'] = base.find('[name=text-font-weight]').prop('checked');
+    options['textInset'] = base.find('[name=text-inset]').prop('checked');
     options['shadowSize'] = 4;
     options['shadowDirection'] = DIRECTION_BOTTOM | DIRECTION_RIGHT;
     options['shadowColor'] = 'rgba(0,0,0,.5)';
+    options['backgroundColor'] = base.find('[name=background-color]').val();
+    options['shadowColor'] = base.find('[name=shadow-color]').val();
+    options['shadowOffsetX'] = parseFloat(base.find('[name=shadow-offset-x]').val());
+    options['shadowOffsetY'] = parseFloat(base.find('[name=shadow-offset-y]').val());
+    options['shadowBlur'] = parseFloat(base.find('[name=shadow-blur]').val());
+    options['shadowSpread'] = parseFloat(base.find('[name=shadow-spread]').val());
+    options['paddingHorizontal'] = parseFloat(base.find('[name=padding-horizontal]').val());
+    options['paddingVertical'] = parseFloat(base.find('[name=padding-vertical]').val());
+
+    options['hoverBackgroundColor'] = base.find('[name=hover-background-color]').val();
+    options['hoverTextColor'] = base.find('[name=hover-text-color]').val();
+    options['hoverBorderColor'] = base.find('[name=hover-border-color]').val();
+
+    options['activeBackgroundColor'] = base.find('[name=active-background-color]').val();
+    options['activeTextColor'] = base.find('[name=active-text-color]').val();
+    options['activeBorderColor'] = base.find('[name=active-border-color]').val();
+
     return options;
 }
 
@@ -318,170 +339,305 @@ function _getFromField(value, min, max, elem) {
     return val;
 }
 
+function getChangeBorderRadiusCallback(name)
+{
+    return function() {
+        var val = _getFromField($(this).val(), 0, 50, $('#' + name));
+        buttonEditor.borderRadiusTL = val;
+        buttonEditor.refresh();
+
+        $('#slider-' + name).slider('value', val);
+    };
+}
+
+function displayZoomedCorners(buttonEditor)
+{
+    var buttonStyle = buttonEditor.buttonNormal.attr('style');
+    var canvasTL = document.getElementById('canvas-corner-tl');
+    var ctxTL = canvasTL.getContext('2d');
+    var canvasTR = document.getElementById('canvas-corner-tr');
+    var ctxTR = canvasTR.getContext('2d');
+    var canvasBL = document.getElementById('canvas-corner-bl');
+    var ctxBL = canvasBL.getContext('2d');
+    var canvasBR = document.getElementById('canvas-corner-br');
+    var ctxBR = canvasBR.getContext('2d');
+
+    ctxTL.clearRect(0, 0, canvasTL.width, canvasTL.height);
+    ctxTR.clearRect(0, 0, canvasTR.width, canvasTR.height);
+    ctxBL.clearRect(0, 0, canvasBL.width, canvasBL.height);
+    ctxBR.clearRect(0, 0, canvasBR.width, canvasBR.height);
+
+    var data = '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">' +
+               '<foreignObject width="100%" height="100%">' +
+               '<div xmlns="http://www.w3.org/1999/xhtml" style="padding: 3px">' +
+               '<div style="width: 94px; height: 94px; box-sizing: border-box; ' + buttonStyle + '"></div>' +
+               '</div>' +
+               '</foreignObject>' +
+               '</svg>';
+
+    var DOMURL = window.URL || window.webkitURL || window;
+
+    var img = new Image();
+    var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+    var url = DOMURL.createObjectURL(svg);
+
+    img.onload = function () {
+        ctxTL.save();
+        nearestNeighborScaling(ctxTL);
+        ctxTL.scale(16, 16);
+        ctxTL.drawImage(img, 0, 0);
+        ctxTL.restore();
+
+        ctxTR.save();
+        nearestNeighborScaling(ctxTR);
+        ctxTR.scale(16, 16);
+        ctxTR.drawImage(img, -90, 0);
+        ctxTR.restore();
+
+        ctxBL.save();
+        nearestNeighborScaling(ctxBL);
+        ctxBL.scale(16, 16);
+        ctxBL.drawImage(img, 0, -90);
+        ctxBL.restore();
+
+        ctxBR.save();
+        nearestNeighborScaling(ctxBR);
+        ctxBR.scale(16, 16);
+        ctxBR.drawImage(img, -90, -90);
+        ctxBR.restore();
+
+        DOMURL.revokeObjectURL(url);
+    };
+
+    img.src = url;
+}
+
 $('body').ready(function() {
-    buttonSample = new Button(_getAllValuesFromPanelButton('normal'));
-    buttonSample.refresh();
+    $('input[type="range"]').rangeslider();
+    $('input[type="range"]').rangehover();
+
+    var buttonEditorControlsContainer = $('.bt-state-normal');
+    var buttonNormal = $('#button-normal');
+    var buttonHover = $('#button-hover');
+    var buttonActive = $('#button-active');
+    var buttonEditorValues = readButtonEditorValues(buttonEditorControlsContainer, buttonNormal, buttonHover, buttonActive);
+    var buttonEditor = new ButtonEditor(buttonEditorValues);
+    buttonEditor.refresh();
 
     copy_text_button($('#copy-text-input'), $('#button-code'));
 
     /* Border Style */
     $('#select-border').live('change', function () {
         var val = $(this).val();
-        buttonSample.borderStyle = val;
-        buttonSample.refresh();
+        buttonEditor.borderStyle = val;
+        buttonEditor.refresh();
     });
+
+    var borderRadiusNames = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+    for (var i in borderRadiusNames) {
+        $('#' + borderRadiusNames[i]).live('keyup', getChangeBorderRadiusCallback(borderRadiusNames[i]));
+    }
 
     /* Border Radius */
-    $('#slider-all-corners').slider({
-        value: 4,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50);
-            buttonSample.setAllCorners(val);
-            buttonSample.refresh();
-
-            $('#all-corners').val(val);
-            $('#top-left').val(val);
-            $('#top-right').val(val);
-            $('#bottom-left').val(val);
-            $('#bottom-right').val(val);
-            $('#slider-top-left').slider('value', val);
-            $('#slider-top-right').slider('value', val);
-            $('#slider-bottom-left').slider('value', val);
-            $('#slider-bottom-right').slider('value', val);
-        }
+    $('[name=border-radius]').on('change keyup paste input', function(event) {
+        var val = event.currentTarget.value;
+        $("[name|=border-radius]").val(val);
+        buttonEditor.setAllCorners(val);
+        buttonEditor.refresh();
     });
 
-    $('#slider-top-left').slider({
-        value: 4,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50, $('#top-left'));
-            buttonSample.borderRadiusTL = val;
-            buttonSample.refresh();
-        }
+    $('[name=border-radius-tl]').on('change keyup paste input', function(event) {
+        buttonEditor.borderRadiusTL = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#slider-top-right').slider({
-        value: 4,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50, $('#top-right').val(val));
-            buttonSample.borderRadiusTR = val;
-            buttonSample.refresh();
-        }
+    $('[name=border-radius-tr]').on('change keyup paste input', function(event) {
+        buttonEditor.borderRadiusTR = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#slider-bottom-left').slider({
-        value: 4,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50, $('#bottom-left'));
-            buttonSample.borderRadiusBL = val;
-            buttonSample.refresh();
-        }
+    $('[name=border-radius-bl]').on('change keyup paste input', function(event) {
+        buttonEditor.borderRadiusBL = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#slider-bottom-right').slider({
-        value: 4,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50, $('#bottom-right'));
-            buttonSample.borderRadiusBR = val;
-            buttonSample.refresh();
-        }
+    $('[name=border-radius-br]').on('change keyup paste input', function(event) {
+        buttonEditor.borderRadiusBR = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#all-corners').live('keyup', function() {
-        var val = _getFromField($(this).val(), 0, 50, $('#all-corners'));
-        buttonSample.setAllCorners(val);
-        buttonSample.refresh();
-
-        $('#slider-all-corners').slider('value', val);
-        $('#top-left').val(val);
-        $('#top-right').val(val);
-        $('#bottom-left').val(val);
-        $('#bottom-right').val(val);
-        $('#slider-top-left').slider('value', val);
-        $('#slider-top-right').slider('value', val);
-        $('#slider-bottom-left').slider('value', val);
-        $('#slider-bottom-right').slider('value', val);
+    /* border width and color */
+    $('[name=border-color]').live('change', function () {
+        var val = event.currentTarget.value;
+        $("[name|=border-color]").val(val);
+        buttonEditor.setBorderColor(val);
+        buttonEditor.refresh();
     });
 
-    $('#top-left').live('keyup', function() {
-        var val = _getFromField($(this).val(), 0, 50, $('#top-left'));
-        buttonSample.borderRadiusTL = val;
-        buttonSample.refresh();
-
-        $('#slider-top-left').slider('value', val);
+    $('[name=border-color-top]').on('change keyup paste input', function(event) {
+        buttonEditor.borderColorTop = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#top-right').live('keyup', function () {
-        var val = _getFromField($(this).val(), 0, 50, $('#top-right'));
-        buttonSample.borderRadiusTR = val;
-        buttonSample.refresh();
-
-        $('#slider-top-right').slider('value', val);
+    $('[name=border-color-left]').on('change keyup paste input', function(event) {
+        buttonEditor.borderColorLeft = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#bottom-left').live('keyup', function() {
-        var val = _getFromField($(this).val(), 0, 50, $('#bottom-left'));
-        buttonSample.borderRadiusBL = val;
-        buttonSample.refresh();
-
-        $('#slider-bottom-left').slider('value', val);
+    $('[name=border-color-right]').on('change keyup paste input', function(event) {
+        buttonEditor.borderColorRight = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#bottom-right').live('keyup', function() {
-        var val = _getFromField($(this).val(), 0, 50, $('#bottom-right'));
-        buttonSample.borderRadiusBR = val;
-        buttonSample.refresh();
-
-        $('#slider-bottom-right').slider('value', val);
+    $('[name=border-color-bottom]').on('change keyup paste input', function(event) {
+        buttonEditor.borderColorBottom = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    /* Border Width */
-    $('#slider-border-width').slider({
-        value: 0,
-        min: 0,
-        max: 50,
-        step: 1,
-        slide: function(event, ui) {
-            var val = _getFromField(ui.value, 0, 50, $('#border-width'));
-            buttonSample.borderWidth = val;
-            buttonSample.refresh();
-        }
+    $('[name=border-width]').live('change', function (event) {
+        var val = event.currentTarget.value;
+        $("[name|=border-width]").val(val);
+        buttonEditor.setBorderWidth(val);
+        buttonEditor.refresh();
     });
 
-    $('#border-width').live('keyup', function() {
-        var val = _getFromField($(this).val(), 0, 50, $('#border-width'));
-        buttonSample.borderWidth = val;
-        buttonSample.refresh();
-
-        $('#slider-border-width').slider('value', val);
+    $('[name=border-width-top]').on('change keyup paste input', function(event) {
+        buttonEditor.borderWidthTop = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    /* Color (Border and background) */
-    $('#br-color').live('change', function () {
-        buttonSample.borderColor = $(this).val();
-        buttonSample.refresh();
-        $('#br-color-button').css('background-color', '#' + $(this).val());
+    $('[name=border-width-left]').on('change keyup paste input', function(event) {
+        buttonEditor.borderWidthLeft = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
-    $('#br-background-color').live('change', function () {
-        buttonSample.borderBackground = $(this).val();
-        buttonSample.refresh();
-        $('#br-background-color-button').css('background-color', '#' + $(this).val());
+    $('[name=border-width-right]').on('change keyup paste input', function(event) {
+        buttonEditor.borderWidthRight = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=border-width-bottom]').on('change keyup paste input', function(event) {
+        buttonEditor.borderWidthBottom = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    /* background */
+    $('[name=background-color]').live('change', function () {
+        buttonEditor.backgroundColor = $(this).val();
+        buttonEditor.refresh();
+    });
+
+    /* bevel */
+    $('[name=bevel-width]').live('change', function () {
+        var val = event.currentTarget.value;
+        $("[name|=bevel-width]").val(val);
+        buttonEditor.setBevelWidth(val);
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-width-top]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelWidthTop = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-width-bottom]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelWidthBottom = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-width-left]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelWidthLeft = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-width-right]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelWidthRight = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-color]').live('change', function () {
+        var val = event.currentTarget.value;
+        $("[name|=bevel-color]").val(val);
+        buttonEditor.setBevelColor(val);
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-color-top]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelColorTop = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-color-bottom]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelColorBottom = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-color-left]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelColorLeft = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=bevel-color-right]').on('change keyup paste input', function(event) {
+        buttonEditor.bevelColorRight = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    /* text color and font */
+    $('[name=text-color]').on('change', function(event) {
+        buttonEditor.textColor = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=text-font-size]').on('change', function(event) {
+        buttonEditor.textFontSize = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=text-font-weight]').on('change', function(event) {
+        buttonEditor.textFontWeight = $(event.currentTarget).prop('checked');
+        buttonEditor.refresh();
+    });
+
+    $('[name=text-inset]').on('change', function(event) {
+        buttonEditor.textInset = $(event.currentTarget).prop('checked');
+        buttonEditor.refresh();
+    });
+
+    /* box shadow */
+    $('[name=shadow-color]').on('change', function(event) {
+        buttonEditor.shadowColor = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=shadow-offset-x]').on('change', function(event) {
+        buttonEditor.shadowOffsetX = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=shadow-offset-y]').on('change', function(event) {
+        buttonEditor.shadowOffsetY = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=shadow-blur]').on('change', function(event) {
+        buttonEditor.shadowBlur = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=shadow-spread]').on('change', function(event) {
+        buttonEditor.shadowSpread = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    /* padding */
+    $('[name=padding-horizontal]').on('input', function(event) {
+        buttonEditor.paddingHorizontal = event.currentTarget.value;
+        buttonEditor.refresh();
+    });
+
+    $('[name=padding-vertical]').on('input', function(event) {
+        buttonEditor.paddingVertical = event.currentTarget.value;
+        buttonEditor.refresh();
     });
 
     $('#br-background-color-button').live('click', function () {
@@ -494,14 +650,14 @@ $('body').ready(function() {
 
     $('#br-background-color-button').ColorPicker({
         onChange: function(hsb, hex, rgb, el) {
-            buttonSample.borderBackground = '#' + hex;
-            buttonSample.refresh();
+            buttonEditor.background = '#' + hex;
+            buttonEditor.refresh();
             $('#br-background-color').val('#' + hex);
             $('#br-background-color-button').css('background-color', '#' + hex);
         },
         onSubmit: function(hsb, hex, rgb, el) {
-            buttonSample.borderBackground = '#' + hex;
-            buttonSample.refresh();
+            buttonEditor.background = '#' + hex;
+            buttonEditor.refresh();
             $('#br-background-color').val('#' + hex);
             $('#br-background-color-button').css('background-color', '#' + hex);
             $(el).ColorPickerHide();
@@ -516,14 +672,14 @@ $('body').ready(function() {
 
     $('#br-color-button').ColorPicker({
         onChange: function(hsb, hex, rgb, el) {
-            buttonSample.borderColor = '#' + hex;
-            buttonSample.refresh();
+            buttonEditor.borderColor = '#' + hex;
+            buttonEditor.refresh();
             $('#br-color').val('#' + hex);
             $('#br-color-button').css('background-color', '#' + hex);
         },
         onSubmit: function(hsb, hex, rgb, el) {
-            buttonSample.borderColor = '#' + hex;
-            buttonSample.refresh();
+            buttonEditor.borderColor = '#' + hex;
+            buttonEditor.refresh();
             $('#br-color').val('#' + hex);
             $('#br-color-button').css('background-color', '#' + hex);
             $(el).ColorPickerHide();
@@ -535,4 +691,17 @@ $('body').ready(function() {
     .bind('keyup', function(){
         $(this).ColorPickerSetColor(this.value);
     });
+
+    $('select.fonts').fontSelector({
+      fontChange: function(e, ui) {
+        buttonEditor.textFontFamily = ui.font;
+        buttonEditor.refresh();
+      }
+    });
+
+    /* corners zoom */
+    // buttonEditor.addEventListener('refresh', displayZoomedCorners);
+
+    buttonEditor.dispatchEvent('refresh', buttonEditor);
+    var gradientEditor = new GradientEditor($('#background-gradient').get(0));
 });

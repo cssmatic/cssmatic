@@ -2,3 +2,4 @@
 *~
 *.pyc
 application.cfg
+.DS_Store

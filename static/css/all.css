@@ -199,48 +199,29 @@ fieldset {
     position: relative;
 }
 
-.opacity-knob {
-    width: 11px;
-    height: 11px;
-    position: absolute;
-    top: 6px;
-}
-
-.opacity-knob div {
-    width: 21px;
-    height: 21px;
+.opacity-knob, .color-knob {
+    width: 20px;
+    height: 20px;
     top: -5px;
     left: -5px;
     text-indent: -9999px;
     overflow: hidden;
     position: absolute;
-    background: url(../img/sprite-knobs.png) no-repeat -39px 0;
+    background: #FFF;
+    border-radius: 11px;
+    border: 1px solid #CCC;
+    z-index: -1;
 }
 
-.opacity-knob.selected div {
-    background-position: -39px -39px;
+.opacity-knob div, .color-knob div {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: 5px auto;
 }
 
-.color-knob {
-    width: 11px;
-    height: 11px;
-    position: absolute;
-    top: 6px;
-}
-
-.color-knob div {
-    top: -5px;
-    left: -5px;
-    width: 21px;
-    height: 21px;
-    text-indent: -9999px;
-    overflow: hidden;
-    position: absolute;
-    background: url(../img/sprite-knobs.png) no-repeat -39px 0;
-}
-
-.color-knob.selected div {
-    background-position: -39px -39px;
+.opacity-knob.selected, .color-knob.selected {
+    border-width: 2px;
 }
 
 .two-cols {
@@ -902,7 +883,6 @@ fieldset {
 }
 
 #opacity-value-slider-bar {
-
     background: rgba(255,255,255,0);
     background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
     background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(100%, rgba(0,0,0,1)));
@@ -990,11 +970,9 @@ fieldset {
 }
 
 #opacity-gradient {
-    top: 484px;
-    left: 230px;
     width: 150px;
     height: 10px;
-    position: absolute;
+    position: relative;
     z-index: 9999;
     background: rgb(0,0,0);
     background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 100%);
@@ -1340,7 +1318,7 @@ div.message.success div.triangle {
     background: url(../img/cb.png) no-repeat;
     position: absolute;
     left: 640px;
-    top: -80px;
+    top: -38px;
 }
 
 #collaborate .contact {
@@ -1388,6 +1366,15 @@ div.message.success div.triangle {
     border-top: 1px solid #ccc;
 }
 
+.button-nav li {
+    border-top: none;
+    border-bottom: 4px solid transparent;
+    border-color: transparent;
+    width: 240px;
+    height: 75px;
+    cursor: pointer;
+}
+
 .nav li h1 {
     font-size: inherit;
     padding: 0;
@@ -1399,8 +1386,18 @@ div.message.success div.triangle {
     font-weight: bold;
 }
 
+.button-nav .nav-selected {
+    border-top: none;
+    border-bottom-color: #000;
+}
+
 .nav li:hover {
     border-top: 1px solid #000;
+}
+
+.button-nav li:hover {
+    border-top: none;
+    border-bottom-color: #ccc;
 }
 
 .social-links {
@@ -1420,6 +1417,24 @@ div.message.success div.triangle {
 .adblock {
     margin: 0 auto 18px;
     text-align: center;
+}
+
+.css-code {
+    font-family: "Source Code Pro";
+    font-size: 9px;
+    line-height: 16px;
+}
+
+.css-code div {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.css-code div:nth-child(even) {
+}
+
+.css-code div:nth-child(odd) {
+    background: #eef;
 }
 
 /* flaticon */
@@ -1452,4 +1467,108 @@ div.message.success div.triangle {
 
 .fi-twitter35::before {
     content: "\e002";
+}
+
+.fake-btn {
+    line-height: 1em;
+    display: inline-block;
+    margin: 0 auto;
+    position: relative;
+    top: 35%;
+}
+
+.css-code {
+    background-color: #18354A;
+    color: #FFFFFF;
+    padding: 16px 24px;
+    font-size: 14px;
+    line-height: 1.3em;
+}
+
+.css-class {
+    color: #57E659;
+}
+
+.css-property-name {
+    color: #8FF59C;
+}
+
+.css-property-value {
+    color: #EDF278;
+}
+
+.canvas-zoom {
+    image-rendering: optimizeSpeed;             /* Older versions of FF */
+    image-rendering: -moz-crisp-edges;          /* FF 6.0+ */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+    image-rendering: optimize-contrast;         /* ? */
+    image-rendering: pixelated;                 /* Awesome future-browsers */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE */
+}
+
+.gradient-editor {
+    position: relative;
+    cursor: pointer;
+}
+
+.gradient-editor:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    background: url(data:image/gif;base64,R0lGODlhCAAIAIABAJCQkP///yH5BAEAAAEALAAAAAAIAAgAAAINjAMJh8q6DoTPSWvoKQA7);
+}
+
+.gradient-editor-knob {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+
+.gradient-editor-knob:hover {
+    cursor: move;
+}
+
+.alpha-editor input[type=range]:focus {
+    outline: none;
+}
+
+.ae-block {
+    border: 1px solid #CCC;
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.ae-block:hover {
+    border-color: #000;
+}
+
+.ae-transparent-block {
+    background: url(data:image/gif;base64,R0lGODlhCAAIAIABAJCQkP///yH5BAEAAAEALAAAAAAIAAgAAAINjAMJh8q6DoTPSWvoKQA7);;
+}
+
+.ae-delete-link {
+    vertical-align: middle;
+    display: inline-block;
+    width: 14px;
+    height: 18px;
+    border-left: 1px solid #CCC;
+    margin: -12px -12px -12px 8px;
+    background: #EEE;
+    padding: 12px;
+    color: #999;
+}
+
+.ae-delete-link:hover {
+    background: #FCC;
+    color: #000;
 }

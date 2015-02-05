@@ -1,0 +1,28 @@
+<link rel="import" href="/components/polymer/polymer.html">
+
+<polymer-element name="input-color" attributes="value">
+  <template>
+    <style>
+    .color-box {
+    	display: inline-block;
+    	width: 16px;
+    	height: 16px;
+    	border: 1px solid #fff;
+    }
+
+    .color-box:hover {
+    	border-color: #000;
+    }
+    </style>
+    <div class="input-color" layout horizontal center>
+      <a on-click="{{openColorSelector}}"><span class="color-box" style="background-color: {{ value }}"></span></a> #<input type="text" placeholder="rrggbb" value="{{ value }}">
+    </div>
+  </template>
+  <script>
+  Polymer({
+  	value: '#000000',
+  	openColorSelector: function() {
+  	}
+  });
+  </script>
+</polymer-element>

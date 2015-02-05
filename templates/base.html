@@ -5,7 +5,7 @@
     <title>{% block title %}{% trans %}The ultimate CSS tools for web designers | CSSmatic{% endtrans %}{% endblock %}</title>
     <link rel="icon" type="image/png" href="/img/favicon.png">
     {% block css %}
-      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,900,900italic|Source+Code+Pro|Courgette' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,900,900italic|Source+Code+Pro:400,700|Courgette' rel='stylesheet' type='text/css'>
       <link rel='stylesheet' type='text/css' href='{{ "/css/jquery.ui.css"|static_v }}'>
       <link rel='stylesheet' type='text/css' href='{{ "/css/colorpicker/colorpicker.css"|static_v }}'>
       <link rel='stylesheet' type='text/css' href='{{ "/css/colorpicker/layout.css"|static_v }}'>
@@ -24,9 +24,25 @@
       <script src='{{ "/js/jquery.main.js"|static_v }}'></script>
       <script src='{{ "/js/colorFunctions.js"|static_v }}'></script>
       <script src='{{ "/js/jquery.zclip.min.js"|static_v }}'></script>
-      <script src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js'></script>
+      <!-- <script src='//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js'></script> -->
       <script type="text/javascript">
-        Raven.config({{ config.PUBLIC_SENTRY_DSN }}).install();
+        // Raven.config({{ config.PUBLIC_SENTRY_DSN }}).install();
+
+        /*
+        NOT TESTED. ASYNC GOOGLE ADS TO RELOAD ADS
+        
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function() {
+          var gads = document.createElement("script");
+          gads.async = true;
+          gads.type = "text/javascript";
+          var useSSL = "https:" == document.location.protocol;
+          gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+          var node = document.getElementsByTagName("script")[0];
+          node.parentNode.insertBefore(gads, node);
+        })();
+        */
       </script>
     {% endblock %}
 </head>
@@ -72,7 +88,22 @@
         {% endfor %}
       </ul>
 
-      <div class="adblock">
+      <div class="adblock" id="div-gpt-ad-38602970">
+        <!--
+        NOT TESTED. REFRESH ADS EVERY 30s
+
+        <script type="text/javascript">
+        googletag.cmd.push(function() {
+          var slot1 = googletab.defineSlot(
+            "/38602970/Refresh_Example",
+            [728, 90],
+            "div-gpt-ad-38602970").addService(googletag.pubads());
+          googletag.enableServices();
+          googletag.display("div-gpt-ad-38602970-1");
+          setInterval(function() { googletag.pubads().refresh([slot1]); }, 30000);
+        });
+        </script>
+        -->
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-7680645031495821";
         /* Cssmatic 728x90 */
@@ -105,7 +136,6 @@
       <a class="logothumbr bl" href="http://www.thumbr.it">Thumbr.it</a>
     </span>
   </div>
-  <div id="opacity-gradient" class="slider-bar large" style="display: none;"></div>
 
   <div id="footer">
     <span class="copyright">&copy; 2013 CSSmatic</span> |
