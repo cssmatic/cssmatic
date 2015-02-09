@@ -1,4 +1,5 @@
 function BoxShadow (options) {
+    this.backgroundElement = options['backgroundElement'] || $('#box-shadow-wrapper');
     this.htmlElement = options['htmlElement'] || $('#box-shadow-object');
     this.htmlCode = options['htmlCode'] || $('#box-shadow-code');
     this.horizontal = options['horizontal'] || 40;
@@ -7,6 +8,7 @@ function BoxShadow (options) {
     this.spread = options['spread'] || 0;
     this.boxColor = options['boxColor'] || new UserColor({'format': 'rgb', 'color': {r: 34, g: 54, b:12}});
     this.shadowColor = options['shadowColor'] || new UserColor({'format': 'rgba', 'color': {r: 34, g: 54, b:12, a: 1}});
+    this.backgroundColor = options['backgroundColor'] || new UserColor({'format': 'rgb', 'color': {r: 34, g: 54, b:12}});
     this.inset = options['inset'] || false;
 }
 
@@ -16,16 +18,23 @@ BoxShadow.prototype.refresh = function () {
     var codeBS = this.getBoxShadowCode();
 
     // Change the style of the box Shadow
-    this.htmlElement.css('-webkit-box-shadow', codeWBS);
-    this.htmlElement.css('-moz-box-shadow', codeMBS);
-    this.htmlElement.css('box-shadow', codeBS);
-    this.htmlElement.css('background-color', this.boxColor.displayColor());
+    this.htmlElement.css({
+        '-webkit-box-shadow': codeWBS,
+        '-moz-box-shadow': codeMBS,
+        'box-shadow': codeBS,
+        'background-color': this.boxColor.displayColor()
+    });
+
+    this.backgroundElement.css({
+        'background-color': this.backgroundColor.displayColor()
+    });
 
     // Show the code
-    this.htmlCode.html('');
-    this.htmlCode.append('<div>-webkit-box-shadow: ' + codeWBS + ';</div>');
-    this.htmlCode.append('<div>-moz-box-shadow: ' + codeMBS + ';</div>');
-    this.htmlCode.append('<div>box-shadow: ' + codeBS + ';</div>');
+    this.htmlCode.html(
+        '<div>-webkit-box-shadow: ' + codeWBS + ';</div>' +
+        '<div>-moz-box-shadow: ' + codeMBS + ';</div>' +
+        '<div>box-shadow: ' + codeBS + ';</div>'
+    );
 };
 
 BoxShadow.prototype.getWebkitBoxShadowCode = function () {
@@ -42,6 +51,10 @@ BoxShadow.prototype.getBoxShadowCode = function () {
 
 BoxShadow.prototype.setShadowColor = function (color) {
     this.shadowColor = color;
+};
+
+BoxShadow.prototype.setBackgroundColor = function (color) {
+    this.backgroundColor = color;
 };
 
 BoxShadow.prototype.setBoxColor = function (color) {
@@ -62,6 +75,7 @@ function _getAllValuesFromPanelBoxShadow() {
     options['vertical'] = parseFloat($('#vertical-length').val());
     options['blur'] = parseFloat($('#blur-radius').val());
     options['shadowColor'] = new UserColor({format: 'hex', color: $('#shadow-color').val()});
+    options['backgroundColor'] = new UserColor({format: 'hex', color: $('#background-color').val()});
     options['boxColor'] = new UserColor({format: 'hex', color: $('#box-color').val()});
     options['opacity'] = parseFloat($('#shadow-opacity').val());
     options['inset'] = $($('#inset-button').find('.right-pos')).length == 1;
@@ -161,6 +175,29 @@ $('body').ready(function() {
         $(this).ColorPickerSetColor(this.value);
     });
 
+    $('#background-color-button').ColorPicker({
+        onChange: function(hsb, hex, rgb, el) {
+            boxShadow.setBackgroundColor(new UserColor({format: 'hex', color: hex}));
+            boxShadow.refresh();
+            $('#background-color-button').css('background', '#' + hex);
+            $('#background-color').val('#' + hex);
+        },
+        onSubmit: function(hsb, hex, rgb, el) {
+            boxShadow.setBackgroundColor(new UserColor({format: 'hex', color: hex}));
+            boxShadow.refresh();
+            $('#background-color-button').css('background', '#' + hex);
+            $('#background-color').val('#' + hex);
+            $(el).ColorPickerHide();
+        },
+        onBeforeShow: function () {
+            console.log($('#background-color').val());
+            $(this).ColorPickerSetColor($('#background-color').val());
+        },
+    })
+    .bind('keyup', function(){
+        $(this).ColorPickerSetColor(this.value);
+    });
+
     $('#box-color-button').ColorPicker({
         onChange: function(hsb, hex, rgb, el) {
             boxShadow.setBoxColor(new UserColor({format: 'hex', color: hex}));
@@ -253,6 +290,12 @@ $('#shadow-color').live('change', function() {
     boxShadow.refresh();
 });
 
+$('#background-color').live('change', function() {
+    var color = new UserColor({format: 'hex', color: $(this).val()});
+    boxShadow.setBackgroundColor(color);
+    boxShadow.refresh();
+});
+
 $('#box-color').live('change', function () {
     var color = new UserColor({format: 'hex', color: $(this).val()});
     boxShadow.setBoxColor(color);
@@ -268,6 +311,10 @@ $('#inset-button').live('click', function () {
 });
 
 $('#box-color-button').live('click', function () {
+    $(this).ColorPickerShow();
+});
+
+$('#background-color-button').live('click', function () {
     $(this).ColorPickerShow();
 });
 

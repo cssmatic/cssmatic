@@ -1,98 +1,86 @@
 # Translations template for PROJECT.
-# Copyright (C) 2014 ORGANIZATION
+# Copyright (C) 2015 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-29 15:52+0200\n"
+"POT-Creation-Date: 2015-02-09 11:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 0.9.6\n"
 
-#: main.py:84
+#: main.py:85
 msgid "Gradient Generator"
 msgstr ""
 
-#: main.py:86
+#: main.py:87
 msgid ""
-"<p>Use multiple colors and opacity stops to get amazing gradients.\n"
-"            By using the gradient tool you can create gradients with "
-"smooth color changing\n"
-"            effects and subtle transparencies.</p>\n"
+"<p>Use multiple colors and opacity stops to get amazing gradients.</p>\n"
 "\n"
-"            <p>Such images can be used as background images of banners, "
-"wallpapers, buttons or\n"
+"            <p>These gradients can be used as background images of "
+"banners, wallpapers, buttons or\n"
 "            tables and in many other applications.</p>"
 msgstr ""
 
-#: main.py:96
+#: main.py:95
 msgid "Border Radius"
 msgstr ""
 
-#: main.py:98
+#: main.py:97
 msgid ""
 "<p>Super easy to use and a super time saver. Change all the borders "
 "selected at\n"
 "            the same time.</p>"
 msgstr ""
 
-#: main.py:104
+#: main.py:103
 msgid "Noise Texture"
 msgstr ""
 
-#: main.py:106
+#: main.py:105
 msgid ""
 "<p>Create subtle background patterns with dirty pixels and noise, "
 "changing\n"
-"            the color and values and previewing the results in real time."
+"            the color and values and previewing the results in real "
+"time.</p>"
 msgstr ""
 
-#: main.py:112
+#: main.py:111
 msgid "Box Shadow"
 msgstr ""
 
-#: main.py:114
+#: main.py:113
 msgid ""
 "<p>Blur radius changes, color changes, shadow size…  Everything that you "
 "need\n"
 "            to create great drop shadows in a single place.</p>"
 msgstr ""
 
-#: main.py:120
-msgid "Button"
-msgstr ""
-
-#: main.py:122
-msgid ""
-"<p>Flat buttons, rounded buttons, shaded buttons…  Every kind of button "
-"you may need on your projects.</p>"
-msgstr ""
-
-#: main.py:238
+#: main.py:242
 msgid "The name is empty"
 msgstr ""
 
-#: main.py:240
+#: main.py:244
 msgid "The family name is empty"
 msgstr ""
 
-#: main.py:242
+#: main.py:246
 msgid "The email is empty"
 msgstr ""
 
-#: main.py:244
+#: main.py:248
 msgid "The reason to contact is empty"
 msgstr ""
 
-#: main.py:246
+#: main.py:250
 msgid "The message is empty"
 msgstr ""
 
@@ -172,33 +160,45 @@ msgstr ""
 msgid "The ultimate CSS tools for web designers | CSSmatic"
 msgstr ""
 
-#: templates/base.html:75 templates/index.html:9
+#: templates/base.html:51 templates/index.html:9
 msgid "The ultimate <strong>CSS tools</strong> for web designers"
 msgstr ""
 
-#: templates/base.html:111
+#: templates/base.html:53 templates/index.html:13
+msgid "Share with Facebook"
+msgstr ""
+
+#: templates/base.html:55 templates/index.html:11
+msgid "Tweet this page"
+msgstr ""
+
+#: templates/base.html:57 templates/index.html:15
+msgid "Google+ this page"
+msgstr ""
+
+#: templates/base.html:95
 msgid ""
 "<strong>CSSmatic</strong> is a non-profit project, made by developers for"
 " developers"
 msgstr ""
 
-#: templates/base.html:112
+#: templates/base.html:96
 msgid "Are you a web developer?  Would you like to collaborate on CSSMatic?"
 msgstr ""
 
-#: templates/base.html:115
+#: templates/base.html:99
 msgid "Contact us"
 msgstr ""
 
-#: templates/base.html:119
+#: templates/base.html:103
 msgid "Designed and developed by"
 msgstr ""
 
-#: templates/base.html:128
+#: templates/base.html:112
 msgid "About"
 msgstr ""
 
-#: templates/base.html:129
+#: templates/base.html:113
 msgid "Contact"
 msgstr ""
 
@@ -326,9 +326,8 @@ msgstr ""
 msgid "Box Color"
 msgstr ""
 
-#: templates/box-shadow.html:82 templates/gradient-generator.html:88
-#: templates/gradient-generator.html:92
-msgid "Color"
+#: templates/box-shadow.html:82 templates/gradient-generator.html:61
+msgid "Opacity"
 msgstr ""
 
 #: templates/box-shadow.html:92
@@ -339,7 +338,7 @@ msgstr ""
 msgid "Inset"
 msgstr ""
 
-#: templates/box-shadow.html:96 templates/gradient-generator.html:177
+#: templates/box-shadow.html:96 templates/gradient-generator.html:176
 #: templates/noise-texture.html:63
 msgid "knob"
 msgstr ""
@@ -432,106 +431,102 @@ msgstr ""
 msgid "Gradient CSS Generator | CSSmatic"
 msgstr ""
 
-#: templates/gradient-generator.html:15
-msgid "PRESETS"
-msgstr ""
-
-#: templates/gradient-generator.html:49
+#: templates/gradient-generator.html:48
 msgid "Click to add an opacity stop"
 msgstr ""
 
-#: templates/gradient-generator.html:51
+#: templates/gradient-generator.html:50
 msgid "Click to add a color stop"
 msgstr ""
 
-#: templates/gradient-generator.html:53
+#: templates/gradient-generator.html:52
 msgid "reverse colors"
 msgstr ""
 
-#: templates/gradient-generator.html:62
-msgid "Opacity"
-msgstr ""
-
-#: templates/gradient-generator.html:71 templates/gradient-generator.html:97
+#: templates/gradient-generator.html:70 templates/gradient-generator.html:96
 msgid "Location"
 msgstr ""
 
-#: templates/gradient-generator.html:79 templates/gradient-generator.html:105
+#: templates/gradient-generator.html:78 templates/gradient-generator.html:104
 msgid "Delete Selected Stop"
 msgstr ""
 
-#: templates/gradient-generator.html:116
+#: templates/gradient-generator.html:87 templates/gradient-generator.html:91
+msgid "Color"
+msgstr ""
+
+#: templates/gradient-generator.html:115
 msgid "Hue"
 msgstr ""
 
-#: templates/gradient-generator.html:125
+#: templates/gradient-generator.html:124
 msgid "Saturation"
 msgstr ""
 
-#: templates/gradient-generator.html:136
+#: templates/gradient-generator.html:135
 msgid "Lightness"
 msgstr ""
 
-#: templates/gradient-generator.html:143
+#: templates/gradient-generator.html:142
 msgid "Reset"
 msgstr ""
 
-#: templates/gradient-generator.html:152
+#: templates/gradient-generator.html:151
 msgid "Save your preset"
 msgstr ""
 
-#: templates/gradient-generator.html:153
+#: templates/gradient-generator.html:152
 msgid "Save"
 msgstr ""
 
-#: templates/gradient-generator.html:161
+#: templates/gradient-generator.html:160
 msgid "horizontal orientation"
 msgstr ""
 
-#: templates/gradient-generator.html:162
+#: templates/gradient-generator.html:161
 msgid "vertical orientation"
 msgstr ""
 
-#: templates/gradient-generator.html:163 templates/gradient-generator.html:164
+#: templates/gradient-generator.html:162 templates/gradient-generator.html:163
 msgid "diagonal orientation"
 msgstr ""
 
-#: templates/gradient-generator.html:165
+#: templates/gradient-generator.html:164
 msgid "radial orientation"
 msgstr ""
 
-#: templates/gradient-generator.html:193
+#: templates/gradient-generator.html:192
 msgid "Color format"
 msgstr ""
 
-#: templates/gradient-generator.html:203
+#: templates/gradient-generator.html:202
 msgid "Comments"
 msgstr ""
 
-#: templates/gradient-generator.html:209
+#: templates/gradient-generator.html:208
 msgid "IE9 support"
 msgstr ""
 
-#: templates/gradient-generator.html:216
+#: templates/gradient-generator.html:215
 msgid "Support for full multi-stop gradients with IE9 (using SVG)."
 msgstr ""
 
-#: templates/gradient-generator.html:218
+#: templates/gradient-generator.html:217
 msgid ""
 "Add a \"gradient\" class to all your elements that have a gradient, "
 "<br>and add the following override to your HTML to complete the IE9 "
 "support:"
 msgstr ""
 
-#: templates/gradient-generator.html:231
+#: templates/gradient-generator.html:230
 msgid "IMPORT FROM CSS"
 msgstr ""
 
-#: templates/gradient-generator.html:234
+#: templates/gradient-generator.html:233
 msgid "Enter existing gradient CSS to import."
 msgstr ""
 
-#: templates/gradient-generator.html:235
+#: templates/gradient-generator.html:234
 msgid "Use Mozilla, Webkit, Opera, W3C or IE format."
 msgstr ""
 

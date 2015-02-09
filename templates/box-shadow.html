@@ -67,6 +67,18 @@
 
                     <div class="setting-block">
                         <div class="row color-row">
+                            <label for="background-color">{% trans %}Background Color{% endtrans %}</label>
+                            <div class="text-2">
+                                <input id="background-color" type="text" value="#ffffff" />
+                            </div>
+                            <a id="background-color-button" class="btn-color color-5" href="javascript:;">
+                                <span>{% trans %}color{% endtrans %}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="setting-block">
+                        <div class="row color-row">
                             <label for="box-color">{% trans %}Box Color{% endtrans %}</label>
                             <div class="text-2">
                                 <input id="box-color" type="text" value="#e7a61a" />
@@ -79,7 +91,7 @@
 
                     <div class="setting-block">
                         <div class="row">
-                            <label for="shadow-opacity">{% trans %}Color{% endtrans %}</label>
+                            <label for="shadow-opacity">{% trans %}Opacity{% endtrans %}</label>
                             <div class="text-1">
                                 <input id="shadow-opacity" type="text" value="0.75" />
                             </div>
@@ -103,7 +115,7 @@
         </div>
     </div>
 
-    <div class="right-column">
+    <div id="box-shadow-wrapper" class="right-column">
         <div class="box-wrap">
             <div id="box-shadow-code" class="content"></div>
 

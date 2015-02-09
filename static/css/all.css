@@ -771,6 +771,10 @@ fieldset {
     background: #e7a61a;
 }
 
+.btn-color.color-5 {
+    background: #ffffff;
+}
+
 .setting-block.wrap {
     margin: -4px 0 0;
     padding-bottom: 5px;
@@ -820,7 +824,6 @@ fieldset {
 }
 
 .twocolumns .right-column {
-    background: url(../img/bg-right-column.jpg) no-repeat;
     float: right;
     width: 600px;
     height: 531px;
