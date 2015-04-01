@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href='{{ "/css/color-polyfill.css"|static_v }}'>
   <link rel='stylesheet' type='text/css' href='{{ "/css/rangehover.css"|static_v }}'>
   <link rel='stylesheet' type='text/css' href='{{ "/css/jquery.ui.fontSelector.css"|static_v }}'>
+  <link rel='stylesheet' type='text/css' href='{{ "/css/button.css"|static_v }}'>
   <style>
 div.fontSelector {
     font-size: 85%;
@@ -190,6 +191,28 @@ a {
 
 {% block innerbody %}
     <div class="button-editor">
+        <div class="button-template-holder">
+            <div class="button-holder"><button class="btn-style btn-style-empty">Empty</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-flat">Flat</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-metro">Metro</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-google">Google</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-medium-hollow">Medium light</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-medium">Medium #2</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-mapbox">MapBox</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-hollow">Hollow light</button></div>
+        </div>
+
+        <div class="button-template-holder" style="background-color: #142736">
+            <div class="button-holder"><button class="btn-style btn-style-empty-dark">Empty</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-flat">Flat</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-metro">Metro</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-google">Google</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-medium-hollow btn-style-medium-hollow-dark">Medium dark</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-medium">Medium #2</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-mapbox">MapBox</button></div>
+            <div class="button-holder"><button class="btn-style btn-style-hollow-dark">Hollow dark</button></div>
+        </div>
+
         <ul class="nav button-nav">
             <li class="nav-selected"><div class="btn-base btn fake-btn" style="display: inline-block" id="button-normal">Normal</div></li>
             <li><div class="btn-base btn btn-hover fake-btn" style="display: inline-block" id="button-hover">Hover</div></li>

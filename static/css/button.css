@@ -1,0 +1,217 @@
+.button-template-holder {
+	padding: 16px;
+}
+
+.button-holder {
+	display: table-cell;
+	vertical-align: middle;
+	width: 120px;
+	height: 50px;
+	margin: 0;
+	text-align: center;
+}
+
+.btn-style {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	font-rendering: optimizeLegibility;
+	box-sizing: border-box;
+	cursor: pointer;
+	background: #000000;
+	background: rgba(0,0,0,0);
+	text-decoration: none;
+	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.btn-style-empty {
+	background-color: #FFFFFF;
+	color: #000000;
+	padding: 10px 19px;
+	font-size: 17px;
+	border-radius: 6px;
+	border: 3px dashed #000000;
+	line-height: 1.471;
+	font-weight: normal;
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+.btn-style-empty-dark {
+	background-color: #000000;
+	background-color: rgba(0,0,0,0);
+	color: #FFFFFF;
+	padding: 10px 19px;
+	font-size: 17px;
+	border-radius: 6px;
+	border: 3px dashed #FFFFFF;
+	line-height: 1.471;
+	font-weight: normal;
+	font-family: Helvetica,Arial,sans-serif;
+}
+
+.btn-style-flat {
+	background-color: #1ABC9C;
+	color: #FFFFFF;
+	padding: 10px 19px;
+	font-size: 17px;
+	border-radius: 6px;
+	line-height: 1.471;
+	font-weight: normal;
+	border: none;
+	font-family: Lato,Helvetica,Arial,sans-serif;
+}
+
+.btn-style-flat:hover {
+	background-color: #48C9B0;
+	border-color: #48C9B0;
+}
+
+.btn-style-metro {
+	background-color: #4390DF;
+	padding: 12px 24px;
+	font-family: 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 16px;
+	outline: none;
+	border: none;
+	color: #FFFFFF;
+}
+
+.btn-style-google {
+	min-width: 97px;
+	background-color: #D14836;
+	background-image: -webkit-linear-gradient(top, #DD4B39, #D14836);
+	background-image: linear-gradient(top, #DD4B39, #D14836);
+	color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0);
+	text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+	text-transform: uppercase;
+	border-radius: 2px;
+	cursor: default;
+	font-size: 11px;
+	font-weight: bold;
+	height: 27px;
+	line-height: 27px;
+	white-space: nowrap;
+	outline: 0;
+	padding: 0 8px;
+	font-family: Arial,sans-serif;
+}
+
+.btn-style-google:hover {
+	background-color: #C53727;
+	background-image: -webkit-linear-gradient(top,#DD4B39,#C53727);
+	background-image: linear-gradient(top,#DD4B39,#C53727);
+	border: 1px solid #B0281A;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btn-style-mapbox {
+	color: #FFFFFF;
+	background-color: #3887BE;
+	height: 40px;
+	border-radius: 3px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	padding: 9px 20px;
+	border: none;
+	border-radius: 3px;
+	line-height: 25px;
+}
+
+.btn-style-mapbox:hover {
+	background-color: #3BB2D0;
+}
+
+.btn-style-hollow {
+	text-align: center;
+	color: #000000;
+	height: 40px;
+	cursor: pointer;
+	border-radius: 3px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	padding: 9px 20px;
+	border: 2px solid #000000;
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+	line-height: 20px;
+}
+
+.btn-style-hollow-dark {
+	text-align: center;
+	color: #FFFFFF;
+	height: 40px;
+	cursor: pointer;
+	border-radius: 3px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	padding: 9px 20px;
+	border: 2px solid #FFFFFF;
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+	line-height: 20px;
+}
+
+.btn-style-medium-hollow {
+	border: 1px solid #A9D8B2;
+	color: #57AD68;
+	font-size: 12px;
+	line-height: 31px;
+	height: 32px;
+	padding: 0 14px;
+	outline: 0;
+	white-space: nowrap;
+	border-radius: 999em;
+	font-family: "Lucide Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+	letter-spacing: -0.02em;
+	font-weight: 400;
+	font-style: normal;
+	-moz-osx-font-smoothing: grayscale;
+	-moz-font-feature-setting: "liga" on;
+	transition: 100ms all;
+}
+
+.btn-style-medium-hollow:hover {
+	border-color: #57AD68;
+	color: #468C54;
+}
+
+.btn-style-medium {
+	border: 1px solid #57AD68;
+	background: #57AD68;
+	color: #FFFFFF;
+	font-size: 12px;
+	line-height: 31px;
+	height: 32px;
+	padding: 0 14px;
+	outline: 0;
+	white-space: nowrap;
+	border-radius: 999em;
+	font-family: "Lucide Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+	letter-spacing: -0.02em;
+	font-weight: 400;
+	font-style: normal;
+	-moz-osx-font-smoothing: grayscale;
+	-moz-font-feature-setting: "liga" on;
+	transition: 100ms all;
+}
+
+.btn-style-medium:hover {
+	background: #51B364;
+	border-color: rgba(0, 0, 0, 0);
+}
+
+.btn-style-medium-hollow-dark {
+	border-color: #9BBAA1;
+	color: #70D584;
+}
