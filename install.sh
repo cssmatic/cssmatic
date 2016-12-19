@@ -24,10 +24,15 @@ source $HOME/.virtualenvs/cssmatic/bin/activate
 pip install -r requirements.txt
 sudo $HOME/.virtualenvs/cssmatic/bin/pybabel compile -d translations
 
-# Install gunicorn configuration
-sudo cp etc/init/cssmatic-gunicorn.conf /etc/init/
-sudo initctl reload-configuration
-sudo service cssmatic-gunicorn restart
+# Install gunicorn configuration on upstart servers
+# sudo cp etc/init/cssmatic-gunicorn.conf /etc/init/
+# sudo initctl reload-configuration
+# sudo service cssmatic-gunicorn restart
+
+# or on systemd servers
+sudo cp lib/systemd/system/cssmatic.service /lib/systemd/system
+sudo systemctl start cssmatic
+
 sleep 1
 if ! curl --silent --head http://localhost:8008/ | egrep "^HTTP/1.[01] 200 OK"; then
     echo "Error installing cssmatic flask process"
