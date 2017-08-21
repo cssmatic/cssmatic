@@ -42,6 +42,25 @@ fi
 # Install nginx configuration
 sudo mkdir -p /opt/cache/cssmatic/proxy
 sudo cp etc/nginx/sites-enabled/cssmatic-nginx.conf /etc/nginx/sites-enabled/
+if [ ! -f /etc/nginx/ssl/dhparam.pem ]; then
+    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
+fi
+
+if [ ! -f /etc/letsencrypt/live/cssmatic.com/fullchain.pem ]; then
+    if [ ! -e /usr/bin/certbot ]; then
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update
+        apt-get -yq install software-properties-common
+        add-apt-repository ppa:certbot/certbot -y
+        apt-get update
+        apt-get -yq install python-certbot-nginx
+    fi
+
+    certbot --nginx certonly
+    echo -e '#!/bin/sh\n/usr/bin/certbot renew --post-hook "nginx -s reload"' > /etc/cron.daily/letsencrypt
+    chmod a+x /etc/cron.daily/letsencrypt
+fi
+
 if ! sudo /usr/sbin/nginx -t; then
     echo "Error in nginx configuration"
     exit 1
